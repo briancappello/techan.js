@@ -238,15 +238,20 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
 
     appendPathsUpDownEqual: appendPathsUpDownEqual,
 
-    horizontalPathLine: function(accessor_date, x, accessor_value, y) {
+    horizontalPathLine: function(accessor_date, x, yValue, y) {
       return function(d) {
         if(!d.length) return null;
+
+        // "accessor_value" compatibility
+        if(typeof yValue === 'function') {
+            yValue = y(yValue(firstDatum));
+        }
 
         var firstDatum = d[0],
             lastDatum = d[d.length-1];
 
-        return 'M ' + x(accessor_date(firstDatum)) + ' ' + y(accessor_value(firstDatum)) +
-          ' L ' + x(accessor_date(lastDatum)) + ' ' + y(accessor_value(lastDatum));
+        return 'M ' + x(accessor_date(firstDatum)) + ' ' + yValue +
+          ' L ' + x(accessor_date(lastDatum)) + ' ' + yValue;
       };
     },
 

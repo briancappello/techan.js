@@ -1,9 +1,13 @@
 'use strict';
 
 module.exports = function(accessor_rsi, plot, plotMixin) {  // Injected dependencies
-  return function() { // Closure function
+  return function(options) { // Closure function
+    if (!options) options = {};
     var p = {},  // Container for private, direct access mixed in variables
-        rsiLine = plot.pathLine();
+        rsiLine = plot.pathLine(),
+        overbought = options.overbought ? options.overbought : 70,
+        middle = options.middle ? options.middle : 50,
+        oversold = options.overbought ? options.overbought : 30;
 
     function rsi(g) {
       var group = p.dataSelector(g);
@@ -17,7 +21,7 @@ module.exports = function(accessor_rsi, plot, plotMixin) {  // Injected dependen
     }
 
     rsi.refresh = function(g) {
-      refresh(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, rsiLine);
+      refresh(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, rsiLine, overbought, middle, oversold);
     };
 
     function binder() {
@@ -32,9 +36,9 @@ module.exports = function(accessor_rsi, plot, plotMixin) {  // Injected dependen
   };
 };
 
-function refresh(selection, accessor, x, y, plot, rsiLine) {
-  selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
-  selection.select('path.middle').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.m, y));
-  selection.select('path.oversold').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
+function refresh(selection, accessor, x, y, plot, rsiLine, overbought, middle, oversold) {
+  selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, overbought, y));
+  selection.select('path.middle').attr('d', plot.horizontalPathLine(accessor.d, x, middle, y));
+  selection.select('path.oversold').attr('d', plot.horizontalPathLine(accessor.d, x, oversold, y));
   selection.select('path.rsi').attr('d', rsiLine);
 }
