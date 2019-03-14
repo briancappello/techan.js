@@ -19,14 +19,15 @@
     "name": "André Dumas",
     "url": "http://andredumas.id.au"
   },
+  "jsnext:main": "src/techan.js",
   "main": "dist/techan.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/andredumas/techan.js.git"
   },
-  "license" : "MIT",
+  "license": "MIT",
   "dependencies": {
-    "d3": "~4.2.6"
+    "d3": "^4.2.6"
   },
   "devDependencies": {
     "bower": "~1.7.9",

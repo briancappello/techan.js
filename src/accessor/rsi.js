@@ -3,9 +3,9 @@
 module.exports = function() {
   var date = function(d) { return d.date; },
       rsi = function(d) { return d.rsi; },
-      overbought = function(d) { return d.overbought; },
-      oversold = function(d) { return d.oversold; },
-      middle = function(d) { return d.middle; };
+      overbought = function() { return 70; },
+      oversold = function() { return 30; },
+      middle = function() { return 50; };
 
   function accessor(d) {
     return accessor.r(d);

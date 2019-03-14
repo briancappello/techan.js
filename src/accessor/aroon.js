@@ -25,6 +25,7 @@ module.exports = function() {
     up = _;
     return bind();
   };
+
   accessor.down = function(_) {
     if (!arguments.length) return down;
     down = _;
@@ -58,8 +59,8 @@ module.exports = function() {
   function bind() {
     accessor.d = date;
     accessor.up = up;
-    accessor.down = down;
-    accessor.oscillator = oscillator;
+    accessor.dn = down;
+    accessor.osc = oscillator;
     accessor.ob = overbought;
     accessor.os = oversold;
     accessor.m = middle;

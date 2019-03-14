@@ -20,9 +20,9 @@ module.exports = function(accessor_bollinger, plot, plotMixin) {  // Injected de
     };
 
     function binder() {
-      upperLine.init(p.accessor.d, p.xScale, p.accessor.upper, p.yScale);
-      middleLine.init(p.accessor.d, p.xScale, p.accessor.middle, p.yScale);
-      lowerLine.init(p.accessor.d, p.xScale, p.accessor.lower, p.yScale);
+      upperLine.init(p.accessor.d, p.xScale, p.accessor.u, p.yScale);
+      middleLine.init(p.accessor.d, p.xScale, p.accessor.m, p.yScale);
+      lowerLine.init(p.accessor.d, p.xScale, p.accessor.l, p.yScale);
     }
 
     // Mixin 'superclass' methods and variables

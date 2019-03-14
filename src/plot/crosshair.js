@@ -6,8 +6,12 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
         dispatcher = d3_dispatch('enter', 'out', 'move'),
         verticalPathGenerator,
         horizontalPathGenerator,
-        xAnnotationComposer = plot.plotComposer().scope('composed-annotation').plotScale(function(plot) { return plot.axis().scale(); }),
-        yAnnotationComposer = plot.plotComposer().scope('composed-annotation').plotScale(function(plot) { return plot.axis().scale(); }),
+        xAnnotationComposer = plot.plotComposer()
+          .scope('composed-annotation')
+          .plotScale(function(plot) { return plot.axis().scale(); }),
+        yAnnotationComposer = plot.plotComposer()
+          .scope('composed-annotation')
+          .plotScale(function(plot) { return plot.axis().scale(); }),
         verticalWireRange,
         horizontalWireRange;
 

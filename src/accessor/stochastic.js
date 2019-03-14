@@ -4,8 +4,8 @@ module.exports = function() {
   var date = function(d) { return d.date; },
       stochasticK = function(d) { return d.stochasticK; },
       stochasticD = function(d) { return d.stochasticD; },
-      overbought = function(d) { return d.overbought; },
-      oversold = function(d) { return d.oversold; };
+      overbought = function() { return 80; },
+      oversold = function() { return 20; };
 
   function accessor(d) {
     return accessor.r(d);

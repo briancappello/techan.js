@@ -28,11 +28,11 @@ module.exports = function(accessor_aroon, plot, plotMixin) {  // Injected depend
     };
 
     function binder() {
-      oscLine.init(p.accessor.d, p.xScale, p.accessor.oscillator, p.yScale);
-      oscArea.init(p.accessor.d, p.xScale, p.accessor.oscillator, p.yScale, 0);
+      oscLine.init(p.accessor.d, p.xScale, p.accessor.osc, p.yScale);
+      oscArea.init(p.accessor.d, p.xScale, p.accessor.osc, p.yScale, 0);
       middleLine.init(p.accessor.d, p.xScale, p.accessor.m, p.yScale);
       upLine.init(p.accessor.d, p.xScale, p.accessor.up, p.yScale);
-      downLine.init(p.accessor.d, p.xScale, p.accessor.down, p.yScale);
+      downLine.init(p.accessor.d, p.xScale, p.accessor.dn, p.yScale);
     }
 
     // Mixin 'superclass' methods and variables

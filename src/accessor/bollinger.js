@@ -2,7 +2,6 @@
 
 module.exports = function() {
   var date = function(d) { return d.date; },
-      middle = function(d) { return d.middleBand; },
       upper = function(d) { return d.upperBand; },
       lower = function(d) { return d.lowerBand; };
 
@@ -13,12 +12,6 @@ module.exports = function() {
   accessor.date = function(_) {
     if (!arguments.length) return date;
     date = _;
-    return bind();
-  };
-
-  accessor.middle = function(_) {
-    if (!arguments.length) return middle;
-    middle = _;
     return bind();
   };
 
@@ -36,9 +29,13 @@ module.exports = function() {
 
   function bind() {
     accessor.d = date;
-    accessor.middle = middle;
-    accessor.upper = upper;
-    accessor.lower = lower;
+    accessor.u = upper;
+    accessor.l = lower;
+    accessor.m = function (d) {
+      var up = accessor.u(d),
+          low = accessor.l(d);
+      return up - ((up - low) / 2)
+    };
 
     return accessor;
   }
