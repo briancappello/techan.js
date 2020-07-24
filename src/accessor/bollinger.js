@@ -34,7 +34,11 @@ module.exports = function() {
     accessor.m = function (d) {
       var up = accessor.u(d),
           low = accessor.l(d);
-      return up - ((up - low) / 2)
+
+      if (up === null || low === null) {
+        return null
+      }
+      return up - ((up - low) / 2);
     };
 
     return accessor;
