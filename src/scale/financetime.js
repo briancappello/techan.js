@@ -158,32 +158,30 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
      * Generates ticks as continuous as possible against the underlying domain. Where continuous time ticks
      * fall on where there is no matching domain (such as weekend or holiday day), it will be replaced with
      * the nearest domain datum ahead of the tick to keep close to continuous.
-     * @param interval
-     * @param steps
+     * @param frequency
      * @returns {*}
      */
     scale.ticks = function(frequency) {
-      var visibleDomain = scale.domain(),
-        indexDomain = index.domain();
+      var visibleDomain = scale.domain();
 
       if (!visibleDomain.length) return []; // Nothing is visible, no ticks to show
 
-      const lookup = {
+      var lookup = {
         '1m': { interval: d3_time.timeMinute, steps: 30 },
         '5m': { interval: d3_time.timeMinute, steps: 30 },
         '1hr': { interval: d3_time.timeHour, steps: 1 },
         'D': { interval: d3_time.timeMonth, steps: 1 },
         'W': { interval: d3_time.timeMonth, steps: 3 },
         'M': { interval: d3_time.timeYear, steps: 1 },
-        'Y': { interval: d3_time.timeYear, steps: 5 },
-      }
+        'Y': { interval: d3_time.timeYear, steps: 5 }
+      };
 
-      let interval = d3_time.timeMinute,
+      var interval = d3_time.timeMinute,
         steps = 30,
-        settings = lookup[frequency]
+        settings = lookup[frequency];
       if (settings !== undefined) {
-        interval = settings['interval']
-        steps = settings['steps']
+        interval = settings.interval;
+        steps = settings.steps;
       }
 
       var intervalRange = interval
@@ -191,7 +189,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
         .range(
           visibleDomain[0],
           +visibleDomain[visibleDomain.length - 1] + 1
-        ).filter((d) => {
+        ).filter(function(d) {
           switch (frequency) {
             case 'D':
             case 'W':
@@ -200,26 +198,26 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
 
             case '30m':
             case '1hr':
-              return d.getHours() === 4 && d.getMinutes() == 0
+              return d.getHours() === 4 && d.getMinutes() === 0;
           }
 
-          if (d.getHours() == 9 && d.getMinutes() == 30) {
-            return true
+          if (d.getHours() === 9 && d.getMinutes() === 30) {
+            return true;
           }
-          if (d.getHours() < 4 || d.getHours() > 20 || d.getMinutes() != 0) {
-            return false
+          if (d.getHours() < 4 || d.getHours() > 20 || d.getMinutes() !== 0) {
+            return false;
           }
 
           switch (frequency) {
             case '1m':
-              return d.getMinutes() == 0 // every hour
+              return d.getMinutes() === 0; // every hour
             case '5m':
             case '10m':
             case '15m':
-              return d.getHours() == 16
+              return d.getHours() === 16;
           }
 
-          return false
+          return false;
         });
 
       return intervalRange                                // Interval, possibly contains values not in domain
@@ -261,16 +259,6 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
     return (Math.abs(linear(domain.length - 1) - linear(0)) / Math.max(1, domain.length - 1)) * (1 - padding);
   }
 
-  /**
-   * Calculates the proportion of domain that is visible. Used to reduce the overall count by this factor
-   * @param visibleDomain
-   * @param indexDomain
-   * @returns {number}
-   */
-  function countK(visibleDomain, indexDomain) {
-    return visibleDomain.length / (indexDomain[indexDomain.length - 1] - indexDomain[0]);
-  }
-
   function lookupIndex(array) {
     var lookup = {};
     array.forEach(function(d, i) {
@@ -303,47 +291,12 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
     return previous;
   }
 
-  var dailyStep = 864e5,
-    dailyTickSteps = [
-      dailyStep,  // 1-day
-      6048e5,     // 1-week
-      2592e6,     // 1-month
-      7776e6,     // 3-month
-      31536e6     // 1-year
-    ],
-    intradayTickSteps = [
-      1e3,    // 1-second
-      5e3,    // 5-second
-      15e3,   // 15-second
-      3e4,    // 30-second
-      6e4,    // 1-minute
-      3e5,    // 5-minute
-      9e5,    // 15-minute
-      18e5,   // 30-minute
-      36e5,   // 1-hour
-      108e5,  // 3-hour
-      216e5,  // 6-hour
-      432e5,  // 12-hour
-      864e5   // 1-day
-    ];
-
   var dayFormat = d3_time.timeFormat('%b %e'),
     yearFormat = d3_v3_multi_shim([
       [d3_time.timeFormat('%b %Y'), function(d) {
         return d.getMonth();
       }],
       [d3_time.timeFormat('%Y'), function() {
-        return true;
-      }]
-    ]),
-    intradayFormat = d3_v3_multi_shim([
-      [d3_time.timeFormat(':%S'), function(d) {
-        return d.getSeconds();
-      }],
-      [d3_time.timeFormat('%I:%M'), function(d) {
-        return d.getMinutes();
-      }],
-      [d3_time.timeFormat('%I %p'), function() {
         return true;
       }]
     ]),
@@ -368,11 +321,6 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
       [d3_time.utcFormat('%b %Y'), function(d) { return d.getUTCMonth(); }],
       [d3_time.utcFormat('%Y'), function() { return true; }]
     ]),
-    intradayFormatUtc = d3_v3_multi_shim([
-      [d3_time.utcFormat(':%S'), function(d) { return d.getUTCSeconds(); }],
-      [d3_time.utcFormat('%I:%M'), function(d) { return d.getUTCMinutes(); }],
-      [d3_time.utcFormat('%I %p'), function() { return true; }]
-    ]),
     genericFormatUtc = [d3_time.timeSecond, 1, d3_v3_multi_shim([
         [d3_time.utcFormat(':%S'), function(d) { return d.getUTCSeconds(); }],
         [d3_time.utcFormat('%I:%M'), function(d) { return d.getUTCMinutes(); }],
@@ -387,7 +335,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
       [d3_time.timeMonth, 1, yearFormat],
       [d3_time.timeMonth, 3, yearFormat],
       [d3_time.timeYear, 1, yearFormat]
-    ]
+    ];
 
   var dailyTickMethodUtc = [
       [d3_time.utcDay, 1, dayFormatUtc],
@@ -395,7 +343,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
       [d3_time.utcMonth, 1, yearFormatUtc],
       [d3_time.utcMonth, 3, yearFormatUtc],
       [d3_time.utcYear, 1, yearFormatUtc]
-    ]
+    ];
 
   function techan_scale_financetime() {
     return financetime({ daily: dailyTickMethod }, genericFormat);
