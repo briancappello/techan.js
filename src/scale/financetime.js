@@ -167,14 +167,19 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
       if (!visibleDomain.length) return []; // Nothing is visible, no ticks to show
 
       var lookup = {
-        '1m': { interval: d3_time.timeMinute, steps: 30 },
-        '5m': { interval: d3_time.timeMinute, steps: 30 },
-        '1hr': { interval: d3_time.timeHour, steps: 1 },
+        '1min': { interval: d3_time.timeMinute, steps: 30 },
+        'h': { interval: d3_time.timeHour, steps: 1 },
         'D': { interval: d3_time.timeMonth, steps: 1 },
         'W': { interval: d3_time.timeMonth, steps: 3 },
         'M': { interval: d3_time.timeYear, steps: 1 },
         'Y': { interval: d3_time.timeYear, steps: 5 }
       };
+
+      var tzOffset = ((new Date().getTimezoneOffset()) / 60) - 5;
+      var premarketOpen = 4 - tzOffset;
+      var marketOpen = 9 - tzOffset;
+      var marketClose = 16 - tzOffset;
+      var aftermarketClose = 20 - tzOffset;
 
       var interval = d3_time.timeMinute,
         steps = 30,
@@ -196,25 +201,25 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
             case 'M':
               return true;
 
-            case '30m':
-            case '1hr':
-              return d.getHours() === 4 && d.getMinutes() === 0;
+            case '30min':
+            case 'h':
+              return d.getHours() === premarketOpen && d.getMinutes() === 0;
           }
 
-          if (d.getHours() === 9 && d.getMinutes() === 30) {
+          if (d.getHours() === marketOpen && d.getMinutes() === 30) {
             return true;
           }
-          if (d.getHours() < 4 || d.getHours() > 20 || d.getMinutes() !== 0) {
+          if (d.getHours() < premarketOpen || d.getHours() > aftermarketClose || d.getMinutes() !== 0) {
             return false;
           }
 
           switch (frequency) {
-            case '1m':
+            case '1min':
               return d.getMinutes() === 0; // every hour
-            case '5m':
-            case '10m':
-            case '15m':
-              return d.getHours() === 16;
+            case '5min':
+            case '10min':
+            case '15min':
+              return d.getHours() === marketClose || d.getHours() === aftermarketClose;
           }
 
           return false;
