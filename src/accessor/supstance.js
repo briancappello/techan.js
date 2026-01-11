@@ -1,19 +1,17 @@
-'use strict';
-
-module.exports = function() {
-  var start = function(d) { return d.start; },
-      end = function(d) { return d.end; },
-    /**
-     * Supports getter and setter
-     * @param d Underlying data object to get or set the value
-     * @param _ If passed turns into a setter. This is the value to set
-     * @returns {*}
-     */
-    value = function(d, _) {
-      if(arguments.length < 2) return d.value;
-      d.value = _;
-      return accessor;
-    };
+export default function() {
+  let start = d => d.start,
+      end = d => d.end,
+      /**
+       * Supports getter and setter
+       * @param d Underlying data object to get or set the value
+       * @param _ If passed turns into a setter. This is the value to set
+       * @returns {*}
+       */
+      value = function(d, _) {
+        if(arguments.length < 2) return d.value;
+        d.value = _;
+        return accessor;
+      };
 
   function accessor(d) {
     return accessor.v(d);
@@ -46,4 +44,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

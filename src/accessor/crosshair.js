@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function() {
+export default function() {
   /**
    * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
    * This approach needs further thought.
@@ -8,18 +6,18 @@ module.exports = function() {
    * @param _ If passed turns into a setter. This is the value to set
    * @returns {*}
    */
-  var x = function(d, _) {
+  let x = function(d, _) {
         if(arguments.length < 2) return d.x;
         d.x = _;
         return accessor;
       },
-        /**
-         * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
-         * This approach needs further thought.
-         * @param d Underlying data object to get or set the value
-         * @param _ If passed turns into a setter. This is the value to set
-         * @returns {*}
-         */
+      /**
+       * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
+       * This approach needs further thought.
+       * @param d Underlying data object to get or set the value
+       * @param _ If passed turns into a setter. This is the value to set
+       * @returns {*}
+       */
       y = function(d, _) {
         if(arguments.length < 2) return d.y;
         d.y = _;
@@ -50,4 +48,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

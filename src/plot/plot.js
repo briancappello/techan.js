@@ -1,14 +1,12 @@
-'use strict';
-
-module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select) {
-  var DataSelector = function(mapper) {
-    var key,
+export default function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select) {
+  const DataSelector = function(mapper) {
+    let key,
         scope,
         classes = ['data'];
 
     function dataSelect(g) {
-      var selection = dataSelect.select(g).data(mapper, key),
-          entry = selection.enter().append('g').attr('class',  arrayJoin(classes, ' '));
+      const selection = dataSelect.select(g).data(mapper, key),
+          entry = selection.enter().append('g').attr('class', arrayJoin(classes, ' '));
       selection.exit().remove();
 
       return {
@@ -49,21 +47,21 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
   };
 
   DataSelector.mapper = {
-    unity: function(d) { return d; },
-    array: function(d) { return [d]; }
+    unity: d => d,
+    array: d => [d]
   };
 
   function PathLine() {
-    var d3Line = d3_svg_line().curve(d3_line_interpolate);
+    const d3Line = d3_svg_line().curve(d3_line_interpolate);
 
     function line(data) {
       return d3Line(data);
     }
 
     line.init = function(accessor_date, x, accessor_value, y, offset) {
-      return d3Line.defined(function(d) { return accessor_value(d) !== null; })
-          .x(function(d) { return x(accessor_date(d), offset === undefined ? offset : offset(d)); } )
-          .y(function(d) { return y(accessor_value(d)); } );
+      return d3Line.defined(d => accessor_value(d) !== null)
+          .x(d => x(accessor_date(d), offset === undefined ? offset : offset(d)))
+          .y(d => y(accessor_value(d)));
     };
 
     line.d3 = function() {
@@ -74,17 +72,17 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
   }
 
   function PathArea() {
-    var d3Area = d3_svg_area().curve(d3_line_interpolate);
+    const d3Area = d3_svg_area().curve(d3_line_interpolate);
 
     function area(data) {
       return d3Area(data);
     }
 
     area.init = function(accessor_date, x, accessor_value, y, yBase) {
-      return d3Area.defined(function(d) { return accessor_value(d) !== null;  })
-           .x(function(d) { return x(accessor_date(d)); } )
-           .y0(function(d) { return y(yBase); } )
-           .y1(function(d) { return y(accessor_value(d)); } );
+      return d3Area.defined(d => accessor_value(d) !== null)
+           .x(d => x(accessor_date(d)))
+           .y0(d => y(yBase))
+           .y1(d => y(accessor_value(d)));
     };
 
     area.d3 = function() {
@@ -96,18 +94,18 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
 
   function upDownEqual(accessor) {
     return {
-      up: function(d) { return accessor.o(d) < accessor.c(d); },
-      down: function(d) { return accessor.o(d) > accessor.c(d); },
-      equal: function(d) { return accessor.o(d) === accessor.c(d); }
+      up: d => accessor.o(d) < accessor.c(d),
+      down: d => accessor.o(d) > accessor.c(d),
+      equal: d => accessor.o(d) === accessor.c(d)
     };
   }
 
   function appendPathsGroupBy(g, accessor, plotName, classes) {
-    var plotNames = plotName instanceof Array ? plotName : [plotName];
+    const plotNames = plotName instanceof Array ? plotName : [plotName];
 
     classes = classes || upDownEqual(accessor);
 
-    Object.keys(classes).forEach(function(key) {
+    Object.keys(classes).forEach(key => {
       appendPlotTypePath(g, classes[key], plotNames, key);
     });
   }
@@ -117,7 +115,7 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
   }
 
   function appendPlotTypePath(g, data, plotNames, direction) {
-    g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction).data(function(d) { return [d.filter(data)]; })
+    g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction).data(d => [d.filter(data)])
       .enter().append('path').attr('class', arrayJoin(plotNames, ' ') + ' ' + direction);
   }
 
@@ -128,8 +126,8 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
 
   function arrayJoin(array, delimiter) {
     if(!array.length) return;
-    var result = array[0];
-    for(var i = 1; i < array.length; i++) {
+    let result = array[0];
+    for(let i = 1; i < array.length; i++) {
       result += delimiter + array[i];
     }
     return result;
@@ -146,16 +144,14 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
    * @constructor
    */
   function PlotComposer() {
-    var dataSelector = DataSelector(),
+    let dataSelector = DataSelector(),
         plots = [],
-        plotScale = function(plot) { return plot.scale(); },
+        plotScale = plot => plot.scale(),
         scale,
         accessor;
 
     function plotComposer(g) {
-      var group = dataSelector.mapper(function() {
-        return plots.map(function() { return []; });
-      })(g);
+      const group = dataSelector.mapper(() => plots.map(() => []))(g);
 
       group.selection.each(function(d, i) {
         plots[i](d3_select(this));
@@ -165,12 +161,12 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
     }
 
     plotComposer.refresh = function(g) {
-      dataSelector.select(g).data(function(d) {
-          var value = accessor(d);
-          if(value === null || value === undefined) return plots.map(function() { return []; });
-          var y = scale(value);
-          return plots.map(function(plot) {
-            var annotationValue = plotScale(plot) === scale ? value : plotScale(plot).invert(y);
+      dataSelector.select(g).data(d => {
+          const value = accessor(d);
+          if(value === null || value === undefined) return plots.map(() => []);
+          const y = scale(value);
+          return plots.map(plot => {
+            const annotationValue = plotScale(plot) === scale ? value : plotScale(plot).invert(y);
             return [ { value: annotationValue} ];
           });
         }).each(function(d, i) {
@@ -242,8 +238,8 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
       return function(d) {
         if(!d.length) return null;
 
-        var firstDatum = d[0],
-            lastDatum = d[d.length-1],
+        const firstDatum = d[0],
+            lastDatum = d[d.length - 1],
             yValue = Math.floor(y(accessor_value(firstDatum))) + 0.5;
 
         return 'M ' + x(accessor_date(firstDatum)) + ' ' + yValue +
@@ -262,7 +258,7 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
       div = div || 1;
 
       return function() {
-        return Math.min(max, barWidth(x)/div) + 'px';
+        return Math.min(max, barWidth(x) / div) + 'px';
       };
     },
 
@@ -278,27 +274,27 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
     interaction: {
       mousedispatch: function(dispatch) {
         return function(selection) {
-          return selection.on('mouseenter', function(d) {
+          return selection.on('mouseenter', function(event, d) {
             d3_select(this.parentNode).classed('mouseover', true);
             dispatch.call('mouseenter', this, d);
           })
-          .on('mouseleave', function(d) {
-            var parentElement = d3_select(this.parentNode);
+          .on('mouseleave', function(event, d) {
+            const parentElement = d3_select(this.parentNode);
             if(!parentElement.classed('dragging')) {
               parentElement.classed('mouseover', false);
               dispatch.call('mouseout', this, d);
             }
           })
-          .on('mousemove', function(d) { dispatch.call('mousemove', this, d); });
+          .on('mousemove', function(event, d) { dispatch.call('mousemove', this, d); });
         };
       },
 
       dragStartEndDispatch: function(drag, dispatch) {
-        return drag.on('start', function(d) {
+        return drag.on('start', function(event, d) {
           d3_select(this.parentNode.parentNode).classed('dragging', true);
           dispatch.call('dragstart', this, d);
         })
-        .on('end', function(d) {
+        .on('end', function(event, d) {
           d3_select(this.parentNode.parentNode).classed('dragging', false);
           dispatch.call('dragend', this, d);
         });
@@ -307,4 +303,4 @@ module.exports = function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_sele
 
     plotComposer: PlotComposer
   };
-};
+}

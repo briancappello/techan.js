@@ -1,20 +1,18 @@
-'use strict';
-
-module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, accessor_supstance, plot, plotMixin) {  // Injected dependencies
+export default function(d3_drag, d3_select, d3_dispatch, accessor_supstance, plot, plotMixin) {  // Injected dependencies
   function Supstance() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend'),
-        annotationComposer = plot.plotComposer().scope('composed-annotation').plotScale(function(plot) { return plot.axis().scale(); });
+    const p = {};  // Container for private, direct access mixed in variables
+    const dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend');
+    const annotationComposer = plot.plotComposer().scope('composed-annotation').plotScale(plot => plot.axis().scale());
 
     function supstance(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('g').attr('class', 'supstance')
         .append('path');
 
       group.entry.append('g').attr('class', 'axisannotation y').call(annotationComposer);
 
-      var interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none' )
+      const interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none' )
         .call(plot.interaction.mousedispatch(dispatch));
 
       interaction.append('path').style('stroke-width', '16px');
@@ -55,11 +53,11 @@ module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, ac
   }
 
   function dragBody(dispatch, accessor, x, y, annotationComposer) {
-    var drag = d3_behavior_drag().subject(function(d) {
+    const drag = d3_drag().subject((event, d) => {
       return { x: 0, y: y(accessor(d)) };
     })
-    .on('drag', function(d) {
-      var value = y.invert(d3_event().y),
+    .on('drag', function(event, d) {
+      const value = y.invert(event.y),
           g = d3_select(this.parentNode.parentNode); // Go up to the selected items parent only (not the list of items)
 
       accessor.v(d, value);
@@ -71,7 +69,7 @@ module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, ac
   }
 
   return Supstance;
-};
+}
 
 function refresh(selection, accessor, x, y, annotationComposer) {
   selection.select('.supstance path').attr('d', supstancePath(accessor, x, y));
@@ -81,7 +79,7 @@ function refresh(selection, accessor, x, y, annotationComposer) {
 
 function supstancePath(accessor, x, y) {
   return function(d) {
-    var range;
+    let range;
 
     if(isSupstanceAccessor(accessor)) {
       range = [accessor.s(d), accessor.e(d)];
@@ -91,7 +89,7 @@ function supstancePath(accessor, x, y) {
     else range = x.range();
 
     return 'M ' + range[0] + ' ' + y(accessor(d)) +
-      ' L ' + range[range.length-1] + ' ' + y(accessor(d));
+      ' L ' + range[range.length - 1] + ' ' + y(accessor(d));
   };
 }
 

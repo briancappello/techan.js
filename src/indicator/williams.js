@@ -1,34 +1,32 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        overbought = 80,
+    const p = {};  // Container for private, direct access mixed in variables
+    let overbought = 80,
         middle = 50,
         oversold = 20;
 
     function indicator(data) {
-      return data.map(function(d, i) {
+      return data.map((d, i) => {
          if(i >= p.period){
-          var max = 0;
-          var maxi = 0;
-          var min = 10000;
-          var mini = 0;
-          for (var j = 0; j < p.period; j++) {
-            if(p.accessor.h(data[i-j]) > max){
-              max = p.accessor.h(data[i-j]);
+          let max = 0;
+          let maxi = 0;
+          let min = 10000;
+          let mini = 0;
+          for (let j = 0; j < p.period; j++) {
+            if(p.accessor.h(data[i - j]) > max){
+              max = p.accessor.h(data[i - j]);
               maxi = j;
             }
-            if(p.accessor.l(data[i-j]) < min){
-              min = p.accessor.l(data[i-j]);
+            if(p.accessor.l(data[i - j]) < min){
+              min = p.accessor.l(data[i - j]);
               mini = j;
             }
           }
-          var williams = ((p.accessor.c(data[i]) - min )/( max - min ))*100;
+          const williams = ((p.accessor.c(data[i]) - min ) / ( max - min )) * 100;
           return datum(p.accessor.d(d), williams, middle, overbought, oversold);
         }
         else return datum(p.accessor.d(d));
-      }).filter(function(d) { return d.williams; });
+      }).filter(d => d.williams);
     }
 
     indicator.overbought = function(_) {
@@ -54,7 +52,7 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     return indicator;
   };
-};
+}
 
 function datum(date, williams, middle, overbought, oversold) {
   if(williams) return { date: date, williams: williams, middle: middle, overbought: overbought, oversold: oversold };

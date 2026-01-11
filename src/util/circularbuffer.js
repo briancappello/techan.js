@@ -1,11 +1,9 @@
-'use strict';
-
 /**
  * http://www.embedded.com/electronics-blogs/embedded-round-table/4419407/The-ring-buffer
  */
-module.exports = function CircularBuffer(size) {
-  var samples = [],
-      currentIndex = size-1;
+export default function CircularBuffer(size) {
+  const samples = [];
+  let currentIndex = size - 1;
 
   CircularBuffer.push = function(value) {
     currentIndex = ++currentIndex % size;
@@ -14,7 +12,7 @@ module.exports = function CircularBuffer(size) {
   };
 
   CircularBuffer.get = function(index) {
-    return samples[(currentIndex+samples.length-index) % samples.length];
+    return samples[(currentIndex + samples.length - index) % samples.length];
   };
 
   CircularBuffer.head = function() {
@@ -22,7 +20,7 @@ module.exports = function CircularBuffer(size) {
   };
 
   CircularBuffer.last = function() {
-    return CircularBuffer.get(samples.length-1);
+    return CircularBuffer.get(samples.length - 1);
   };
 
   CircularBuffer.size = function() {
@@ -38,4 +36,4 @@ module.exports = function CircularBuffer(size) {
   };
 
   return CircularBuffer;
-};
+}

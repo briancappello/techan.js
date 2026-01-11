@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function(d3_svg_area, d3_line_interpolate, accessor_ichimoku, plot, plotMixin) {  // Injected dependencies
+export default function(d3_svg_area, d3_line_interpolate, accessor_ichimoku, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        kumoClip = kumoClipArea(),
+    const p = {};  // Container for private, direct access mixed in variables
+    const kumoClip = kumoClipArea(),
         kumo = kumoPathArea(),
         senkouSpanA = plot.pathLine(),
         senkouSpanB = plot.pathLine(),
@@ -12,7 +10,7 @@ module.exports = function(d3_svg_area, d3_line_interpolate, accessor_ichimoku, p
         kijunsen = plot.pathLine();
 
     function ichimoku(g) {
-      var group = p.dataSelector(g),
+      const group = p.dataSelector(g),
           clipUpId = 'kumoclipup-' + randomID(),
           clipDownId = 'kumoclipdown-' + randomID();
 
@@ -57,17 +55,17 @@ module.exports = function(d3_svg_area, d3_line_interpolate, accessor_ichimoku, p
 
     function kumoClipArea() {
       return d3_svg_area().curve(d3_line_interpolate)
-        .defined(function(d) { return p.accessor.sb(d) !== null; })
-        .x(function(d) { return p.xScale(p.accessor.d(d), p.accessor.pks(d)); } )
-        .y0(function(d) { return p.yScale(p.accessor.sb(d)); } );
+        .defined(d => p.accessor.sb(d) !== null)
+        .x(d => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
+        .y0(d => p.yScale(p.accessor.sb(d)));
     }
 
     function kumoPathArea() {
       return d3_svg_area().curve(d3_line_interpolate)
-        .defined(function(d) { return p.accessor.sa(d) !== null && p.accessor.sb(d) !== null; })
-        .x(function(d) { return p.xScale(p.accessor.d(d), p.accessor.pks(d)); } )
-        .y0(function(d) { return p.yScale(p.accessor.sa(d)); } )
-        .y1(function(d) { return p.yScale(p.accessor.sb(d)); } );
+        .defined(d => p.accessor.sa(d) !== null && p.accessor.sb(d) !== null)
+        .x(d => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
+        .y0(d => p.yScale(p.accessor.sa(d)))
+        .y1(d => p.yScale(p.accessor.sb(d)));
     }
 
     // Mixin 'superclass' methods and variables
@@ -76,7 +74,7 @@ module.exports = function(d3_svg_area, d3_line_interpolate, accessor_ichimoku, p
 
     return ichimoku;
   };
-};
+}
 
 function negate(accessor) {
   return function(d) {
@@ -85,5 +83,5 @@ function negate(accessor) {
 }
 
 function randomID() {
-  return Math.random().toString(36).substr(2, 9);
+  return Math.random().toString(36).substring(2, 11);
 }

@@ -1,18 +1,16 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        tenkanSen = 9,
+    const p = {};  // Container for private, direct access mixed in variables
+    let tenkanSen = 9,
         kijunSen = 26,
         senkouSpanB = 52;
 
     function indicator(data) {
-      var parameters = { tenkanSen: tenkanSen, kijunSen: kijunSen, senkouSpanB: senkouSpanB },
+      const parameters = { tenkanSen: tenkanSen, kijunSen: kijunSen, senkouSpanB: senkouSpanB },
           result = new Array(data.length);
 
       // Iterate backwards through the data
-      for(var index = result.length-1; index >= 0; index--) {
+      for(let index = result.length - 1; index >= 0; index--) {
         result[index] = calculate(parameters, data, index);
       }
 
@@ -20,14 +18,14 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
     }
 
     function calculate(parameters, data, index) {
-      var d = data[index],
+      let d = data[index],
           min = p.accessor.l(d),
-          max = p.accessor.h(d),
-          current = datum(parameters, p.accessor.d(d), p.accessor.c(d));
+          max = p.accessor.h(d);
+      const current = datum(parameters, p.accessor.d(d), p.accessor.c(d));
 
       // Iterate backwards through the data up to sendouSpanB count to calculate averages
-      for(var i = 0, pos = i+1; i < parameters.senkouSpanB && index-i >= 0; i++, pos = i+1) {
-        d = data[index-i];
+      for(let i = 0, pos = i + 1; i < parameters.senkouSpanB && index - i >= 0; i++, pos = i + 1) {
+        d = data[index - i];
         min = Math.min(min, p.accessor.l(d));
         max = Math.max(max, p.accessor.h(d));
 
@@ -66,7 +64,7 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     return indicator;
   };
-};
+}
 
 function datum(parameters, date, chikouSpan) {
   return { parameters: parameters, date: date, chikouSpan: chikouSpan, tenkanSen: null, kijunSen: null, senkouSpanA: null, senkouSpanB: null };
@@ -77,5 +75,5 @@ function senkouSpanA(tenkanSen, kijunSen) {
 }
 
 function average(v1, v2) {
-  return (v1+v2)/2;
+  return (v1 + v2) / 2;
 }

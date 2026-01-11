@@ -1,14 +1,12 @@
-'use strict';
-
-module.exports = function(techan_util_circularbuffer, indicatorMixin, accessor_ohlc, indicator_smoothing, smoothed_period) {  // Injected dependencies
+export default function(techan_util_circularbuffer, indicatorMixin, accessor_ohlc, indicator_smoothing, smoothed_period) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        smoothing = indicator_smoothing().period(smoothed_period),
-        buffer;
+    const p = {};  // Container for private, direct access mixed in variables
+    let smoothing = indicator_smoothing().period(smoothed_period);
+    let buffer;
 
     function indicator(data) {
       indicator.init();
-      return data.map(rocDataPoint).filter(function(d) { return d.value !== null; });
+      return data.map(rocDataPoint).filter(d => d.value !== null);
     }
 
     indicator.init = function() {
@@ -18,15 +16,15 @@ module.exports = function(techan_util_circularbuffer, indicatorMixin, accessor_o
     };
 
     function rocDataPoint(d, i) {
-      var value = indicator.roc(p.accessor(d));
-      if (!buffer.primed() || i+1 < smoothing.period()) value = null;
+      let value = indicator.roc(p.accessor(d));
+      if (!buffer.primed() || i + 1 < smoothing.period()) value = null;
 
       return { date: p.accessor.d(d), value: value };
     }
 
     indicator.roc = function(value) {
       buffer.push(smoothing.average(value));
-      return (buffer.head() - buffer.last())/buffer.last();
+      return (buffer.head() - buffer.last()) / buffer.last();
     };
 
     indicator.ema = function(_) {
@@ -42,4 +40,4 @@ module.exports = function(techan_util_circularbuffer, indicatorMixin, accessor_o
 
     return indicator;
   };
-};
+}

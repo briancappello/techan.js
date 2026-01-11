@@ -1,11 +1,9 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      rsi = function(d) { return d.rsi; },
-      overbought = function() { return 70; },
-      oversold = function() { return 30; },
-      middle = function() { return 50; };
+export default function() {
+  let date = d => d.date,
+      rsi = d => d.rsi,
+      overbought = () => 70,
+      oversold = () => 30,
+      middle = () => 50;
 
   function accessor(d) {
     return accessor.r(d);
@@ -52,4 +50,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

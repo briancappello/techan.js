@@ -1,12 +1,10 @@
-'use strict';
-
 /**
  * Module allows optionally mixing in helper methods to plots such as xScale, yScale, accessor setters
  * and helpers for defining dispatching methods.
  */
-module.exports = function(d3_scale_linear, d3_functor, techan_scale_financetime, plot_dataselector, plot_width) {
-  var PlotMixin = function(source, priv) {
-    var plotMixin = {};
+export default function(d3_scale_linear, d3_functor, techan_scale_financetime, plot_dataselector, plot_width) {
+  const PlotMixin = function(source, priv) {
+    const plotMixin = {};
 
     /**
      * Where mapper is DataSelector.mapper.unity or DataSelector.mapper.array. For convenience DataSelector is available
@@ -98,4 +96,4 @@ module.exports = function(d3_scale_linear, d3_functor, techan_scale_financetime,
   PlotMixin.dataMapper = plot_dataselector.mapper;
 
   return PlotMixin;
-};
+}

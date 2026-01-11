@@ -1,16 +1,14 @@
-'use strict';
-
-module.exports = function(accessor_aroon, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_aroon, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        oscLine = plot.pathLine(),
+    const p = {};  // Container for private, direct access mixed in variables
+    const oscLine = plot.pathLine(),
         oscArea = plot.pathArea(),
         middleLine = plot.pathLine(),
         upLine = plot.pathLine(),
         downLine = plot.pathLine();
 
     function aroon(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'overbought');
       group.entry.append('path').attr('class', 'oversold');
@@ -41,7 +39,7 @@ module.exports = function(accessor_aroon, plot, plotMixin) {  // Injected depend
 
     return aroon;
   };
-};
+}
 
 function refresh(selection, accessor, x, y, plot, oscLine, oscArea, middleLine, upLine, downLine) {
   selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));

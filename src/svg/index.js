@@ -1,7 +1,8 @@
-'use strict';
+import arrowFactory from './arrow';
+import utilFactory from '../util/index';
 
-module.exports = function(d3) {
+export default function(d3) {
   return {
-    arrow: require('./arrow')(require('../util')().functor)
+    arrow: arrowFactory(utilFactory().functor)
   };
-};
+}

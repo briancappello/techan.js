@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Creates a decorated zoomable view of the passed scale. As the finance scale deals with an array and integer positions within the
  * array, it does not support the d3 zoom behaviour. d3 zoom behaviour rescales the input domain.
@@ -9,7 +7,7 @@
  *
  * NOTE: This is not a complete scale, it will throw errors if it is used for anything else but zooming
  */
-module.exports = function() {
+export default function() {
   function zoomable(linear, zoomed, domainLimit, clamp) {
     clamp = clamp !== undefined ? clamp : true;
 
@@ -34,7 +32,7 @@ module.exports = function() {
 
     scale.range = function(_) {
       if(!arguments.length) return linear.range();
-      throw "zoomable is a read only range. Use this scale for zooming only";
+      throw new Error("zoomable is a read only range. Use this scale for zooming only");
     };
 
     scale.copy = function() {
@@ -51,4 +49,4 @@ module.exports = function() {
   }
 
   return zoomable;
-};
+}

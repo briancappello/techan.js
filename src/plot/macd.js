@@ -1,14 +1,12 @@
-'use strict';
-
-module.exports = function(accessor_macd, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_macd, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        differenceGenerator,
-        macdLine = plot.pathLine(),
+    const p = {};  // Container for private, direct access mixed in variables
+    let differenceGenerator;
+    const macdLine = plot.pathLine(),
         signalLine = plot.pathLine();
 
     function macd(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.selection.append('path').attr('class', 'difference');
       group.selection.append('path').attr('class', 'zero');
@@ -29,15 +27,15 @@ module.exports = function(accessor_macd, plot, plotMixin) {  // Injected depende
     }
 
     function differencePath() {
-      var accessor = p.accessor,
+      const accessor = p.accessor,
           x = p.xScale,
-          y = p.yScale,
-          width = p.width(x);
+          y = p.yScale;
 
       return function(d) {
-        var zero = y(0),
+        const width = p.width(x),
+          zero = y(0),
           height = y(accessor.dif(d)) - zero,
-          xValue = x(accessor.d(d)) - width/2;
+          xValue = x(accessor.d(d)) - width / 2;
 
         return 'M ' + xValue + ' ' + zero + ' l 0 ' + height + ' l ' + width +
           ' 0 l 0 ' + (-height);
@@ -50,7 +48,7 @@ module.exports = function(accessor_macd, plot, plotMixin) {  // Injected depende
 
     return macd;
   };
-};
+}
 
 function refresh(selection, accessor, x, y, plot, differenceGenerator, macdLine, signalLine) {
   selection.select('path.difference').attr('d', differenceGenerator);

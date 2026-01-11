@@ -1,8 +1,6 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      volume = function(d) { return d.volume; };
+export default function() {
+  let date = d => d.date,
+      volume = d => d.volume;
 
   function accessor(d) {
     return accessor.v(d);
@@ -28,4 +26,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

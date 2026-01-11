@@ -1,29 +1,26 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc, indicator_sma) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc, indicator_sma) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        sdMultiplication = 2,
+    const p = {};  // Container for private, direct access mixed in variables
+    let sdMultiplication = 2,
         sd;
 
     function indicator(data) {
-        var signalLine = indicator_sma().accessor(indicator.accessor()).period(p.period).init();
-        var j;
-      return data.map(function(d, i) {
-        var middleBand = signalLine.average(p.accessor(d));
+        const signalLine = indicator_sma().accessor(indicator.accessor()).period(p.period).init();
+      return data.map((d, i) => {
+        const middleBand = signalLine.average(p.accessor(d));
         if(i >= p.period) {
-            var sum = 0;
-            for(j = 0;j<p.period;j++){
-                sum += (Math.pow(   (p.accessor.c(data[i-j]) - middleBand)  ,2 ) );
+            let sum = 0;
+            for(let j = 0; j < p.period; j++){
+                sum += (Math.pow( (p.accessor.c(data[i-j]) - middleBand), 2 ) );
             }
-            sd = Math.sqrt( sum/p.period );
-            var upperBand = middleBand+sdMultiplication*sd,
-                lowerBand = middleBand-sdMultiplication*sd;
+            sd = Math.sqrt( sum / p.period );
+            const upperBand = middleBand + sdMultiplication * sd,
+                lowerBand = middleBand - sdMultiplication * sd;
             return datum(p.accessor.d(d), middleBand, upperBand, lowerBand);
         }
         else return datum(p.accessor.d(d));
 
-      }).filter(function(d) { return d.middleBand; });
+      }).filter(d => d.middleBand);
     }
 
     indicator.sdMultiplication = function(_) {
@@ -37,10 +34,9 @@ module.exports = function(indicatorMixin, accessor_ohlc, indicator_sma) {  // In
 
     return indicator;
   };
-};
+}
 
 function datum(date, middleBand, upperBand, lowerBand) {
-
   if(middleBand) return { date: date, middleBand: middleBand, upperBand: upperBand, lowerBand: lowerBand};
   else return { date: date, middleBand: null, upperBand: null, lowerBand: null};
 }

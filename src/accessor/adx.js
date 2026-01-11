@@ -1,10 +1,8 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      adx = function(d) { return d.adx; },
-      plusDi = function(d) { return d.plusDi; },
-      minusDi = function(d) { return d.minusDi; };
+export default function() {
+  let date = d => d.date,
+      adx = d => d.adx,
+      plusDi = d => d.plusDi,
+      minusDi = d => d.minusDi;
 
   function accessor(d) {
     return accessor.r(d);
@@ -44,4 +42,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

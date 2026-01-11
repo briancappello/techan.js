@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      upper = function(d) { return d.upperBand; },
-      lower = function(d) { return d.lowerBand; };
+export default function() {
+  let date = d => d.date,
+      upper = d => d.upperBand,
+      lower = d => d.lowerBand;
 
   function accessor(d) {
     return accessor.r(d);
@@ -32,11 +30,11 @@ module.exports = function() {
     accessor.u = upper;
     accessor.l = lower;
     accessor.m = function (d) {
-      var up = accessor.u(d),
+      const up = accessor.u(d),
           low = accessor.l(d);
 
       if (up === null || low === null) {
-        return null
+        return null;
       }
       return up - ((up - low) / 2);
     };
@@ -45,4 +43,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

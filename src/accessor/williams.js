@@ -1,8 +1,6 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      williams = function(d) { return d.williams; };
+export default function() {
+  let date = d => d.date,
+      williams = d => d.williams;
 
   function accessor(d) {
     return accessor.r(d);
@@ -28,4 +26,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

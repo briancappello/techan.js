@@ -1,12 +1,10 @@
-'use strict';
-
-module.exports = function(accessor_volume, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_volume, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        volumeGenerator;
+    const p = {};  // Container for private, direct access mixed in variables
+    let volumeGenerator;
 
     function volume(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       if(isOhlcAccessor()) plot.appendPathsUpDownEqual(group.selection, p.accessor, 'volume');
       else group.entry.append('path').attr('class', 'volume');
@@ -28,19 +26,19 @@ module.exports = function(accessor_volume, plot, plotMixin) {  // Injected depen
     }
 
     function volumePath() {
-      var accessor = p.accessor,
+      const accessor = p.accessor,
           x = p.xScale,
-          y = p.yScale,
-          width = p.width(x);
+          y = p.yScale;
 
       return function(d) {
-        var vol = accessor.v(d);
+        const width = p.width(x),
+            vol = accessor.v(d);
 
         if(isNaN(vol)) return null;
 
-        var zero = y(0),
+        const zero = y(0),
           height = y(vol) - zero,
-          xValue = x(accessor.d(d)) - width/2;
+          xValue = x(accessor.d(d)) - width / 2;
 
         return 'M ' + xValue + ' ' + zero + ' l 0 ' + height + ' l ' + width +
           ' 0 l 0 ' + (-height);
@@ -53,4 +51,4 @@ module.exports = function(accessor_volume, plot, plotMixin) {  // Injected depen
 
     return volume;
   };
-};
+}

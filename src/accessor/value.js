@@ -1,7 +1,5 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
+export default function() {
+  let date = d => d.date,
       /**
        * Supports getter and setter
        * @param d Underlying data object to get or set the value
@@ -13,7 +11,7 @@ module.exports = function() {
         d.value = _;
         return accessor;
       },
-      zero = function(d) { return 0; };
+      zero = d => 0;
 
   function accessor(d) {
     return accessor.v(d);
@@ -46,4 +44,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

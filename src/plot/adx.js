@@ -1,14 +1,12 @@
-'use strict';
-
-module.exports = function(accessor_adx, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_adx, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        adxLine = plot.pathLine(),
+    const p = {};  // Container for private, direct access mixed in variables
+    const adxLine = plot.pathLine(),
         plusDiLine = plot.pathLine(),
         minusDiLine = plot.pathLine();
 
     function adx(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'adx');
       group.entry.append('path').attr('class', 'plusDi');
@@ -33,7 +31,7 @@ module.exports = function(accessor_adx, plot, plotMixin) {  // Injected dependen
 
     return adx;
   };
-};
+}
 
 function refresh(selection, adxLine, plusDiLine, minusDiLine) {
   selection.select('path.adx').attr('d', adxLine);

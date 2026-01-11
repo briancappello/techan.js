@@ -1,22 +1,20 @@
-'use strict';
-
-module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_crosshair, plot, plotMixin) { // Injected dependencies
+export default function(d3_select, d3_pointer, d3_dispatch, accessor_crosshair, plot, plotMixin) { // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        dispatcher = d3_dispatch('enter', 'out', 'move'),
-        verticalPathGenerator,
-        horizontalPathGenerator,
-        xAnnotationComposer = plot.plotComposer()
+    const p = {};  // Container for private, direct access mixed in variables
+    const dispatcher = d3_dispatch('enter', 'out', 'move');
+    let verticalPathGenerator,
+        horizontalPathGenerator;
+    const xAnnotationComposer = plot.plotComposer()
           .scope('composed-annotation')
-          .plotScale(function(plot) { return plot.axis().scale(); }),
-        yAnnotationComposer = plot.plotComposer()
+          .plotScale(plot => plot.axis().scale());
+    const yAnnotationComposer = plot.plotComposer()
           .scope('composed-annotation')
-          .plotScale(function(plot) { return plot.axis().scale(); }),
-        verticalWireRange,
+          .plotScale(plot => plot.axis().scale());
+    let verticalWireRange,
         horizontalWireRange;
 
     function crosshair(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'horizontal wire');
       group.entry.append('path').attr('class', 'vertical wire');
@@ -30,7 +28,7 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
     }
 
     crosshair.refresh = function(g) {
-      var xRange = p.xScale.range(),
+      const xRange = p.xScale.range(),
           yRange = p.yScale.range(),
           group = p.dataSelector.select(g),
           pathVerticalSelection = group.select('path.vertical'),
@@ -42,41 +40,42 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
       horizontalPathGenerator = horizontalPathLine();
 
       g.selectAll('rect')
-        .attr('x', Math.min.apply(null, xRange))
-        .attr('y', Math.min.apply(null, yRange))
-        .attr('height', Math.abs(yRange[yRange.length-1] - yRange[0]))
-        .attr('width', Math.abs(xRange[xRange.length-1] - xRange[0]))
-        .on('mouseenter', function() {
-          dispatcher.call('enter', this);
+        .attr('x', Math.min(...xRange))
+        .attr('y', Math.min(...yRange))
+        .attr('height', Math.abs(yRange[yRange.length - 1] - yRange[0]))
+        .attr('width', Math.abs(xRange[xRange.length - 1] - xRange[0]))
+        .on('mouseenter', function(event) {
+          dispatcher.call('enter', this, event);
         })
-        .on('mouseout', function() {
-          dispatcher.call('out', this);
+        .on('mouseout', function(event) {
+          dispatcher.call('out', this, event);
           // Redraw with null values to ensure when we enter again, there is nothing cached when redisplayed
           delete group.node().__coord__;
           initialiseWire(group.datum()); // Mutating data, don't need to manually pass down
           refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
         })
-        .on('mousemove', mousemoveRefresh(group, pathVerticalSelection, pathHorizontalSelection,
-          xAnnotationSelection, yAnnotationSelection)
-        );
+        .on('mousemove', function(event) {
+          mousemoveRefresh(group, pathVerticalSelection, pathHorizontalSelection,
+            xAnnotationSelection, yAnnotationSelection).call(this, event);
+        });
 
       refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
     };
 
     function mousemoveRefresh(selection, pathVerticalSelection, pathHorizontalSelection,
-                              xAnnotationSelection, yAnnotationSelection) {
-      return function() {
+                               xAnnotationSelection, yAnnotationSelection) {
+      return function(event) {
         // Cache coordinates past this mouse move
-        selection.node().__coord__ = d3_mouse(this);
+        selection.node().__coord__ = d3_pointer(event);
         refresh(selection, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
       };
     }
 
     function refresh(selection, xPath, yPath, xAnnotationSelection, yAnnotationSelection) {
-      var coords = selection.node().__coord__;
+      const coords = selection.node().__coord__;
 
       if(coords !== undefined) {
-        var d = selection.datum(),
+        const d = selection.datum(),
             xNew = p.xScale.invert(coords[0]),
             yNew = p.yScale.invert(coords[1]),
             dispatch = xNew !== null && yNew !== null && (p.accessor.xv(d) !== xNew || p.accessor.yv(d) !== yNew);
@@ -125,27 +124,27 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
     }
 
     function horizontalPathLine() {
-      var range = horizontalWireRange || p.xScale.range();
+      const range = horizontalWireRange || p.xScale.range();
 
       return function(d) {
         if(p.accessor.yv(d) === null) return null;
-        var value = p.yScale(p.accessor.yv(d));
+        let value = p.yScale(p.accessor.yv(d));
         if(isNaN(value)) return null;
         else value -= 0.5;
 
-        return 'M ' + range[0] + ' ' + value + ' L ' + range[range.length-1] + ' ' + value;
+        return 'M ' + range[0] + ' ' + value + ' L ' + range[range.length - 1] + ' ' + value;
       };
     }
 
     function verticalPathLine() {
-      var range = verticalWireRange || p.yScale.range();
+      const range = verticalWireRange || p.yScale.range();
 
       return function(d) {
         if(p.accessor.xv(d) === null) return null;
-        var value = p.xScale(p.accessor.xv(d)),
+        const value = p.xScale(p.accessor.xv(d)),
             sr = p.xScale.range();
-        if(value < Math.min(sr[0], sr[sr.length-1]) || value > Math.max(sr[0], sr[sr.length-1])) return null;
-        return 'M ' + value + ' ' + range[0] + ' L ' + value + ' ' + range[range.length-1];
+        if(value < Math.min(sr[0], sr[sr.length - 1]) || value > Math.max(sr[0], sr[sr.length - 1])) return null;
+        return 'M ' + value + ' ' + range[0] + ' L ' + value + ' ' + range[range.length - 1];
       };
     }
 
@@ -166,7 +165,7 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
 
     // Mixin scale management and event listening
     plotMixin(crosshair, p).plot(accessor_crosshair(), binder)
-      .dataSelector(function(d) {
+      .dataSelector(d => {
         // Has the user set data? If not, put empty data ready for mouse over
         if(isEmpty(d)) return [ initialiseWire() ];
         else return [d];
@@ -177,4 +176,4 @@ module.exports = function(d3_select, d3_event, d3_mouse, d3_dispatch, accessor_c
 
     return binder();
   };
-};
+}

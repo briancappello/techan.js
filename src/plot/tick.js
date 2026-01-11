@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function(d3_scale_linear, d3_extent, accessor_tick, plot, plotMixin) {  // Injected dependencies
+export default function(d3_scale_linear, d3_extent, accessor_tick, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure constructor
-    var p = {},  // Container for private, direct access mixed in variables
-        tickGenerator,
+    const p = {};  // Container for private, direct access mixed in variables
+    let tickGenerator,
         lineWidthGenerator;
 
     function tick(g) {
@@ -22,16 +20,16 @@ module.exports = function(d3_scale_linear, d3_extent, accessor_tick, plot, plotM
     }
 
     function tickPath() {
-      var accessor = p.accessor,
+      const accessor = p.accessor,
           x = p.xScale,
-          y = p.yScale,
-          width = p.width(x);
+          y = p.yScale;
 
       return function(d) {
-        var high = y(accessor.h(d)),
+        const width = p.width(x),
+          high = y(accessor.h(d)),
           low = y(accessor.l(d)),
           xPoint = x(accessor.d(d)),
-          xValue = xPoint - width/2;
+          xValue = xPoint - width / 2;
 
         return 'M ' + xValue + ' ' + high + ' l ' + width + ' 0 M ' + xPoint + ' ' + high +
           ' L ' + xPoint + ' ' + low + ' M ' + xValue + ' ' + low + ' l ' + width + ' 0';
@@ -44,4 +42,4 @@ module.exports = function(d3_scale_linear, d3_extent, accessor_tick, plot, plotM
 
     return tick;
   };
-};
+}

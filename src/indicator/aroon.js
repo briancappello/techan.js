@@ -1,36 +1,34 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        overbought = 70,
+    const p = {};  // Container for private, direct access mixed in variables
+    let overbought = 70,
         middle = 0,
         oversold = 30;
 
     function indicator(data) {
-      return data.map(function(d, i) {
-        if(i >= (p.period-1)){
-          var max = 0;
-          var maxi = 0;
-          var min = 10000;
-          var mini = 0;
-          for (var j = 0; j < p.period; j++) {
-            if( p.accessor.h(data[i-j]) > max){
-              max = p.accessor.h(data[i-j]);
+      return data.map((d, i) => {
+        if(i >= (p.period - 1)){
+          let max = 0;
+          let maxi = 0;
+          let min = 10000;
+          let mini = 0;
+          for (let j = 0; j < p.period; j++) {
+            if( p.accessor.h(data[i - j]) > max){
+              max = p.accessor.h(data[i - j]);
               maxi = j;
             }
-            if( p.accessor.l(data[i-j]) < min){
-              min = p.accessor.l(data[i-j]);
+            if( p.accessor.l(data[i - j]) < min){
+              min = p.accessor.l(data[i - j]);
               mini = j;
             }
           }
-          var up = ((p.period-maxi)/p.period)*100;
-          var down = ((p.period-mini)/p.period)*100;
-          var oscillator = up - down;
-          return datum(p.accessor.d(d), up,down, oscillator, middle, overbought, oversold);
+          const up = ((p.period - maxi) / p.period) * 100;
+          const down = ((p.period - mini) / p.period) * 100;
+          const oscillator = up - down;
+          return datum(p.accessor.d(d), up, down, oscillator, middle, overbought, oversold);
         }
         else return datum(p.accessor.d(d));
-      }).filter(function(d) { return d.up; });
+      }).filter(d => d.up);
     }
 
     indicator.overbought = function(_) {
@@ -56,9 +54,9 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     return indicator;
   };
-};
+}
 
-function datum(date, up,down,oscillator, middle, overbought, oversold) {
-  if(up) return { date: date, up: up,down:down,oscillator:oscillator, middle: middle, overbought: overbought, oversold: oversold };
-  else return { date: date, up: null,down:null,oscillator:null, middle: null, overbought: null, oversold: null };
+function datum(date, up, down, oscillator, middle, overbought, oversold) {
+  if(up) return { date: date, up: up, down: down, oscillator: oscillator, middle: middle, overbought: overbought, oversold: oversold };
+  else return { date: date, up: null, down: null, oscillator: null, middle: null, overbought: null, oversold: null };
 }

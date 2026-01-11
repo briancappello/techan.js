@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      type = function(d) { return d.type; },
-      price = function(d) { return d.price; };
+export default function() {
+  let date = d => d.date,
+      type = d => d.type,
+      price = d => d.price;
 
   function accessor(d) {
     return accessor.p(d);
@@ -40,4 +38,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

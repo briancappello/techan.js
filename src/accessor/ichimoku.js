@@ -1,16 +1,14 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      tenkanSen = function(d) { return d.tenkanSen; },                  // Conversion line
-      kijunSen = function(d) { return d.kijunSen; },                    // Base Line
-      senkouSpanA = function(d) { return d.senkouSpanA; },              // Leading Span A
-      senkouSpanB = function(d) { return d.senkouSpanB;},               // Leading Span B
-      chikouSpan = function(d) { return d.chikouSpan;},                 // Lagging Span
+export default function() {
+  let date = d => d.date,
+      tenkanSen = d => d.tenkanSen,                  // Conversion line
+      kijunSen = d => d.kijunSen,                    // Base Line
+      senkouSpanA = d => d.senkouSpanA,              // Leading Span A
+      senkouSpanB = d => d.senkouSpanB,               // Leading Span B
+      chikouSpan = d => d.chikouSpan,                 // Lagging Span
       // Functions to get to the parameters
-      ptenanSen = function(d) { return d.parameters.tenkanSen; },       // Parameter: Conversion Line Period
-      pkijunSen = function(d) { return d.parameters.kijunSen; },        // Parameter: Base Line Period, Offset
-      psenkouSpanB = function(d) { return d.parameters.senkouSpanB; };  // Parameter: Senkou Span B Period, Offset
+      ptenanSen = d => d.parameters.tenkanSen,       // Parameter: Conversion Line Period
+      pkijunSen = d => d.parameters.kijunSen,        // Parameter: Base Line Period, Offset
+      psenkouSpanB = d => d.parameters.senkouSpanB;  // Parameter: Senkou Span B Period, Offset
 
   function accessor(d) {
     return accessor.ts(d);
@@ -85,4 +83,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

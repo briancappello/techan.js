@@ -1,14 +1,12 @@
-'use strict';
-
-module.exports = function(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotMixin) {  // Injected dependencies
+export default function(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure constructor
-    var p = {},  // Container for private, direct access mixed in variables
-        bodyPathGenerator,
+    const p = {};  // Container for private, direct access mixed in variables
+    let bodyPathGenerator,
         wickGenerator,
         wickWidthGenerator;
 
     function candlestick(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       // 3x2 path's as wick and body can be styled slightly differently (stroke and fills)
       plot.appendPathsUpDownEqual(group.selection, p.accessor, ['candle', 'body']);
@@ -29,19 +27,19 @@ module.exports = function(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotM
     }
 
     function bodyPath() {
-      var accessor = p.accessor,
+      const accessor = p.accessor,
           x = p.xScale,
-          y = p.yScale,
-          width = p.width(x);
+          y = p.yScale;
 
       return function(d) {
-        var open = y(accessor.o(d)),
+        const width = p.width(x),
+            open = y(accessor.o(d)),
             close = y(accessor.c(d)),
-            xValue = x(accessor.d(d)) - width/2,
-            path = 'M ' + xValue + ' ' + open + ' l ' + width + ' ' + 0;
+            xValue = x(accessor.d(d)) - width / 2;
+        let path = 'M ' + xValue + ' ' + open + ' l ' + width + ' ' + 0;
 
         // Draw body only if there is a body (there is no stroke, so will not appear anyway)
-        if(open != close) {
+        if(open !== close) {
           path += ' L ' + (xValue + width) + ' ' + close + ' l ' + -width + ' ' + 0 + ' L ' + xValue  + ' ' + open;
         }
 
@@ -50,20 +48,20 @@ module.exports = function(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotM
     }
 
     function wickPath() {
-      var accessor = p.accessor,
+      const accessor = p.accessor,
         x = p.xScale,
-        y = p.yScale,
-        width = p.width(x);
+        y = p.yScale;
 
       return function(d) {
-        var open = y(accessor.o(d)),
+        const width = p.width(x),
+            open = y(accessor.o(d)),
             close = y(accessor.c(d)),
             xPoint = x(accessor.d(d)),
-            xValue = xPoint - width/2,
-            path = 'M ' + xPoint + ' ' + y(accessor.h(d)) +' L ' + xPoint + ' '+ Math.min(open, close); // Top
+            xValue = xPoint - width / 2;
+        let path = 'M ' + xPoint + ' ' + y(accessor.h(d)) +' L ' + xPoint + ' '+ Math.min(open, close); // Top
 
         // Draw another cross wick if there is no body
-        if(open == close) {
+        if(open === close) {
           path += ' M ' + xValue + ' ' + open + ' l ' + width + ' ' + 0;
         }
         // Bottom
@@ -77,4 +75,4 @@ module.exports = function(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotM
 
     return candlestick;
   };
-};
+}

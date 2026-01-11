@@ -1,11 +1,9 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      stochasticK = function(d) { return d.stochasticK; },
-      stochasticD = function(d) { return d.stochasticD; },
-      overbought = function() { return 80; },
-      oversold = function() { return 20; };
+export default function() {
+  let date = d => d.date,
+      stochasticK = d => d.stochasticK,
+      stochasticD = d => d.stochasticD,
+      overbought = () => 80,
+      oversold = () => 20;
 
   function accessor(d) {
     return accessor.r(d);
@@ -51,4 +49,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

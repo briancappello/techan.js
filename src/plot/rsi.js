@@ -1,12 +1,10 @@
-'use strict';
-
-module.exports = function(accessor_rsi, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_rsi, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        rsiLine = plot.pathLine();
+    const p = {};  // Container for private, direct access mixed in variables
+    const rsiLine = plot.pathLine();
 
     function rsi(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'overbought');
       group.entry.append('path').attr('class', 'middle');
@@ -30,7 +28,7 @@ module.exports = function(accessor_rsi, plot, plotMixin) {  // Injected dependen
 
     return rsi;
   };
-};
+}
 
 function refresh(selection, accessor, x, y, plot, rsiLine) {
   selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));

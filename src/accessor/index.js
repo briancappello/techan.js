@@ -1,24 +1,39 @@
-'use strict';
+import adx from './adx';
+import aroon from './aroon';
+import atrtrailingstop from './atrtrailingstop';
+import bollinger from './bollinger';
+import crosshair from './crosshair';
+import ichimoku from './ichimoku';
+import macd from './macd';
+import ohlc from './ohlc';
+import rsi from './rsi';
+import stochastic from './stochastic';
+import supstance from './supstance';
+import tick from './tick';
+import trade from './trade';
+import trendline from './trendline';
+import value from './value';
+import volume from './volume';
+import williams from './williams';
 
-// Provide IDs for all accessors. Default to date, but at least provide an option
-module.exports = function() {
+export default function() {
   return {
-    atrtrailingstop: require('./atrtrailingstop'),
-    crosshair: require('./crosshair'),
-    ichimoku: require('./ichimoku'),
-    macd: require('./macd'),
-    ohlc: require('./ohlc'),
-    rsi: require('./rsi'),
-    trendline: require('./trendline'),
-    value: require('./value'),
-    volume: require('./volume'),
-    tick: require('./tick'),
-    trade: require('./trade'),
-    adx: require('./adx'),
-    aroon: require('./aroon'),
-    stochastic: require('./stochastic'),
-    supstance: require('./supstance'),
-    williams: require('./williams'),
-    bollinger: require('./bollinger')
+    adx,
+    aroon,
+    atrtrailingstop,
+    bollinger,
+    crosshair,
+    ichimoku,
+    macd,
+    ohlc,
+    rsi,
+    stochastic,
+    supstance,
+    tick,
+    trade,
+    trendline,
+    value,
+    volume,
+    williams
   };
-};
+}

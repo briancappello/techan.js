@@ -1,16 +1,14 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        previous,
+    const p = {};  // Container for private, direct access mixed in variables
+    let previous,
         alpha,
         initialTotal,
         initialCount;
 
     function indicator(data) {
       indicator.init();
-      return data.map(ma).filter(function(d) { return d.value !== null; });
+      return data.map(ma).filter(d => d.value !== null);
     }
 
     indicator.init = function() {
@@ -22,8 +20,8 @@ module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injec
     };
 
     function ma(d, i) {
-      var value = indicator.average(p.accessor(d));
-      if (i+1 < p.period) {
+      let value = indicator.average(p.accessor(d));
+      if (i + 1 < p.period) {
         value = null;
       }
 
@@ -31,8 +29,8 @@ module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injec
     }
 
     indicator.average = function(value) {
-      if(initialCount < p.period) return (previous = (initialTotal += value)/++initialCount);
-      else return (previous = previous + alpha*(value-previous));
+      if(initialCount < p.period) return (previous = (initialTotal += value) / ++initialCount);
+      else return (previous = previous + alpha * (value - previous));
     };
 
     // Mixin 'superclass' methods and variables
@@ -42,4 +40,4 @@ module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injec
 
     return indicator;
   };
-};
+}

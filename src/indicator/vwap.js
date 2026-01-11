@@ -1,15 +1,13 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        cumul_total,
+    const p = {};  // Container for private, direct access mixed in variables
+    let cumul_total,
         cumul_volume,
         prev_date;
 
     function indicator(data) {
       indicator.init();
-      return data.map(vwap).filter(function(d) { return d.value !== null; });
+      return data.map(vwap).filter(d => d.value !== null);
     }
 
     indicator.init = function() {
@@ -20,12 +18,12 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     function vwap(d, i) {
       // VWAP restarts when day changes
-      if (i > 0 && prev_date.getDate() != p.accessor.d(d).getDate()) {
+      if (i > 0 && prev_date.getDate() !== p.accessor.d(d).getDate()) {
         cumul_total = 0;
-	cumul_volume = 0;
+        cumul_volume = 0;
       }
 
-      var price = (p.accessor.h(d) + p.accessor.l(d) + p.accessor.c(d)) / 3;
+      const price = (p.accessor.h(d) + p.accessor.l(d) + p.accessor.c(d)) / 3;
       cumul_total += price * p.accessor.v(d);
       cumul_volume += p.accessor.v(d);
 
@@ -40,4 +38,4 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     return indicator;
   };
-};
+}

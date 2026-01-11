@@ -1,14 +1,11 @@
-'use strict';
-
-module.exports = function() {
-
-  var date = function(d) { return d.date; },
-      up = function(d) { return d.up; },
-      down = function(d) { return d.down; },
-      oscillator = function(d) { return d.oscillator; },
-      overbought = function(d) { return d.overbought; },
-      oversold = function(d) { return d.oversold; },
-      middle = function(d) { return d.middle; };
+export default function() {
+  let date = d => d.date,
+      up = d => d.up,
+      down = d => d.down,
+      oscillator = d => d.oscillator,
+      overbought = d => d.overbought,
+      oversold = d => d.oversold,
+      middle = d => d.middle;
 
   function accessor(d) {
     return accessor.r(d);
@@ -69,4 +66,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

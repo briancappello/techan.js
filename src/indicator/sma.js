@@ -1,15 +1,13 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        samples,
+    const p = {};  // Container for private, direct access mixed in variables
+    let samples,
         currentIndex,
         total;
 
     function indicator(data) {
       indicator.init();
-      return data.map(ma).filter(function(d) { return d.value !== null; });
+      return data.map(ma).filter(d => d.value !== null);
     }
 
     indicator.init = function() {
@@ -20,17 +18,16 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
     };
 
     function ma(d, i) {
-      var value = indicator.average(p.accessor(d));
-      if (i+1 < p.period) value = null;
-      return { date: p.accessor.d(d), value: value };
+      const value = indicator.average(p.accessor(d));
+      return { date: p.accessor.d(d), value: i + 1 < p.period ? null : value };
     }
 
     indicator.average = function(value) {
       total += value;
 
-      if(samples.length+1 < p.period) {
+      if(samples.length + 1 < p.period) {
         samples.push(value);
-        return total/++currentIndex;
+        return total / ++currentIndex;
       }
       else {
         if(samples.length < p.period) {
@@ -44,7 +41,7 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
           currentIndex = 0;
         }
 
-        return total/p.period;
+        return total / p.period;
       }
     };
 
@@ -55,4 +52,4 @@ module.exports = function(indicatorMixin, accessor_ohlc) {  // Injected dependen
 
     return indicator;
   };
-};
+}

@@ -1,10 +1,8 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      high = function(d) { return d.high; },
-      low = function(d) { return d.low; },
-      spread = function(d) { return d.spread; };
+export default function() {
+  let date = d => d.date,
+      high = d => d.high,
+      low = d => d.low,
+      spread = d => d.spread;
 
   function accessor(d) {
     bind();
@@ -44,4 +42,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

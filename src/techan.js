@@ -1,25 +1,31 @@
-'use strict';
+import * as d3 from 'd3';
+import version from './version/index';
+import accessorFactory from './accessor/index';
+import indicatorFactory from './indicator/index';
+import plotFactory from './plot/index';
+import scaleFactory from './scale/index';
+import svgFactory from './svg/index';
 
-var _d3;
+const accessor = accessorFactory();
+const indicator = indicatorFactory(d3);
+const plot = plotFactory(d3);
+const scale = scaleFactory(d3);
+const svg = svgFactory(d3);
 
-// If running in browser (window !undefined) and d3 available
-if ('undefined' != typeof window && (window.d3 || 'undefined' != typeof d3)) {
-  _d3 = window.d3 || d3;
-}
-// else we're in the only other supported mode: v8/node
-else if ('object' == typeof module) {
-  console.log('!!!!!!!!!!!!!')
-  _d3 = require('d3');
-}
-else throw "Unsupported runtime environment: Could not find d3. Ensure defined globally (or on window), or available as dependency.";
+export {
+  version,
+  accessor,
+  indicator,
+  plot,
+  scale,
+  svg
+};
 
-module.exports = (function (d3) {
-  return {
-    version: require('./version'),
-    accessor: require('./accessor')(),
-    indicator: require('./indicator')(d3),
-    plot: require('./plot')(d3),
-    scale: require('./scale')(d3),
-    svg: require('./svg')(d3)
-  };
-})(_d3);
+export default {
+  version,
+  accessor,
+  indicator,
+  plot,
+  scale,
+  svg
+};

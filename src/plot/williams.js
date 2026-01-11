@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function(accessor_williams, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_williams, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        upLine = plot.pathLine();
+    const p = {};  // Container for private, direct access mixed in variables
+    const upLine = plot.pathLine();
 
     function williams(g) {
       p.dataSelector(g).entry.append('path').attr('class', 'williams up');
@@ -24,4 +22,4 @@ module.exports = function(accessor_williams, plot, plotMixin) {  // Injected dep
 
     return williams;
   };
-};
+}

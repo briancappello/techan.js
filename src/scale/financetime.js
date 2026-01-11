@@ -1,16 +1,14 @@
-'use strict';
-
 /*
  Finance time scale which is not necessarily continuous, is required to be plot continuous. Finance scale
  generally contains data points on days where a market is open but no points when closed, such as weekday
  and weekends respectively. When plot, is done so without weekend gaps.
  */
 
-module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindCallback, scale_widen, techan_scale_zoomable) {  // Injected dependencies
+export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindCallback, scale_widen, techan_scale_zoomable) {  // Injected dependencies
   function financetime(tickMethods, genericFormat, index, domain, padding, outerPadding, zoomLimit, closestTicks, zoomable) {
-    var dateIndexMap,
-      tickState = { tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2] },
+    let dateIndexMap,
       band = 3;
+    const tickState = { tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2] };
 
     index = index || d3_scale_linear();
     domain = domain || [new Date(0), new Date(1)];
@@ -36,7 +34,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
      * @returns {*}
      */
     function scale(x, offset) {
-      var mappedIndex = dateIndexMap[x instanceof Date ? x.getTime() : +x];
+      let mappedIndex = dateIndexMap[x instanceof Date ? x.getTime() : +x];
       offset = offset || 0;
 
       // Make sure the value has been mapped, if not, determine if it's just before, round in, or just after domain
@@ -55,7 +53,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
      * @returns {null} If the range value cannot be mapped. eg, if range value is outside of the mapped domain
      */
     scale.invert = function(y) {
-      var d = domain[scale.invertToIndex(y)];
+      const d = domain[scale.invertToIndex(y)];
       return d ? d : null;
     };
 
@@ -80,7 +78,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
      */
     scale.domain = function(_) {
       if (!arguments.length) {
-        var visible = index.domain();
+        let visible = index.domain();
 
         if (visible[0] < 0 && visible[visible.length - 1] < 0) return []; // if it's all negative return empty, nothing is visible
 
@@ -162,11 +160,11 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
      * @returns {*}
      */
     scale.ticks = function(frequency) {
-      var visibleDomain = scale.domain();
+      const visibleDomain = scale.domain();
 
       if (!visibleDomain.length) return []; // Nothing is visible, no ticks to show
 
-      var lookup = {
+      const lookup = {
         '1min': { interval: d3_time.timeMinute, steps: 30 },
         'h': { interval: d3_time.timeHour, steps: 1 },
         'D': { interval: d3_time.timeMonth, steps: 1 },
@@ -175,26 +173,26 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
         'Y': { interval: d3_time.timeYear, steps: 5 }
       };
 
-      var tzOffset = ((new Date().getTimezoneOffset()) / 60) - 5;
-      var premarketOpen = 4 - tzOffset;
-      var marketOpen = 9 - tzOffset;
-      var marketClose = 16 - tzOffset;
-      var aftermarketClose = 20 - tzOffset;
+      const tzOffset = ((new Date().getTimezoneOffset()) / 60) - 5;
+      const premarketOpen = 4 - tzOffset;
+      const marketOpen = 9 - tzOffset;
+      const marketClose = 16 - tzOffset;
+      const aftermarketClose = 20 - tzOffset;
 
-      var interval = d3_time.timeMinute,
-        steps = 30,
-        settings = lookup[frequency];
+      let interval = d3_time.timeMinute,
+        steps = 30;
+      const settings = lookup[frequency];
       if (settings !== undefined) {
         interval = settings.interval;
         steps = settings.steps;
       }
 
-      var intervalRange = interval
+      const intervalRange = interval
         .every(steps)
         .range(
           visibleDomain[0],
           +visibleDomain[visibleDomain.length - 1] + 1
-        ).filter(function(d) {
+        ).filter(d => {
           switch (frequency) {
             case 'D':
             case 'W':
@@ -265,20 +263,20 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
   }
 
   function lookupIndex(array) {
-    var lookup = {};
-    array.forEach(function(d, i) {
+    const lookup = {};
+    array.forEach((d, i) => {
       lookup[+d] = i;
     });
     return lookup;
   }
 
   function domainTicks(visibleDomain, closest) {
-    var visibleDomainLookup = lookupIndex(visibleDomain); // Quickly lookup index of the domain
+    const visibleDomainLookup = lookupIndex(visibleDomain); // Quickly lookup index of the domain
 
     return function(d) {
-      var value = visibleDomainLookup[+d];
+      const value = visibleDomainLookup[+d];
       if (value !== undefined) return visibleDomain[value];
-      var index = d3_bisect(visibleDomain, d);
+      let index = d3_bisect(visibleDomain, d);
       if (closest && index > 0) {
         // d3_bisect gets the index of the closest value that is the greater than d,
         // which may not be the value that is closest to d.
@@ -296,45 +294,33 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
     return previous;
   }
 
-  var dayFormat = d3_time.timeFormat('%b %e'),
+  const dayFormat = d3_time.timeFormat('%b %e'),
     yearFormat = d3_v3_multi_shim([
-      [d3_time.timeFormat('%b %Y'), function(d) {
-        return d.getMonth();
-      }],
-      [d3_time.timeFormat('%Y'), function() {
-        return true;
-      }]
+      [d3_time.timeFormat('%b %Y'), d => d.getMonth()],
+      [d3_time.timeFormat('%Y'), () => true]
     ]),
     genericFormat = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-      [d3_time.timeFormat(':%S'), function(d) {
-        return d.getSeconds();
-      }],
-      [d3_time.timeFormat('%I:%M'), function(d) {
-        return d.getMinutes();
-      }],
-      [d3_time.timeFormat('%I %p'), function(d) {
-        return d.getHours();
-      }],
-      [d3_time.timeFormat('%b %e'), function() {
-        return true;
-      }]
+      [d3_time.timeFormat(':%S'), d => d.getSeconds()],
+      [d3_time.timeFormat('%I:%M'), d => d.getMinutes()],
+      [d3_time.timeFormat('%I %p'), d => d.getHours()],
+      [d3_time.timeFormat('%b %e'), () => true]
     ])
     ];
 
-  var dayFormatUtc = d3_time.utcFormat('%b %e'),
+  const dayFormatUtc = d3_time.utcFormat('%b %e'),
     yearFormatUtc = d3_v3_multi_shim([
-      [d3_time.utcFormat('%b %Y'), function(d) { return d.getUTCMonth(); }],
-      [d3_time.utcFormat('%Y'), function() { return true; }]
+      [d3_time.utcFormat('%b %Y'), d => d.getUTCMonth()],
+      [d3_time.utcFormat('%Y'), () => true]
     ]),
     genericFormatUtc = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-        [d3_time.utcFormat(':%S'), function(d) { return d.getUTCSeconds(); }],
-        [d3_time.utcFormat('%I:%M'), function(d) { return d.getUTCMinutes(); }],
-        [d3_time.utcFormat('%I %p'), function(d) { return d.getUTCHours(); }],
-        [d3_time.utcFormat('%b %e'), function() { return true; }]
+        [d3_time.utcFormat(':%S'), d => d.getUTCSeconds()],
+        [d3_time.utcFormat('%I:%M'), d => d.getUTCMinutes()],
+        [d3_time.utcFormat('%I %p'), d => d.getUTCHours()],
+        [d3_time.utcFormat('%b %e'), () => true]
       ])
     ];
 
-  var dailyTickMethod = [
+  const dailyTickMethod = [
       [d3_time.timeDay, 1, dayFormat],
       [d3_time.timeMonday, 1, dayFormat],
       [d3_time.timeMonth, 1, yearFormat],
@@ -342,7 +328,7 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
       [d3_time.timeYear, 1, yearFormat]
     ];
 
-  var dailyTickMethodUtc = [
+  const dailyTickMethodUtc = [
       [d3_time.utcDay, 1, dayFormatUtc],
       [d3_time.utcMonday, 1, dayFormatUtc],
       [d3_time.utcMonth, 1, yearFormatUtc],
@@ -359,11 +345,11 @@ module.exports = function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebin
   };
 
   return techan_scale_financetime;
-};
+}
 
 function d3_v3_multi_shim(multi) {
   return function(d) {
-    for (var i = 0; i < multi.length; i++) {
+    for (let i = 0; i < multi.length; i++) {
       if (multi[i][1](d)) return multi[i][0](d);
     }
   };

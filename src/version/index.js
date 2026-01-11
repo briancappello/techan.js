@@ -1,1 +1,1 @@
-'use strict';module.exports='0.9.0-0';
+export default '0.10.0';

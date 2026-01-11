@@ -1,19 +1,17 @@
-'use strict';
-
-module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, accessor_trendline, plot, plotMixin) {  // Injected dependencies
+export default function(d3_drag, d3_select, d3_dispatch, accessor_trendline, plot, plotMixin) {  // Injected dependencies
   function Trendline() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend');
+    const p = {};  // Container for private, direct access mixed in variables
+    const dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend');
 
     function trendline(g) {
-      var group = p.dataSelector(g),
+      const group = p.dataSelector(g),
           trendlineGroup = group.entry.append('g').attr('class', 'trendline');
 
       trendlineGroup.append('path').attr('class', 'body');
       trendlineGroup.append('circle').attr('class', 'start').attr('r', 1);
       trendlineGroup.append('circle').attr('class', 'end').attr('r', 1);
 
-      var interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none')
+      const interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none')
         .call(plot.interaction.mousedispatch(dispatch));
 
       interaction.append('path').attr('class', 'body').style('stroke-width', '16px');
@@ -46,13 +44,13 @@ module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, ac
   }
 
   function dragEnd(dispatch, accessor, accessor_x, x, accessor_y, y) {
-    var drag = d3_behavior_drag();
+    const drag = d3_drag();
 
-    drag.subject(function(d) {
+    drag.subject((event, d) => {
       return { x: x(accessor_x(d)), y: y(accessor_y(d)) };
     })
-    .on('drag', function(d) {
-      updateEnd(accessor_x, x, d3_event().x, accessor_y, y, d3_event().y, d);
+    .on('drag', function(event, d) {
+      updateEnd(accessor_x, x, event.x, accessor_y, y, event.y, d);
       refresh(d3_select(this.parentNode.parentNode.parentNode), accessor, x, y);
       dispatch.call('drag', this, d);
     });
@@ -61,20 +59,20 @@ module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, ac
   }
 
   function dragBody(dispatch, accessor, x, y) {
-    var dragStart = {}, // State information, grabs the start coords of the line
-        drag = d3_behavior_drag();
+    const dragStart = {}; // State information, grabs the start coords of the line
+    const drag = d3_drag();
 
-    drag.subject(function(d) {
+    drag.subject((event, d) => {
       dragStart.start = { date: x(accessor.sd(d)), value: y(accessor.sv(d)) };
       dragStart.end = { date: x(accessor.ed(d)), value: y(accessor.ev(d)) };
       return { x: 0, y: 0 };
     })
-    .on('drag', function(d) {
-      updateEnd(accessor.sd, x, d3_event().x + dragStart.start.date,
-        accessor.sv, y, d3_event().y + dragStart.start.value,
+    .on('drag', function(event, d) {
+      updateEnd(accessor.sd, x, event.x + dragStart.start.date,
+        accessor.sv, y, event.y + dragStart.start.value,
         d);
-      updateEnd(accessor.ed, x, d3_event().x + dragStart.end.date,
-        accessor.ev, y, d3_event().y + dragStart.end.value,
+      updateEnd(accessor.ed, x, event.x + dragStart.end.date,
+        accessor.ev, y, event.y + dragStart.end.value,
         d);
       refresh(d3_select(this.parentNode.parentNode.parentNode), accessor, x, y);
       dispatch.call('drag', this, d);
@@ -84,13 +82,13 @@ module.exports = function(d3_behavior_drag, d3_event, d3_select, d3_dispatch, ac
   }
 
   function updateEnd(accessor_x, x, xValue, accessor_y, y, yValue, d) {
-    var date = x.invert(xValue);
+    const date = x.invert(xValue);
     if(date !== null && date !== undefined) accessor_x(d, date);
     accessor_y(d, y.invert(yValue));
   }
 
   return Trendline;
-};
+}
 
 function refresh(selection, accessor, x, y) {
   selection.selectAll('path.body').attr('d', trendlinePath(accessor, x, y));

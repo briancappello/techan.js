@@ -1,8 +1,6 @@
-'use strict';
-
-module.exports = function() {
+export default function() {
   return function(source, priv) {
-    var indicatorMixin = {};
+    const indicatorMixin = {};
 
     indicatorMixin.period = function(period) {
       priv.period = period;
@@ -42,4 +40,4 @@ module.exports = function() {
 
     return indicatorMixin;
   };
-};
+}

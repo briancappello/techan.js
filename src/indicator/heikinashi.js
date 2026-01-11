@@ -1,17 +1,15 @@
-'use strict';
-
-module.exports = function(indicatorMixin, accessor_ohlc, min, max) {  // Injected dependencies
+export default function(indicatorMixin, accessor_ohlc, min, max) {  // Injected dependencies
   return function() { // Closure function
-    var p = {};  // Container for private, direct access mixed in variables
+    const p = {};  // Container for private, direct access mixed in variables
 
     function indicator(data) {
-      var previousHa;
+      let previousHa;
 
-      return data.map(function(d) {
-        var ha = {
+      return data.map(d => {
+        const ha = {
           date: p.accessor.d(d),
-          open: (previousHa === undefined ? p.accessor.o(d) + p.accessor.c(d) : previousHa.open + previousHa.close)/2,
-          close: (p.accessor.o(d) + p.accessor.h(d) + p.accessor.l(d) + p.accessor.c(d))/4
+          open: (previousHa === undefined ? p.accessor.o(d) + p.accessor.c(d) : previousHa.open + previousHa.close) / 2,
+          close: (p.accessor.o(d) + p.accessor.h(d) + p.accessor.l(d) + p.accessor.c(d)) / 4
         };
 
         ha.high = max([ha.open, ha.close, p.accessor.h(d)]);
@@ -27,4 +25,4 @@ module.exports = function(indicatorMixin, accessor_ohlc, min, max) {  // Injecte
 
     return indicator;
   };
-};
+}

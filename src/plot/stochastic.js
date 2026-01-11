@@ -1,13 +1,11 @@
-'use strict';
-
-module.exports = function(accessor_stochastic, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_stochastic, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        kLine = plot.pathLine(),
+    const p = {};  // Container for private, direct access mixed in variables
+    const kLine = plot.pathLine(),
         dLine = plot.pathLine();
 
     function stochastic(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'overbought');
       group.entry.append('path').attr('class', 'oversold');
@@ -31,7 +29,7 @@ module.exports = function(accessor_stochastic, plot, plotMixin) {  // Injected d
 
     return stochastic;
   };
-};
+}
 
 function refresh(selection, accessor, x, y, plot, kLine, dLine) {
   selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));

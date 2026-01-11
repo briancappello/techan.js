@@ -1,9 +1,7 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      up = function(d) { return d.up; },
-      down = function(d) { return d.down; };
+export default function() {
+  let date = d => d.date,
+      up = d => d.up,
+      down = d => d.down;
 
   function accessor(d) {
     return accessor.up(d);
@@ -36,4 +34,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

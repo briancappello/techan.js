@@ -1,10 +1,8 @@
-'use strict';
-
-module.exports = function() {
-  var date = function(d) { return d.date; },
-      macd = function(d) { return d.macd; },
-      zero = function() { return 0; },
-      signal = function(d) { return d.signal;};
+export default function() {
+  let date = d => d.date,
+      macd = d => d.macd,
+      zero = () => 0,
+      signal = d => d.signal;
 
   function accessor(d) {
     return accessor.m(d);
@@ -41,4 +39,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}

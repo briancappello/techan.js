@@ -1,13 +1,11 @@
-'use strict';
-
-module.exports = function(accessor_atrtrailingstop, plot, plotMixin) {  // Injected dependencies
+export default function(accessor_atrtrailingstop, plot, plotMixin) {  // Injected dependencies
   return function() { // Closure function
-    var p = {},  // Container for private, direct access mixed in variables
-        upLine = plot.pathLine(),
+    const p = {};  // Container for private, direct access mixed in variables
+    const upLine = plot.pathLine(),
         downLine = plot.pathLine();
 
     function atrtrailingstop(g) {
-      var group = p.dataSelector(g);
+      const group = p.dataSelector(g);
 
       group.entry.append('path').attr('class', 'up');
       group.entry.append('path').attr('class', 'down');
@@ -30,7 +28,7 @@ module.exports = function(accessor_atrtrailingstop, plot, plotMixin) {  // Injec
 
     return atrtrailingstop;
   };
-};
+}
 
 function refresh(selection, upLine, downLine) {
   selection.select('path.up').attr('d', upLine);

@@ -1,7 +1,5 @@
-'use strict';
-
-module.exports = function() {
-  var startDate = function(d, _) {
+export default function() {
+  let startDate = function(d, _) {
         if(arguments.length < 2) return d.start.date;
         d.start.date = _;
       },
@@ -56,4 +54,4 @@ module.exports = function() {
   }
 
   return bind();
-};
+}
