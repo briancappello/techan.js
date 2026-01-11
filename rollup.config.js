@@ -13,11 +13,13 @@ export default {
         d3: 'd3',
       },
       sourcemap: true,
+      exports: "named"
     },
     {
       file: 'dist/techan.mjs',
       format: 'es',
       sourcemap: true,
+      exports: "named"
     },
   ],
   external: ['d3'],
