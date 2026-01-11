@@ -1,43 +1,45 @@
-export default function() {
-  return function(source, priv) {
-    const indicatorMixin = {};
+export default function () {
+  return function (source, priv) {
+    const indicatorMixin = {}
 
-    indicatorMixin.period = function(period) {
-      priv.period = period;
+    indicatorMixin.period = function (period) {
+      priv.period = period
 
-      source.period = function(_) {
-        if (!arguments.length) return priv.period;
-        priv.period = +_;
-        return source;
-      };
+      source.period = function (_) {
+        if (!arguments.length) return priv.period
+        priv.period = +_
+        return source
+      }
 
-      source.preroll = function() { return priv.period; };
+      source.preroll = function () {
+        return priv.period
+      }
 
-      return indicatorMixin;
-    };
+      return indicatorMixin
+    }
 
-    indicatorMixin.accessor = function(accessor) {
-      priv.accessor = accessor;
+    indicatorMixin.accessor = function (accessor) {
+      priv.accessor = accessor
 
       // Mixin the functions to the source
       source.accessor = function (_) {
-        if (!arguments.length) return priv.accessor;
-        priv.accessor = _;
-        return source;
-      };
+        if (!arguments.length) return priv.accessor
+        priv.accessor = _
+        return source
+      }
 
-      return indicatorMixin;
-    };
+      return indicatorMixin
+    }
 
-    indicatorMixin.preroll = function(pr) {
-      source.preroll = pr;
-      return indicatorMixin;
-    };
+    indicatorMixin.preroll = function (pr) {
+      source.preroll = pr
+      return indicatorMixin
+    }
 
-    source.preroll = function() {
-      return 0;
-    };
+    source.preroll = function () {
+      return 0
+    }
 
-    return indicatorMixin;
-  };
+    return indicatorMixin
+  }
 }

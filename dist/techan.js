@@ -25,38 +25,38 @@
 
   var version = '0.10.0';
 
-  function adx() {
-    let date = d => d.date,
-        adx = d => d.adx,
-        plusDi = d => d.plusDi,
-        minusDi = d => d.minusDi;
+  function adx () {
+    let date = (d) => d.date,
+      adx = (d) => d.adx,
+      plusDi = (d) => d.plusDi,
+      minusDi = (d) => d.minusDi;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.adx = function(_) {
-      if (!arguments.length) return adx;
+    accessor.adx = function (_) {
+      if (!arguments.length) return adx
       adx = _;
-      return bind();
+      return bind()
     };
 
-    accessor.plusDi = function(_) {
-      if (!arguments.length) return plusDi;
+    accessor.plusDi = function (_) {
+      if (!arguments.length) return plusDi
       plusDi = _;
-      return bind();
+      return bind()
     };
 
-    accessor.minusDi = function(_) {
-      if (!arguments.length) return minusDi;
+    accessor.minusDi = function (_) {
+      if (!arguments.length) return minusDi
       minusDi = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -65,65 +65,65 @@
       accessor.plusDi = plusDi;
       accessor.minusDi = minusDi;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function aroon() {
-    let date = d => d.date,
-        up = d => d.up,
-        down = d => d.down,
-        oscillator = d => d.oscillator,
-        overbought = d => d.overbought,
-        oversold = d => d.oversold,
-        middle = d => d.middle;
+  function aroon () {
+    let date = (d) => d.date,
+      up = (d) => d.up,
+      down = (d) => d.down,
+      oscillator = (d) => d.oscillator,
+      overbought = (d) => d.overbought,
+      oversold = (d) => d.oversold,
+      middle = (d) => d.middle;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.up = function(_) {
-      if (!arguments.length) return up;
+    accessor.up = function (_) {
+      if (!arguments.length) return up
       up = _;
-      return bind();
+      return bind()
     };
 
-    accessor.down = function(_) {
-      if (!arguments.length) return down;
+    accessor.down = function (_) {
+      if (!arguments.length) return down
       down = _;
-      return bind();
+      return bind()
     };
 
-    accessor.oscillator = function(_) {
-      if (!arguments.length) return oscillator;
+    accessor.oscillator = function (_) {
+      if (!arguments.length) return oscillator
       oscillator = _;
-      return bind();
+      return bind()
     };
 
-    accessor.overbought = function(_) {
-      if (!arguments.length) return overbought;
+    accessor.overbought = function (_) {
+      if (!arguments.length) return overbought
       overbought = _;
-      return bind();
+      return bind()
     };
 
-    accessor.oversold = function(_) {
-      if (!arguments.length) return oversold;
+    accessor.oversold = function (_) {
+      if (!arguments.length) return oversold
       oversold = _;
-      return bind();
+      return bind()
     };
 
-    accessor.middle = function(_) {
-      if (!arguments.length) return middle;
+    accessor.middle = function (_) {
+      if (!arguments.length) return middle
       middle = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -135,37 +135,37 @@
       accessor.os = oversold;
       accessor.m = middle;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function atrtrailingstop() {
-    let date = d => d.date,
-        up = d => d.up,
-        down = d => d.down;
+  function atrtrailingstop () {
+    let date = (d) => d.date,
+      up = (d) => d.up,
+      down = (d) => d.down;
 
     function accessor(d) {
-      return accessor.up(d);
+      return accessor.up(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.up = function(_) {
-      if (!arguments.length) return up;
+    accessor.up = function (_) {
+      if (!arguments.length) return up
       up = _;
-      return bind();
+      return bind()
     };
 
-    accessor.down = function(_) {
-      if (!arguments.length) return down;
+    accessor.down = function (_) {
+      if (!arguments.length) return down
       down = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -173,37 +173,37 @@
       accessor.up = up;
       accessor.dn = down;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function bollinger() {
-    let date = d => d.date,
-        upper = d => d.upperBand,
-        lower = d => d.lowerBand;
+  function bollinger () {
+    let date = (d) => d.date,
+      upper = (d) => d.upperBand,
+      lower = (d) => d.lowerBand;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.upper = function(_) {
-      if (!arguments.length) return upper;
+    accessor.upper = function (_) {
+      if (!arguments.length) return upper
       upper = _;
-      return bind();
+      return bind()
     };
 
-    accessor.lower = function(_) {
-      if (!arguments.length) return lower;
+    accessor.lower = function (_) {
+      if (!arguments.length) return lower
       lower = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -212,21 +212,21 @@
       accessor.l = lower;
       accessor.m = function (d) {
         const up = accessor.u(d),
-            low = accessor.l(d);
+          low = accessor.l(d);
 
         if (up === null || low === null) {
-          return null;
+          return null
         }
-        return up - ((up - low) / 2);
+        return up - (up - low) / 2
       };
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function crosshair() {
+  function crosshair () {
     /**
      * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
      * This approach needs further thought.
@@ -234,118 +234,118 @@
      * @param _ If passed turns into a setter. This is the value to set
      * @returns {*}
      */
-    let x = function(d, _) {
-          if(arguments.length < 2) return d.x;
-          d.x = _;
-          return accessor;
-        },
-        /**
-         * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
-         * This approach needs further thought.
-         * @param d Underlying data object to get or set the value
-         * @param _ If passed turns into a setter. This is the value to set
-         * @returns {*}
-         */
-        y = function(d, _) {
-          if(arguments.length < 2) return d.y;
-          d.y = _;
-          return accessor;
-        };
+    let x = function (d, _) {
+        if (arguments.length < 2) return d.x
+        d.x = _;
+        return accessor
+      },
+      /**
+       * Supports getter and setter. Watch out if used in d3 and the second parameter is an index!!
+       * This approach needs further thought.
+       * @param d Underlying data object to get or set the value
+       * @param _ If passed turns into a setter. This is the value to set
+       * @returns {*}
+       */
+      y = function (d, _) {
+        if (arguments.length < 2) return d.y
+        d.y = _;
+        return accessor
+      };
 
     function accessor(d) {
-      return accessor.xv(d);
+      return accessor.xv(d)
     }
 
-    accessor.x = function(_) {
-      if (!arguments.length) return x;
+    accessor.x = function (_) {
+      if (!arguments.length) return x
       x = _;
-      return bind();
+      return bind()
     };
 
-    accessor.y = function(_) {
-      if (!arguments.length) return y;
+    accessor.y = function (_) {
+      if (!arguments.length) return y
       y = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
       accessor.xv = x;
       accessor.yv = y;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function ichimoku() {
-    let date = d => d.date,
-        tenkanSen = d => d.tenkanSen,                  // Conversion line
-        kijunSen = d => d.kijunSen,                    // Base Line
-        senkouSpanA = d => d.senkouSpanA,              // Leading Span A
-        senkouSpanB = d => d.senkouSpanB,               // Leading Span B
-        chikouSpan = d => d.chikouSpan,                 // Lagging Span
-        // Functions to get to the parameters
-        ptenanSen = d => d.parameters.tenkanSen,       // Parameter: Conversion Line Period
-        pkijunSen = d => d.parameters.kijunSen,        // Parameter: Base Line Period, Offset
-        psenkouSpanB = d => d.parameters.senkouSpanB;  // Parameter: Senkou Span B Period, Offset
+  function ichimoku () {
+    let date = (d) => d.date,
+      tenkanSen = (d) => d.tenkanSen, // Conversion line
+      kijunSen = (d) => d.kijunSen, // Base Line
+      senkouSpanA = (d) => d.senkouSpanA, // Leading Span A
+      senkouSpanB = (d) => d.senkouSpanB, // Leading Span B
+      chikouSpan = (d) => d.chikouSpan, // Lagging Span
+      // Functions to get to the parameters
+      ptenanSen = (d) => d.parameters.tenkanSen, // Parameter: Conversion Line Period
+      pkijunSen = (d) => d.parameters.kijunSen, // Parameter: Base Line Period, Offset
+      psenkouSpanB = (d) => d.parameters.senkouSpanB; // Parameter: Senkou Span B Period, Offset
 
     function accessor(d) {
-      return accessor.ts(d);
+      return accessor.ts(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.tenkanSen = function(_) {
-      if (!arguments.length) return tenkanSen;
+    accessor.tenkanSen = function (_) {
+      if (!arguments.length) return tenkanSen
       tenkanSen = _;
-      return bind();
+      return bind()
     };
 
-    accessor.kijunSen = function(_) {
-      if (!arguments.length) return kijunSen;
+    accessor.kijunSen = function (_) {
+      if (!arguments.length) return kijunSen
       kijunSen = _;
-      return bind();
+      return bind()
     };
 
-    accessor.senkouSpanA = function(_) {
-      if (!arguments.length) return senkouSpanA;
+    accessor.senkouSpanA = function (_) {
+      if (!arguments.length) return senkouSpanA
       senkouSpanA = _;
-      return bind();
+      return bind()
     };
 
-    accessor.senkouSpanB = function(_) {
-      if (!arguments.length) return senkouSpanB;
+    accessor.senkouSpanB = function (_) {
+      if (!arguments.length) return senkouSpanB
       senkouSpanB = _;
-      return bind();
+      return bind()
     };
 
-    accessor.chikouSpan = function(_) {
-      if (!arguments.length) return chikouSpan;
+    accessor.chikouSpan = function (_) {
+      if (!arguments.length) return chikouSpan
       chikouSpan = _;
-      return bind();
+      return bind()
     };
 
-    accessor.ptenanSen = function(_) {
-      if (!arguments.length) return ptenanSen;
+    accessor.ptenanSen = function (_) {
+      if (!arguments.length) return ptenanSen
       ptenanSen = _;
-      return bind();
+      return bind()
     };
 
-    accessor.pkijunSen = function(_) {
-      if (!arguments.length) return pkijunSen;
+    accessor.pkijunSen = function (_) {
+      if (!arguments.length) return pkijunSen
       pkijunSen = _;
-      return bind();
+      return bind()
     };
 
-    accessor.psenkouSpanB = function(_) {
-      if (!arguments.length) return psenkouSpanB;
+    accessor.psenkouSpanB = function (_) {
+      if (!arguments.length) return psenkouSpanB
       psenkouSpanB = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -359,38 +359,38 @@
       accessor.pks = pkijunSen;
       accessor.pssb = psenkouSpanB;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function macd() {
-    let date = d => d.date,
-        macd = d => d.macd,
-        zero = () => 0,
-        signal = d => d.signal;
+  function macd () {
+    let date = (d) => d.date,
+      macd = (d) => d.macd,
+      zero = () => 0,
+      signal = (d) => d.signal;
 
     function accessor(d) {
-      return accessor.m(d);
+      return accessor.m(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.macd = function(_) {
-      if (!arguments.length) return macd;
+    accessor.macd = function (_) {
+      if (!arguments.length) return macd
       macd = _;
-      return bind();
+      return bind()
     };
 
-    accessor.signal = function(_) {
-      if (!arguments.length) return signal;
+    accessor.signal = function (_) {
+      if (!arguments.length) return signal
       signal = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -398,62 +398,62 @@
       accessor.m = macd;
       accessor.s = signal;
       accessor.dif = function (d) {
-        return accessor.m(d) - accessor.s(d);
+        return accessor.m(d) - accessor.s(d)
       };
       accessor.z = zero;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function ohlc() {
-    let date = d => d.date,
-        open = d => d.open,
-        high = d => d.high,
-        low = d => d.low,
-        close = d => d.close,
-        volume = d => d.volume;
+  function ohlc () {
+    let date = (d) => d.date,
+      open = (d) => d.open,
+      high = (d) => d.high,
+      low = (d) => d.low,
+      close = (d) => d.close,
+      volume = (d) => d.volume;
 
     function accessor(d) {
-      return accessor.c(d);
+      return accessor.c(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.open = function(_) {
-      if (!arguments.length) return open;
+    accessor.open = function (_) {
+      if (!arguments.length) return open
       open = _;
-      return bind();
+      return bind()
     };
 
-    accessor.high = function(_) {
-      if (!arguments.length) return high;
+    accessor.high = function (_) {
+      if (!arguments.length) return high
       high = _;
-      return bind();
+      return bind()
     };
 
-    accessor.low = function(_) {
-      if (!arguments.length) return low;
+    accessor.low = function (_) {
+      if (!arguments.length) return low
       low = _;
-      return bind();
+      return bind()
     };
 
-    accessor.close = function(_) {
-      if (!arguments.length) return close;
+    accessor.close = function (_) {
+      if (!arguments.length) return close
       close = _;
-      return bind();
+      return bind()
     };
 
-    accessor.volume = function(_) {
-      if (!arguments.length) return volume;
+    accessor.volume = function (_) {
+      if (!arguments.length) return volume
       volume = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -464,51 +464,51 @@
       accessor.c = close;
       accessor.v = volume;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function rsi() {
-    let date = d => d.date,
-        rsi = d => d.rsi,
-        overbought = () => 70,
-        oversold = () => 30,
-        middle = () => 50;
+  function rsi () {
+    let date = (d) => d.date,
+      rsi = (d) => d.rsi,
+      overbought = () => 70,
+      oversold = () => 30,
+      middle = () => 50;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.rsi = function(_) {
-      if (!arguments.length) return rsi;
+    accessor.rsi = function (_) {
+      if (!arguments.length) return rsi
       rsi = _;
-      return bind();
+      return bind()
     };
 
-    accessor.overbought = function(_) {
-      if (!arguments.length) return overbought;
+    accessor.overbought = function (_) {
+      if (!arguments.length) return overbought
       overbought = _;
-      return bind();
+      return bind()
     };
 
-    accessor.oversold = function(_) {
-      if (!arguments.length) return oversold;
+    accessor.oversold = function (_) {
+      if (!arguments.length) return oversold
       oversold = _;
-      return bind();
+      return bind()
     };
 
-    accessor.middle = function(_) {
-      if (!arguments.length) return middle;
+    accessor.middle = function (_) {
+      if (!arguments.length) return middle
       middle = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -518,50 +518,50 @@
       accessor.os = oversold;
       accessor.m = middle;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function stochastic() {
-    let date = d => d.date,
-        stochasticK = d => d.stochasticK,
-        stochasticD = d => d.stochasticD,
-        overbought = () => 80,
-        oversold = () => 20;
+  function stochastic () {
+    let date = (d) => d.date,
+      stochasticK = (d) => d.stochasticK,
+      stochasticD = (d) => d.stochasticD,
+      overbought = () => 80,
+      oversold = () => 20;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.stochasticK = function(_) {
-      if (!arguments.length) return stochasticK;
+    accessor.stochasticK = function (_) {
+      if (!arguments.length) return stochasticK
       stochasticK = _;
-      return bind();
+      return bind()
     };
-    accessor.stochasticD = function(_) {
-      if (!arguments.length) return stochasticD;
+    accessor.stochasticD = function (_) {
+      if (!arguments.length) return stochasticD
       stochasticD = _;
-      return bind();
+      return bind()
     };
 
-    accessor.overbought = function(_) {
-      if (!arguments.length) return overbought;
+    accessor.overbought = function (_) {
+      if (!arguments.length) return overbought
       overbought = _;
-      return bind();
+      return bind()
     };
 
-    accessor.oversold = function(_) {
-      if (!arguments.length) return oversold;
+    accessor.oversold = function (_) {
+      if (!arguments.length) return oversold
       oversold = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -571,47 +571,47 @@
       accessor.ob = overbought;
       accessor.os = oversold;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function supstance() {
-    let start = d => d.start,
-        end = d => d.end,
-        /**
-         * Supports getter and setter
-         * @param d Underlying data object to get or set the value
-         * @param _ If passed turns into a setter. This is the value to set
-         * @returns {*}
-         */
-        value = function(d, _) {
-          if(arguments.length < 2) return d.value;
-          d.value = _;
-          return accessor;
-        };
+  function supstance () {
+    let start = (d) => d.start,
+      end = (d) => d.end,
+      /**
+       * Supports getter and setter
+       * @param d Underlying data object to get or set the value
+       * @param _ If passed turns into a setter. This is the value to set
+       * @returns {*}
+       */
+      value = function (d, _) {
+        if (arguments.length < 2) return d.value
+        d.value = _;
+        return accessor
+      };
 
     function accessor(d) {
-      return accessor.v(d);
+      return accessor.v(d)
     }
 
-    accessor.start = function(_) {
-      if (!arguments.length) return start;
+    accessor.start = function (_) {
+      if (!arguments.length) return start
       start = _;
-      return bind();
+      return bind()
     };
 
-    accessor.end = function(_) {
-      if (!arguments.length) return end;
+    accessor.end = function (_) {
+      if (!arguments.length) return end
       end = _;
-      return bind();
+      return bind()
     };
 
-    accessor.value = function(_) {
-      if (!arguments.length) return value;
+    accessor.value = function (_) {
+      if (!arguments.length) return value
       value = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -619,44 +619,44 @@
       accessor.e = end;
       accessor.v = value;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function tick() {
-    let date = d => d.date,
-        high = d => d.high,
-        low = d => d.low,
-        spread = d => d.spread;
+  function tick () {
+    let date = (d) => d.date,
+      high = (d) => d.high,
+      low = (d) => d.low,
+      spread = (d) => d.spread;
 
-    function accessor(d) {
+    function accessor() {
       bind();
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.high = function(_) {
-      if (!arguments.length) return high;
+    accessor.high = function (_) {
+      if (!arguments.length) return high
       high = _;
-      return bind();
+      return bind()
     };
 
-    accessor.low = function(_) {
-      if (!arguments.length) return low;
+    accessor.low = function (_) {
+      if (!arguments.length) return low
       low = _;
-      return bind();
+      return bind()
     };
 
-    accessor.spread = function(_) {
-      if (!arguments.length) return spread;
+    accessor.spread = function (_) {
+      if (!arguments.length) return spread
       spread = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -665,41 +665,41 @@
       accessor.l = low;
       accessor.s = spread;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function trade() {
-    let date = d => d.date,
-        type = d => d.type,
-        price = d => d.price;
+  function trade () {
+    let date = (d) => d.date,
+      type = (d) => d.type,
+      price = (d) => d.price;
 
     function accessor(d) {
-      return accessor.p(d);
+      return accessor.p(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
     /**
      * A function which returns a string representing the type of this trade
      * @param _ A constant string or function which takes a data point and returns a string of valid classname format
      */
-    accessor.type = function(_) {
-      if (!arguments.length) return type;
+    accessor.type = function (_) {
+      if (!arguments.length) return type
       type = _;
-      return bind();
+      return bind()
     };
 
-    accessor.price = function(_) {
-      if (!arguments.length) return price;
+    accessor.price = function (_) {
+      if (!arguments.length) return price
       price = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -707,56 +707,56 @@
       accessor.t = type;
       accessor.p = price;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function trendline() {
-    let startDate = function(d, _) {
-          if(arguments.length < 2) return d.start.date;
-          d.start.date = _;
-        },
-        startValue = function(d, _) {
-          if(arguments.length < 2) return d.start.value;
-          d.start.value = _;
-        },
-        endDate = function(d, _) {
-          if(arguments.length < 2) return d.end.date;
-          d.end.date = _;
-        },
-        endValue = function(d, _) {
-          if(arguments.length < 2) return d.end.value;
-          d.end.value = _;
-        };
+  function trendline () {
+    let startDate = function (d, _) {
+        if (arguments.length < 2) return d.start.date
+        d.start.date = _;
+      },
+      startValue = function (d, _) {
+        if (arguments.length < 2) return d.start.value
+        d.start.value = _;
+      },
+      endDate = function (d, _) {
+        if (arguments.length < 2) return d.end.date
+        d.end.date = _;
+      },
+      endValue = function (d, _) {
+        if (arguments.length < 2) return d.end.value
+        d.end.value = _;
+      };
 
     function accessor(d) {
-      return accessor.sv(d);
+      return accessor.sv(d)
     }
 
-    accessor.startDate = function(_) {
-      if (!arguments.length) return startDate;
+    accessor.startDate = function (_) {
+      if (!arguments.length) return startDate
       startDate = _;
-      return bind();
+      return bind()
     };
 
-    accessor.startValue = function(_) {
-      if (!arguments.length) return startValue;
+    accessor.startValue = function (_) {
+      if (!arguments.length) return startValue
       startValue = _;
-      return bind();
+      return bind()
     };
 
-    accessor.endDate = function(_) {
-      if (!arguments.length) return endDate;
+    accessor.endDate = function (_) {
+      if (!arguments.length) return endDate
       endDate = _;
-      return bind();
+      return bind()
     };
 
-    accessor.endValue = function(_) {
-      if (!arguments.length) return endValue;
+    accessor.endValue = function (_) {
+      if (!arguments.length) return endValue
       endValue = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -765,47 +765,47 @@
       accessor.ed = endDate;
       accessor.ev = endValue;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function value() {
-    let date = d => d.date,
-        /**
-         * Supports getter and setter
-         * @param d Underlying data object to get or set the value
-         * @param _ If passed turns into a setter. This is the value to set
-         * @returns {*}
-         */
-        value = function(d, _) {
-          if(arguments.length < 2) return d.value;
-          d.value = _;
-          return accessor;
-        },
-        zero = d => 0;
+  function value () {
+    let date = (d) => d.date,
+      /**
+       * Supports getter and setter
+       * @param d Underlying data object to get or set the value
+       * @param _ If passed turns into a setter. This is the value to set
+       * @returns {*}
+       */
+      value = function (d, _) {
+        if (arguments.length < 2) return d.value
+        d.value = _;
+        return accessor
+      },
+      zero = () => 0;
 
     function accessor(d) {
-      return accessor.v(d);
+      return accessor.v(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.value = function(_) {
-      if (!arguments.length) return value;
+    accessor.value = function (_) {
+      if (!arguments.length) return value
       value = _;
-      return bind();
+      return bind()
     };
 
-    accessor.zero = function(_) {
-      if (!arguments.length) return zero;
+    accessor.zero = function (_) {
+      if (!arguments.length) return zero
       zero = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
@@ -813,73 +813,73 @@
       accessor.v = value;
       accessor.z = zero;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function volume() {
-    let date = d => d.date,
-        volume = d => d.volume;
+  function volume () {
+    let date = (d) => d.date,
+      volume = (d) => d.volume;
 
     function accessor(d) {
-      return accessor.v(d);
+      return accessor.v(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.volume = function(_) {
-      if (!arguments.length) return volume;
+    accessor.volume = function (_) {
+      if (!arguments.length) return volume
       volume = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
       accessor.d = date;
       accessor.v = volume;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function williams() {
-    let date = d => d.date,
-        williams = d => d.williams;
+  function williams () {
+    let date = (d) => d.date,
+      williams = (d) => d.williams;
 
     function accessor(d) {
-      return accessor.r(d);
+      return accessor.r(d)
     }
 
-    accessor.date = function(_) {
-      if (!arguments.length) return date;
+    accessor.date = function (_) {
+      if (!arguments.length) return date
       date = _;
-      return bind();
+      return bind()
     };
 
-    accessor.williams = function(_) {
-      if (!arguments.length) return williams;
+    accessor.williams = function (_) {
+      if (!arguments.length) return williams
       williams = _;
-      return bind();
+      return bind()
     };
 
     function bind() {
       accessor.d = date;
       accessor.w = williams;
 
-      return accessor;
+      return accessor
     }
 
-    return bind();
+    return bind()
   }
 
-  function accessorFactory() {
+  function accessorFactory () {
     return {
       adx,
       aroon,
@@ -897,73 +897,74 @@
       trendline,
       value,
       volume,
-      williams
-    };
+      williams,
+    }
   }
 
-  function indicatormixin() {
-    return function(source, priv) {
+  function indicatormixin () {
+    return function (source, priv) {
       const indicatorMixin = {};
 
-      indicatorMixin.period = function(period) {
+      indicatorMixin.period = function (period) {
         priv.period = period;
 
-        source.period = function(_) {
-          if (!arguments.length) return priv.period;
+        source.period = function (_) {
+          if (!arguments.length) return priv.period
           priv.period = +_;
-          return source;
+          return source
         };
 
-        source.preroll = function() { return priv.period; };
+        source.preroll = function () {
+          return priv.period
+        };
 
-        return indicatorMixin;
+        return indicatorMixin
       };
 
-      indicatorMixin.accessor = function(accessor) {
+      indicatorMixin.accessor = function (accessor) {
         priv.accessor = accessor;
 
         // Mixin the functions to the source
         source.accessor = function (_) {
-          if (!arguments.length) return priv.accessor;
+          if (!arguments.length) return priv.accessor
           priv.accessor = _;
-          return source;
+          return source
         };
 
-        return indicatorMixin;
+        return indicatorMixin
       };
 
-      indicatorMixin.preroll = function(pr) {
+      indicatorMixin.preroll = function (pr) {
         source.preroll = pr;
-        return indicatorMixin;
+        return indicatorMixin
       };
 
-      source.preroll = function() {
-        return 0;
+      source.preroll = function () {
+        return 0
       };
 
-      return indicatorMixin;
-    };
+      return indicatorMixin
+    }
   }
 
-  function ema_init(indicatorMixin, accessor_ohlc, alpha_init) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      let previous,
-          alpha,
-          initialTotal,
-          initialCount;
+  function ema_init (indicatorMixin, accessor_ohlc, alpha_init) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      let previous, alpha, initialTotal, initialCount;
 
       function indicator(data) {
         indicator.init();
-        return data.map(ma).filter(d => d.value !== null);
+        return data.map(ma).filter((d) => d.value !== null)
       }
 
-      indicator.init = function() {
+      indicator.init = function () {
         previous = null;
         alpha = alpha_init(p.period);
         initialTotal = 0;
         initialCount = 0;
-        return indicator;
+        return indicator
       };
 
       function ma(d, i) {
@@ -972,131 +973,135 @@
           value = null;
         }
 
-        return { date: p.accessor.d(d), value: value };
+        return { date: p.accessor.d(d), value: value }
       }
 
-      indicator.average = function(value) {
-        if(initialCount < p.period) return (previous = (initialTotal += value) / ++initialCount);
-        else return (previous = previous + alpha * (value - previous));
+      indicator.average = function (value) {
+        if (initialCount < p.period)
+          return (previous = (initialTotal += value) / ++initialCount)
+        else return (previous = previous + alpha * (value - previous))
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(10);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(10);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function sma_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      let samples,
-          currentIndex,
-          total;
+  function sma_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      let samples, currentIndex, total;
 
       function indicator(data) {
         indicator.init();
-        return data.map(ma).filter(d => d.value !== null);
+        return data.map(ma).filter((d) => d.value !== null)
       }
 
-      indicator.init = function() {
+      indicator.init = function () {
         total = 0;
         samples = [];
         currentIndex = 0;
-        return indicator;
+        return indicator
       };
 
       function ma(d, i) {
         const value = indicator.average(p.accessor(d));
-        return { date: p.accessor.d(d), value: i + 1 < p.period ? null : value };
+        return { date: p.accessor.d(d), value: i + 1 < p.period ? null : value }
       }
 
-      indicator.average = function(value) {
+      indicator.average = function (value) {
         total += value;
 
-        if(samples.length + 1 < p.period) {
+        if (samples.length + 1 < p.period) {
           samples.push(value);
-          return total / ++currentIndex;
-        }
-        else {
-          if(samples.length < p.period) {
+          return total / ++currentIndex
+        } else {
+          if (samples.length < p.period) {
             samples.push(value);
             total += value;
           }
 
           total -= samples[currentIndex];
           samples[currentIndex] = value;
-          if(++currentIndex === p.period) {
+          if (++currentIndex === p.period) {
             currentIndex = 0;
           }
 
-          return total / p.period;
+          return total / p.period
         }
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(10);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(10);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function atr_init(indicatorMixin, accessor_ohlc, indicator_sma) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function atr_init (indicatorMixin, accessor_ohlc, indicator_sma) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const initialAtr = indicator_sma();
       let previous = null,
-          averageTrueRange = 0,
-          currentIndex = 0;
+        averageTrueRange = 0,
+        currentIndex = 0;
 
       function indicator(data) {
         indicator.init();
-        return data.map((d, i) => {
-          const value = indicator.atr(d);
-          if(i >= p.period) return datum$8(p.accessor.d(d), value);
-          else return datum$8(p.accessor.d(d));
-        }).filter(d => d.value !== null);
+        return data
+          .map((d, i) => {
+            const value = indicator.atr(d);
+            if (i >= p.period) return datum$8(p.accessor.d(d), value)
+            else return datum$8(p.accessor.d(d))
+          })
+          .filter((d) => d.value !== null)
       }
 
-      indicator.init = function() {
+      indicator.init = function () {
         initialAtr.accessor(indicator.accessor()).period(p.period).init();
         previous = null;
         averageTrueRange = 0;
         currentIndex = 0;
-        return indicator;
+        return indicator
       };
 
-      indicator.atr = function(d) {
-        const trueRange = previous === null ? p.accessor.h(d) - p.accessor.l(d) :
-          Math.max(p.accessor.h(d) - p.accessor.l(d),
-            Math.abs(p.accessor.h(d) - p.accessor.c(previous)),
-            Math.abs(p.accessor.l(d) - p.accessor.c(previous))
-          );
+      indicator.atr = function (d) {
+        const trueRange =
+          previous === null
+            ? p.accessor.h(d) - p.accessor.l(d)
+            : Math.max(
+                p.accessor.h(d) - p.accessor.l(d),
+                Math.abs(p.accessor.h(d) - p.accessor.c(previous)),
+                Math.abs(p.accessor.l(d) - p.accessor.c(previous)),
+              );
 
         previous = d;
 
         // http://en.wikipedia.org/wiki/Average_true_range
-        averageTrueRange = currentIndex++ <= p.period ? initialAtr.average(trueRange) : (averageTrueRange * (p.period - 1) + trueRange) / p.period;
+        averageTrueRange =
+          currentIndex++ <= p.period
+            ? initialAtr.average(trueRange)
+            : (averageTrueRange * (p.period - 1) + trueRange) / p.period;
 
-        return averageTrueRange;
+        return averageTrueRange
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(14);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(14);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum$8(date, atr) {
-    if(atr) return { date: date, value: atr };
-    else return { date: date, value: null };
+    if (atr) return { date: date, value: atr }
+    else return { date: date, value: null }
   }
 
   /**
@@ -1106,56 +1111,60 @@
     const samples = [];
     let currentIndex = size - 1;
 
-    CircularBuffer.push = function(value) {
+    CircularBuffer.push = function (value) {
       currentIndex = ++currentIndex % size;
-      if(samples.length < size) samples.push(value);
+      if (samples.length < size) samples.push(value);
       else samples[currentIndex] = value;
     };
 
-    CircularBuffer.get = function(index) {
-      return samples[(currentIndex + samples.length - index) % samples.length];
+    CircularBuffer.get = function (index) {
+      return samples[(currentIndex + samples.length - index) % samples.length]
     };
 
-    CircularBuffer.head = function() {
-      return CircularBuffer.get(0);
+    CircularBuffer.head = function () {
+      return CircularBuffer.get(0)
     };
 
-    CircularBuffer.last = function() {
-      return CircularBuffer.get(samples.length - 1);
+    CircularBuffer.last = function () {
+      return CircularBuffer.get(samples.length - 1)
     };
 
-    CircularBuffer.size = function() {
-      return size;
+    CircularBuffer.size = function () {
+      return size
     };
 
-    CircularBuffer.samples = function() {
-      return samples;
+    CircularBuffer.samples = function () {
+      return samples
     };
 
-    CircularBuffer.primed = function() {
-      return samples.length === size;
+    CircularBuffer.primed = function () {
+      return samples.length === size
     };
 
-    return CircularBuffer;
+    return CircularBuffer
   }
 
-  function utilFactory() {
+  function utilFactory () {
     return {
       circularbuffer: CircularBuffer,
 
       rebindCallback: rebindCallback,
 
-      rebind: function(target, source) {
+      rebind: function (_target, _source) {
         const newArgs = Array.prototype.slice.call(arguments, 0);
         newArgs.splice(2, 0, undefined);
-        return rebindCallback.apply(this, newArgs);
+        return rebindCallback.apply(this, newArgs)
       },
 
       // https://github.com/d3/d3/blob/v3.5.17/src/core/functor.js
-      functor: function(v) {
-        return typeof v === "function" ? v : function() { return v; };
-      }
-    };
+      functor: function (v) {
+        return typeof v === 'function'
+          ? v
+          : function () {
+              return v
+            }
+      },
+    }
   }
 
   /*
@@ -1166,78 +1175,90 @@
     let i = 2;
     const n = arguments.length;
     let method;
-    while (++i < n) target[method = arguments[i]] = doRebind(target, source, source[method], postSetCallback);
-    return target;
+    while (++i < n)
+      target[(method = arguments[i])] = doRebind(
+        target,
+        source,
+        source[method],
+        postSetCallback,
+      );
+    return target
   }
 
   function doRebind(target, source, method, postSetCallback) {
-    return function() {
+    return function () {
       const value = method.apply(source, arguments);
-      if(postSetCallback && value === source) postSetCallback();
-      return value === source ? target : value;
-    };
+      if (postSetCallback && value === source) postSetCallback();
+      return value === source ? target : value
+    }
   }
 
-  function sroc_init(techan_util_circularbuffer, indicatorMixin, accessor_ohlc, indicator_smoothing, smoothed_period) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function sroc_init (
+    techan_util_circularbuffer,
+    indicatorMixin,
+    accessor_ohlc,
+    indicator_smoothing,
+    smoothed_period,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let smoothing = indicator_smoothing().period(smoothed_period);
       let buffer;
 
       function indicator(data) {
         indicator.init();
-        return data.map(rocDataPoint).filter(d => d.value !== null);
+        return data.map(rocDataPoint).filter((d) => d.value !== null)
       }
 
-      indicator.init = function() {
+      indicator.init = function () {
         smoothing.init();
         buffer = techan_util_circularbuffer(p.period);
-        return indicator;
+        return indicator
       };
 
       function rocDataPoint(d, i) {
         let value = indicator.roc(p.accessor(d));
         if (!buffer.primed() || i + 1 < smoothing.period()) value = null;
 
-        return { date: p.accessor.d(d), value: value };
+        return { date: p.accessor.d(d), value: value }
       }
 
-      indicator.roc = function(value) {
+      indicator.roc = function (value) {
         buffer.push(smoothing.average(value));
-        return (buffer.head() - buffer.last()) / buffer.last();
+        return (buffer.head() - buffer.last()) / buffer.last()
       };
 
-      indicator.ema = function(_) {
-        if(!arguments.length) return smoothing;
+      indicator.ema = function (_) {
+        if (!arguments.length) return smoothing
         smoothing = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(21);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(21);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function vwap_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      let cumul_total,
-          cumul_volume,
-          prev_date;
+  function vwap_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      let cumul_total, cumul_volume, prev_date;
 
       function indicator(data) {
         indicator.init();
-        return data.map(vwap).filter(d => d.value !== null);
+        return data.map(vwap).filter((d) => d.value !== null)
       }
 
-      indicator.init = function() {
+      indicator.init = function () {
         cumul_total = 0;
         cumul_volume = 0;
-        return indicator;
+        return indicator
       };
 
       function vwap(d, i) {
@@ -1252,613 +1273,802 @@
         cumul_volume += p.accessor.v(d);
 
         prev_date = p.accessor.d(d);
-        return { date: p.accessor.d(d), value: cumul_total / cumul_volume };
+        return { date: p.accessor.d(d), value: cumul_total / cumul_volume }
       }
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(1);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(1);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function atrtrailingstop_init(indicatorMixin, accessor_ohlc, indicator_atr) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function atrtrailingstop_init (indicatorMixin, accessor_ohlc, indicator_atr) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let multiplier = 3;
       const atr = indicator_atr();
 
       function indicator(data) {
         atr.accessor(p.accessor).period(p.period).init();
 
-        return data.map((d, i) => {
-          const close = p.accessor.c(d),
+        return data
+          .map((d, i) => {
+            const close = p.accessor.c(d),
               stop = atr.atr(d) * multiplier;
-          if(i >= p.period) return { date: p.accessor.d(d), close: close, up: close - stop, down: close + stop };
-          else return { date: p.accessor.d(d), up: null, down: null };
-        })
-        .filter(d => d.up !== null && d.down !== null) // Filter out empties
-        .reduce((result, d, i) => { // Reduce to access the previous result array
-          const prev = result[i - 1];
-          let up = i === 0 ? d.up : null; // Always start with an up trend?
-          let down = null;
+            if (i >= p.period)
+              return {
+                date: p.accessor.d(d),
+                close: close,
+                up: close - stop,
+                down: close + stop,
+              }
+            else return { date: p.accessor.d(d), up: null, down: null }
+          })
+          .filter((d) => d.up !== null && d.down !== null) // Filter out empties
+          .reduce((result, d, i) => {
+            // Reduce to access the previous result array
+            const prev = result[i - 1];
+            let up = i === 0 ? d.up : null; // Always start with an up trend?
+            let down = null;
 
-          if(prev && prev.up !== null) {
-            if(d.close > prev.up) up = Math.max(d.up, prev.up);
-            else down = d.down;
-          }
+            if (prev && prev.up !== null) {
+              if (d.close > prev.up) up = Math.max(d.up, prev.up);
+              else down = d.down;
+            }
 
-          if(prev && prev.down !== null) {
-            if(d.close < prev.down) down = Math.min(d.down, prev.down);
-            else up = d.up;
-          }
+            if (prev && prev.down !== null) {
+              if (d.close < prev.down) down = Math.min(d.down, prev.down);
+              else up = d.up;
+            }
 
-          result.push({ date: d.date, up: up, down: down });
-          return result;
-        }, []);
+            result.push({ date: d.date, up: up, down: down });
+            return result
+          }, [])
       }
 
-      indicator.multiplier = function(_) {
-        if (!arguments.length) return multiplier;
+      indicator.multiplier = function (_) {
+        if (!arguments.length) return multiplier
         multiplier = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc())
-        .period(14);
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(14);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function heikinashi_init(indicatorMixin, accessor_ohlc, min, max) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function heikinashi_init (indicatorMixin, accessor_ohlc, min, max) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
 
       function indicator(data) {
         let previousHa;
 
-        return data.map(d => {
+        return data.map((d) => {
           const ha = {
             date: p.accessor.d(d),
-            open: (previousHa === undefined ? p.accessor.o(d) + p.accessor.c(d) : previousHa.open + previousHa.close) / 2,
-            close: (p.accessor.o(d) + p.accessor.h(d) + p.accessor.l(d) + p.accessor.c(d)) / 4
+            open:
+              (previousHa === undefined
+                ? p.accessor.o(d) + p.accessor.c(d)
+                : previousHa.open + previousHa.close) / 2,
+            close:
+              (p.accessor.o(d) +
+                p.accessor.h(d) +
+                p.accessor.l(d) +
+                p.accessor.c(d)) /
+              4,
           };
 
           ha.high = max([ha.open, ha.close, p.accessor.h(d)]);
           ha.low = min([ha.open, ha.close, p.accessor.l(d)]);
-          if(p.accessor.v !== undefined && p.accessor.v(d) !== undefined) ha.volume = p.accessor.v(d);
-          return (previousHa = ha);
-        });
+          if (p.accessor.v !== undefined && p.accessor.v(d) !== undefined)
+            ha.volume = p.accessor.v(d);
+          return (previousHa = ha)
+        })
       }
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p)
-        .accessor(accessor_ohlc());
+      indicatorMixin(indicator, p).accessor(accessor_ohlc());
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
-  function ichimoku_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function ichimoku_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let tenkanSen = 9,
-          kijunSen = 26,
-          senkouSpanB = 52;
+        kijunSen = 26,
+        senkouSpanB = 52;
 
       function indicator(data) {
-        const parameters = { tenkanSen: tenkanSen, kijunSen: kijunSen, senkouSpanB: senkouSpanB },
-            result = new Array(data.length);
+        const parameters = {
+            tenkanSen: tenkanSen,
+            kijunSen: kijunSen,
+            senkouSpanB: senkouSpanB,
+          },
+          result = new Array(data.length);
 
         // Iterate backwards through the data
-        for(let index = result.length - 1; index >= 0; index--) {
+        for (let index = result.length - 1; index >= 0; index--) {
           result[index] = calculate(parameters, data, index);
         }
 
-        return result;
+        return result
       }
 
       function calculate(parameters, data, index) {
         let d = data[index],
-            min = p.accessor.l(d),
-            max = p.accessor.h(d);
+          min = p.accessor.l(d),
+          max = p.accessor.h(d);
         const current = datum$7(parameters, p.accessor.d(d), p.accessor.c(d));
 
         // Iterate backwards through the data up to sendouSpanB count to calculate averages
-        for(let i = 0, pos = i + 1; i < parameters.senkouSpanB && index - i >= 0; i++, pos = i + 1) {
+        for (
+          let i = 0, pos = i + 1;
+          i < parameters.senkouSpanB && index - i >= 0;
+          i++, pos = i + 1
+        ) {
           d = data[index - i];
           min = Math.min(min, p.accessor.l(d));
           max = Math.max(max, p.accessor.h(d));
 
           // Grab a snapshot of average of min and max for each of the parameter periods
-          current.tenkanSen = pos === parameters.tenkanSen ? average(min, max) : current.tenkanSen;
-          current.kijunSen = pos === parameters.kijunSen ? average(min, max) : current.kijunSen;
-          current.senkouSpanB = pos === parameters.senkouSpanB ? average(min, max) : current.senkouSpanB;
+          current.tenkanSen =
+            pos === parameters.tenkanSen ? average(min, max) : current.tenkanSen;
+          current.kijunSen =
+            pos === parameters.kijunSen ? average(min, max) : current.kijunSen;
+          current.senkouSpanB =
+            pos === parameters.senkouSpanB
+              ? average(min, max)
+              : current.senkouSpanB;
         }
 
         // Initialise if there is enough data
         current.senkouSpanA = senkouSpanA(current.tenkanSen, current.kijunSen);
 
-        return current;
+        return current
       }
 
-      indicator.tenkanSen = function(_) {
-        if (!arguments.length) return tenkanSen;
+      indicator.tenkanSen = function (_) {
+        if (!arguments.length) return tenkanSen
         tenkanSen = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.kijunSen = function(_) {
-        if (!arguments.length) return kijunSen;
+      indicator.kijunSen = function (_) {
+        if (!arguments.length) return kijunSen
         kijunSen = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.senkouSpanB = function(_) {
-        if (!arguments.length) return senkouSpanB;
+      indicator.senkouSpanB = function (_) {
+        if (!arguments.length) return senkouSpanB
         senkouSpanB = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p).accessor(accessor_ohlc());
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum$7(parameters, date, chikouSpan) {
-    return { parameters: parameters, date: date, chikouSpan: chikouSpan, tenkanSen: null, kijunSen: null, senkouSpanA: null, senkouSpanB: null };
+    return {
+      parameters: parameters,
+      date: date,
+      chikouSpan: chikouSpan,
+      tenkanSen: null,
+      kijunSen: null,
+      senkouSpanA: null,
+      senkouSpanB: null,
+    }
   }
 
   function senkouSpanA(tenkanSen, kijunSen) {
-    return tenkanSen !== null && kijunSen !== null ? average(tenkanSen, kijunSen) : null;
+    return tenkanSen !== null && kijunSen !== null
+      ? average(tenkanSen, kijunSen)
+      : null
   }
 
   function average(v1, v2) {
-    return (v1 + v2) / 2;
+    return (v1 + v2) / 2
   }
 
-  function macd_init(indicatorMixin, accessor_ohlc, indicator_ema) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function macd_init (indicatorMixin, accessor_ohlc, indicator_ema) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let fast = 12,
-          slow = 26,
-          signal = 9;
+        slow = 26,
+        signal = 9;
       const signalLine = indicator_ema(),
-          fastAverage = indicator_ema(),
-          slowAverage = indicator_ema();
+        fastAverage = indicator_ema(),
+        slowAverage = indicator_ema();
 
       function indicator(data) {
         const minFastSlow = Math.max(fast, slow) - 1,
-            minCount = minFastSlow + signal - 1;
+          minCount = minFastSlow + signal - 1;
 
         signalLine.accessor(indicator.accessor()).period(signal).init();
         fastAverage.accessor(indicator.accessor()).period(fast).init();
         slowAverage.accessor(indicator.accessor()).period(slow).init();
 
-        return data.map((d, i) => {
-          const macd = fastAverage.average(p.accessor(d)) - slowAverage.average(p.accessor(d)),
+        return data
+          .map((d, i) => {
+            const macd =
+                fastAverage.average(p.accessor(d)) -
+                slowAverage.average(p.accessor(d)),
               signalValue = i >= minFastSlow ? signalLine.average(macd) : null;
 
-          if(i >= minCount) return datum$6(p.accessor.d(d), macd, signalValue, macd - signalValue, 0);
-          else return datum$6(p.accessor.d(d));
-
-        }).filter(d => d.macd !== null);
+            if (i >= minCount)
+              return datum$6(
+                p.accessor.d(d),
+                macd,
+                signalValue,
+                macd - signalValue,
+                0,
+              )
+            else return datum$6(p.accessor.d(d))
+          })
+          .filter((d) => d.macd !== null)
       }
 
-      indicator.fast = function(_) {
-        if (!arguments.length) return fast;
+      indicator.fast = function (_) {
+        if (!arguments.length) return fast
         fast = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.slow = function(_) {
-        if (!arguments.length) return slow;
+      indicator.slow = function (_) {
+        if (!arguments.length) return slow
         slow = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.signal = function(_) {
-        if (!arguments.length) return signal;
+      indicator.signal = function (_) {
+        if (!arguments.length) return signal
         signal = _;
-        return indicator;
-      };
-
-      // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p).accessor(accessor_ohlc()).preroll(indicator.slow);
-
-      return indicator;
-    };
-  }
-
-  function datum$6(date, macd, signal, difference, zero) {
-    if(macd) return { date: date, macd: macd, signal: signal, difference: difference, zero: zero };
-    else return { date: date, macd: null, signal: null, difference: null, zero: null };
-  }
-
-  function rsi_init(indicatorMixin, accessor_ohlc, indicator_ema) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      let overbought = 70,
-          middle = 50,
-          oversold = 30;
-      const lossAverage = indicator_ema(),
-          gainAverage = indicator_ema();
-
-      function indicator(data) {
-        lossAverage.accessor(indicator.accessor()).period(p.period).init();
-        gainAverage.accessor(indicator.accessor()).period(p.period).init();
-
-        return data.map((d, i) => {
-          if(i < 1) return datum$5(p.accessor.d(d));
-
-          const difference = p.accessor(d) - p.accessor(data[i - 1]),
-              averageGain = gainAverage.average(Math.max(difference, 0)),
-              averageLoss = Math.abs(lossAverage.average(Math.min(difference, 0)));
-
-          if(i >= p.period) {
-            const rsi = 100 - (100 / (1 + (averageGain / averageLoss)));
-            return datum$5(p.accessor.d(d), rsi, middle, overbought, oversold);
-          }
-          else return datum$5(p.accessor.d(d));
-
-        }).filter(d => d.rsi !== null);
-      }
-
-      indicator.overbought = function(_) {
-        if (!arguments.length) return overbought;
-        overbought = _;
-        return indicator;
-      };
-
-      indicator.middle = function(_) {
-        if (!arguments.length) return middle;
-        middle = _;
-        return indicator;
-      };
-
-      indicator.oversold = function(_) {
-        if (!arguments.length) return oversold;
-        oversold = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p)
         .accessor(accessor_ohlc())
-        .period(14);
+        .preroll(indicator.slow);
 
-      return indicator;
-    };
+      return indicator
+    }
+  }
+
+  function datum$6(date, macd, signal, difference, zero) {
+    if (macd)
+      return {
+        date: date,
+        macd: macd,
+        signal: signal,
+        difference: difference,
+        zero: zero,
+      }
+    else
+      return {
+        date: date,
+        macd: null,
+        signal: null,
+        difference: null,
+        zero: null,
+      }
+  }
+
+  function rsi_init (indicatorMixin, accessor_ohlc, indicator_ema) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      let overbought = 70,
+        middle = 50,
+        oversold = 30;
+      const lossAverage = indicator_ema(),
+        gainAverage = indicator_ema();
+
+      function indicator(data) {
+        lossAverage.accessor(indicator.accessor()).period(p.period).init();
+        gainAverage.accessor(indicator.accessor()).period(p.period).init();
+
+        return data
+          .map((d, i) => {
+            if (i < 1) return datum$5(p.accessor.d(d))
+
+            const difference = p.accessor(d) - p.accessor(data[i - 1]),
+              averageGain = gainAverage.average(Math.max(difference, 0)),
+              averageLoss = Math.abs(lossAverage.average(Math.min(difference, 0)));
+
+            if (i >= p.period) {
+              const rsi = 100 - 100 / (1 + averageGain / averageLoss);
+              return datum$5(p.accessor.d(d), rsi, middle, overbought, oversold)
+            } else return datum$5(p.accessor.d(d))
+          })
+          .filter((d) => d.rsi !== null)
+      }
+
+      indicator.overbought = function (_) {
+        if (!arguments.length) return overbought
+        overbought = _;
+        return indicator
+      };
+
+      indicator.middle = function (_) {
+        if (!arguments.length) return middle
+        middle = _;
+        return indicator
+      };
+
+      indicator.oversold = function (_) {
+        if (!arguments.length) return oversold
+        oversold = _;
+        return indicator
+      };
+
+      // Mixin 'superclass' methods and variables
+      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(14);
+
+      return indicator
+    }
   }
 
   function datum$5(date, rsi, middle, overbought, oversold) {
-    if(rsi) return { date: date, rsi: rsi, middle: middle, overbought: overbought, oversold: oversold };
-    else return { date: date, rsi: null, middle: null, overbought: null, oversold: null };
+    if (rsi)
+      return {
+        date: date,
+        rsi: rsi,
+        middle: middle,
+        overbought: overbought,
+        oversold: oversold,
+      }
+    else
+      return {
+        date: date,
+        rsi: null,
+        middle: null,
+        overbought: null,
+        oversold: null,
+      }
   }
 
-  function aroon_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function aroon_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let overbought = 70,
-          middle = 0,
-          oversold = 30;
+        middle = 0,
+        oversold = 30;
 
       function indicator(data) {
-        return data.map((d, i) => {
-          if(i >= (p.period - 1)){
-            let max = 0;
-            let maxi = 0;
-            let min = 10000;
-            let mini = 0;
-            for (let j = 0; j < p.period; j++) {
-              if( p.accessor.h(data[i - j]) > max){
-                max = p.accessor.h(data[i - j]);
-                maxi = j;
+        return data
+          .map((d, i) => {
+            if (i >= p.period - 1) {
+              let max = 0;
+              let maxi = 0;
+              let min = 10000;
+              let mini = 0;
+              for (let j = 0; j < p.period; j++) {
+                if (p.accessor.h(data[i - j]) > max) {
+                  max = p.accessor.h(data[i - j]);
+                  maxi = j;
+                }
+                if (p.accessor.l(data[i - j]) < min) {
+                  min = p.accessor.l(data[i - j]);
+                  mini = j;
+                }
               }
-              if( p.accessor.l(data[i - j]) < min){
-                min = p.accessor.l(data[i - j]);
-                mini = j;
-              }
-            }
-            const up = ((p.period - maxi) / p.period) * 100;
-            const down = ((p.period - mini) / p.period) * 100;
-            const oscillator = up - down;
-            return datum$4(p.accessor.d(d), up, down, oscillator, middle, overbought, oversold);
-          }
-          else return datum$4(p.accessor.d(d));
-        }).filter(d => d.up);
+              const up = ((p.period - maxi) / p.period) * 100;
+              const down = ((p.period - mini) / p.period) * 100;
+              const oscillator = up - down;
+              return datum$4(
+                p.accessor.d(d),
+                up,
+                down,
+                oscillator,
+                middle,
+                overbought,
+                oversold,
+              )
+            } else return datum$4(p.accessor.d(d))
+          })
+          .filter((d) => d.up)
       }
 
-      indicator.overbought = function(_) {
-        if (!arguments.length) return overbought;
+      indicator.overbought = function (_) {
+        if (!arguments.length) return overbought
         overbought = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.middle = function(_) {
-        if (!arguments.length) return middle;
+      indicator.middle = function (_) {
+        if (!arguments.length) return middle
         middle = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.oversold = function(_) {
-        if (!arguments.length) return oversold;
+      indicator.oversold = function (_) {
+        if (!arguments.length) return oversold
         oversold = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum$4(date, up, down, oscillator, middle, overbought, oversold) {
-    if(up) return { date: date, up: up, down: down, oscillator: oscillator, middle: middle, overbought: overbought, oversold: oversold };
-    else return { date: date, up: null, down: null, oscillator: null, middle: null, overbought: null, oversold: null };
+    if (up)
+      return {
+        date: date,
+        up: up,
+        down: down,
+        oscillator: oscillator,
+        middle: middle,
+        overbought: overbought,
+        oversold: oversold,
+      }
+    else
+      return {
+        date: date,
+        up: null,
+        down: null,
+        oscillator: null,
+        middle: null,
+        overbought: null,
+        oversold: null,
+      }
   }
 
-  function stochastic_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function stochastic_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let periodD = 3,
-          overbought = 80,
-          oversold = 20;
+        overbought = 80,
+        oversold = 20;
 
       function indicator(data) {
         const periodLength = indicator.preroll();
-        return data.map((d, i) => {
-          if(i >= periodLength ){
-            const max = [];
-            const min = [];
-            const stochasticKBuffer = [];
-            for (let per = 0; per < periodD; per++) {
-              max.push(0);
-              min.push(10000);
-              stochasticKBuffer.push(0);
-            }
-            let stochasticD = 0;
-            for (let k = 0; k < periodD; k++) {
-              for (let j = 0; j < p.period; j++) {
-                if(p.accessor.h(data[i - j - k]) > max[k]){
-                  max[k] = p.accessor.h(data[i - j - k]);
-                }
-                if(p.accessor.l(data[i - j - k]) < min[k]){
-                  min[k] = p.accessor.l(data[i - j - k]);
-                }
+        return data
+          .map((d, i) => {
+            if (i >= periodLength) {
+              const max = [];
+              const min = [];
+              const stochasticKBuffer = [];
+              for (let per = 0; per < periodD; per++) {
+                max.push(0);
+                min.push(10000);
+                stochasticKBuffer.push(0);
               }
-              const diff = (max[k] - min[k]);
-              if(diff > 0) {
-                  stochasticKBuffer[k] = ((p.accessor.c(data[i - k]) - min[k]) / (max[k] - min[k])) * 100;
-              }else {
+              let stochasticD = 0;
+              for (let k = 0; k < periodD; k++) {
+                for (let j = 0; j < p.period; j++) {
+                  if (p.accessor.h(data[i - j - k]) > max[k]) {
+                    max[k] = p.accessor.h(data[i - j - k]);
+                  }
+                  if (p.accessor.l(data[i - j - k]) < min[k]) {
+                    min[k] = p.accessor.l(data[i - j - k]);
+                  }
+                }
+                const diff = max[k] - min[k];
+                if (diff > 0) {
+                  stochasticKBuffer[k] =
+                    ((p.accessor.c(data[i - k]) - min[k]) / (max[k] - min[k])) *
+                    100;
+                } else {
                   stochasticKBuffer[k] = 50;
+                }
+                stochasticD += stochasticKBuffer[k];
               }
-              stochasticD += stochasticKBuffer[k];
-            }
-            const stochasticK = stochasticKBuffer[0];// ((d.close-min)/(max-min))*100;
-            stochasticD /= periodD;
-            return datum$3(p.accessor.d(d), stochasticK, stochasticD, overbought, oversold);
-          }
-          else return datum$3(p.accessor.d(d), null, null, overbought, oversold);
-        }).filter(d => d.stochasticK);
+              const stochasticK = stochasticKBuffer[0]; // ((d.close-min)/(max-min))*100;
+              stochasticD /= periodD;
+              return datum$3(
+                p.accessor.d(d),
+                stochasticK,
+                stochasticD,
+                overbought,
+                oversold,
+              )
+            } else return datum$3(p.accessor.d(d), null, null, overbought, oversold)
+          })
+          .filter((d) => d.stochasticK)
       }
 
-      indicator.periodD = function(_) {
-        if (!arguments.length) return periodD;
+      indicator.periodD = function (_) {
+        if (!arguments.length) return periodD
         periodD = +_;
-        return indicator;
+        return indicator
       };
 
-      indicator.overbought = function(_) {
-        if (!arguments.length) return overbought;
+      indicator.overbought = function (_) {
+        if (!arguments.length) return overbought
         overbought = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.oversold = function(_) {
-        if (!arguments.length) return oversold;
+      indicator.oversold = function (_) {
+        if (!arguments.length) return oversold
         oversold = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
-      indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20)
+      indicatorMixin(indicator, p)
+        .accessor(accessor_ohlc())
+        .period(20)
         .preroll(() => {
-          return p.period + periodD;
+          return p.period + periodD
         });
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum$3(date, stochasticK, stochasticD, overbought, oversold) {
-    if(stochasticK) return { date: date, stochasticK: stochasticK, stochasticD: stochasticD, overbought: overbought, oversold: oversold };
-    else return { date: date, stochasticK: null, stochasticD: null, overbought: overbought, oversold: oversold };
+    if (stochasticK)
+      return {
+        date: date,
+        stochasticK: stochasticK,
+        stochasticD: stochasticD,
+        overbought: overbought,
+        oversold: oversold,
+      }
+    else
+      return {
+        date: date,
+        stochasticK: null,
+        stochasticD: null,
+        overbought: overbought,
+        oversold: oversold,
+      }
   }
 
-  function williams_init(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function williams_init (indicatorMixin, accessor_ohlc) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let overbought = 80,
-          middle = 50,
-          oversold = 20;
+        middle = 50,
+        oversold = 20;
 
       function indicator(data) {
-        return data.map((d, i) => {
-           if(i >= p.period){
-            let max = 0;
-            let min = 10000;
-            for (let j = 0; j < p.period; j++) {
-              if(p.accessor.h(data[i - j]) > max){
-                max = p.accessor.h(data[i - j]);
+        return data
+          .map((d, i) => {
+            if (i >= p.period) {
+              let max = 0;
+              let min = 10000;
+              for (let j = 0; j < p.period; j++) {
+                if (p.accessor.h(data[i - j]) > max) {
+                  max = p.accessor.h(data[i - j]);
+                }
+                if (p.accessor.l(data[i - j]) < min) {
+                  min = p.accessor.l(data[i - j]);
+                }
               }
-              if(p.accessor.l(data[i - j]) < min){
-                min = p.accessor.l(data[i - j]);
-              }
-            }
-            const williams = ((p.accessor.c(data[i]) - min ) / ( max - min )) * 100;
-            return datum$2(p.accessor.d(d), williams, middle, overbought, oversold);
-          }
-          else return datum$2(p.accessor.d(d));
-        }).filter(d => d.williams);
+              const williams = ((p.accessor.c(data[i]) - min) / (max - min)) * 100;
+              return datum$2(
+                p.accessor.d(d),
+                williams,
+                middle,
+                overbought,
+                oversold,
+              )
+            } else return datum$2(p.accessor.d(d))
+          })
+          .filter((d) => d.williams)
       }
 
-      indicator.overbought = function(_) {
-        if (!arguments.length) return overbought;
+      indicator.overbought = function (_) {
+        if (!arguments.length) return overbought
         overbought = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.middle = function(_) {
-        if (!arguments.length) return middle;
+      indicator.middle = function (_) {
+        if (!arguments.length) return middle
         middle = _;
-        return indicator;
+        return indicator
       };
 
-      indicator.oversold = function(_) {
-        if (!arguments.length) return oversold;
+      indicator.oversold = function (_) {
+        if (!arguments.length) return oversold
         oversold = _;
-        return indicator;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum$2(date, williams, middle, overbought, oversold) {
-    if(williams) return { date: date, williams: williams, middle: middle, overbought: overbought, oversold: oversold };
-    else return { date: date, williams: null, middle: null, overbought: null, oversold: null };
+    if (williams)
+      return {
+        date: date,
+        williams: williams,
+        middle: middle,
+        overbought: overbought,
+        oversold: oversold,
+      }
+    else
+      return {
+        date: date,
+        williams: null,
+        middle: null,
+        overbought: null,
+        oversold: null,
+      }
   }
 
-  function adx_init(d3_max, indicatorMixin, accessor_ohlc, indicator_ema) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function adx_init (d3_max, indicatorMixin, accessor_ohlc, indicator_ema) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
 
       function indicator(data) {
-        const plusDmEma = indicator_ema().accessor(indicator.accessor()).period(p.period).init(),
-            minusDmEma = indicator_ema().accessor(indicator.accessor()).period(p.period).init(),
-            trEma = indicator_ema().accessor(indicator.accessor()).period(p.period).init(),
-            adxEma = indicator_ema().accessor(indicator.accessor()).period(p.period).init();
+        const plusDmEma = indicator_ema()
+            .accessor(indicator.accessor())
+            .period(p.period)
+            .init(),
+          minusDmEma = indicator_ema()
+            .accessor(indicator.accessor())
+            .period(p.period)
+            .init(),
+          trEma = indicator_ema()
+            .accessor(indicator.accessor())
+            .period(p.period)
+            .init(),
+          adxEma = indicator_ema()
+            .accessor(indicator.accessor())
+            .period(p.period)
+            .init();
 
-        return data.map((d, i) => {
-          if(i < 1) return datum$1(p.accessor.d(d));
+        return data
+          .map((d, i) => {
+            if (i < 1) return datum$1(p.accessor.d(d))
 
-          const upMove = p.accessor.h(data[i]) - p.accessor.h(data[i-1]);
-          const downMove = p.accessor.l(data[i-1]) - p.accessor.l(data[i]);
-          let plusDM = 0;
-          if(upMove > downMove && upMove > 0){
+            const upMove = p.accessor.h(data[i]) - p.accessor.h(data[i - 1]);
+            const downMove = p.accessor.l(data[i - 1]) - p.accessor.l(data[i]);
+            let plusDM = 0;
+            if (upMove > downMove && upMove > 0) {
               plusDM = upMove;
-          }
-
-          let minusDM = 0;
-          if(downMove > upMove && downMove > 0){
-              minusDM = downMove;
-          }
-
-          const TR = d3_max([
-              (p.accessor.h(d) - p.accessor.l(d)),
-              Math.abs(p.accessor.h(d) - p.accessor.c(data[i-1])),
-              Math.abs(p.accessor.l(d) - p.accessor.c(data[i-1]))
-          ]);
-
-          const plusDmAverage = plusDmEma.average(plusDM),
-            minusDmAverage = minusDmEma.average(minusDM),
-            trEmaAverage = trEma.average(TR);
-
-          if(i > p.period) {
-            const plusDi = 100 * plusDmAverage / trEmaAverage,
-              minusDi = 100 * minusDmAverage / trEmaAverage;
-            let adxValue = 0;
-
-            if(plusDi - minusDi !== 0){
-              adxValue = Math.abs( (plusDi - minusDi) / (plusDi + minusDi) );
             }
-            const adx = 100 * adxEma.average(adxValue);
 
-            if(i >= p.period * 2) {
-                return datum$1(p.accessor.d(d), adx, plusDi, minusDi);
-            } else return datum$1(p.accessor.d(d));
-          } else return datum$1(p.accessor.d(d));
-        }).filter(d => d.adx);
+            let minusDM = 0;
+            if (downMove > upMove && downMove > 0) {
+              minusDM = downMove;
+            }
+
+            const TR = d3_max([
+              p.accessor.h(d) - p.accessor.l(d),
+              Math.abs(p.accessor.h(d) - p.accessor.c(data[i - 1])),
+              Math.abs(p.accessor.l(d) - p.accessor.c(data[i - 1])),
+            ]);
+
+            const plusDmAverage = plusDmEma.average(plusDM),
+              minusDmAverage = minusDmEma.average(minusDM),
+              trEmaAverage = trEma.average(TR);
+
+            if (i > p.period) {
+              const plusDi = (100 * plusDmAverage) / trEmaAverage,
+                minusDi = (100 * minusDmAverage) / trEmaAverage;
+              let adxValue = 0;
+
+              if (plusDi - minusDi !== 0) {
+                adxValue = Math.abs((plusDi - minusDi) / (plusDi + minusDi));
+              }
+              const adx = 100 * adxEma.average(adxValue);
+
+              if (i >= p.period * 2) {
+                return datum$1(p.accessor.d(d), adx, plusDi, minusDi)
+              } else return datum$1(p.accessor.d(d))
+            } else return datum$1(p.accessor.d(d))
+          })
+          .filter((d) => d.adx)
       }
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(14);
 
-      return indicator;
-    };
-  }
-
-  function datum$1(date, adx, plusDi, minusDi) {
-    if(plusDi) {
-        return { date: date, adx: adx, plusDi: plusDi, minusDi: minusDi };
-    } else {
-        return { date: date, adx: null, plusDi: null, minusDi: null };
+      return indicator
     }
   }
 
-  function bollinger_init(indicatorMixin, accessor_ohlc, indicator_sma) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function datum$1(date, adx, plusDi, minusDi) {
+    if (plusDi) {
+      return { date: date, adx: adx, plusDi: plusDi, minusDi: minusDi }
+    } else {
+      return { date: date, adx: null, plusDi: null, minusDi: null }
+    }
+  }
+
+  function bollinger_init (indicatorMixin, accessor_ohlc, indicator_sma) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let sdMultiplication = 2,
-          sd;
+        sd;
 
       function indicator(data) {
-          const signalLine = indicator_sma().accessor(indicator.accessor()).period(p.period).init();
-        return data.map((d, i) => {
-          const middleBand = signalLine.average(p.accessor(d));
-          if(i >= p.period) {
+        const signalLine = indicator_sma()
+          .accessor(indicator.accessor())
+          .period(p.period)
+          .init();
+        return data
+          .map((d, i) => {
+            const middleBand = signalLine.average(p.accessor(d));
+            if (i >= p.period) {
               let sum = 0;
-              for(let j = 0; j < p.period; j++){
-                  sum += (Math.pow( (p.accessor.c(data[i-j]) - middleBand), 2 ) );
+              for (let j = 0; j < p.period; j++) {
+                sum += Math.pow(p.accessor.c(data[i - j]) - middleBand, 2);
               }
-              sd = Math.sqrt( sum / p.period );
+              sd = Math.sqrt(sum / p.period);
               const upperBand = middleBand + sdMultiplication * sd,
-                  lowerBand = middleBand - sdMultiplication * sd;
-              return datum(p.accessor.d(d), middleBand, upperBand, lowerBand);
-          }
-          else return datum(p.accessor.d(d));
-
-        }).filter(d => d.middleBand);
+                lowerBand = middleBand - sdMultiplication * sd;
+              return datum(p.accessor.d(d), middleBand, upperBand, lowerBand)
+            } else return datum(p.accessor.d(d))
+          })
+          .filter((d) => d.middleBand)
       }
 
-      indicator.sdMultiplication = function(_) {
-        if (!arguments.length) return sdMultiplication;
-          sdMultiplication = _;
-        return indicator;
+      indicator.sdMultiplication = function (_) {
+        if (!arguments.length) return sdMultiplication
+        sdMultiplication = _;
+        return indicator
       };
 
       // Mixin 'superclass' methods and variables
       indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20);
 
-      return indicator;
-    };
+      return indicator
+    }
   }
 
   function datum(date, middleBand, upperBand, lowerBand) {
-    if(middleBand) return { date: date, middleBand: middleBand, upperBand: upperBand, lowerBand: lowerBand};
-    else return { date: date, middleBand: null, upperBand: null, lowerBand: null};
+    if (middleBand)
+      return {
+        date: date,
+        middleBand: middleBand,
+        upperBand: upperBand,
+        lowerBand: lowerBand,
+      }
+    else return { date: date, middleBand: null, upperBand: null, lowerBand: null }
   }
 
-  function indicatorFactory(d3) {
+  function indicatorFactory (d3) {
     const indicatorMixin = indicatormixin(),
-        accessor = accessorFactory(),
-        ema = ema_init(indicatorMixin, accessor.ohlc, ema_alpha_init),
-        sma = sma_init(indicatorMixin, accessor.ohlc),
-        atr = atr_init(indicatorMixin, accessor.ohlc, sma),
-        circularbuffer = utilFactory().circularbuffer,
-        vwap = vwap_init(indicatorMixin, accessor.ohlc);
+      accessor = accessorFactory(),
+      ema = ema_init(indicatorMixin, accessor.ohlc, ema_alpha_init),
+      sma = sma_init(indicatorMixin, accessor.ohlc),
+      atr = atr_init(indicatorMixin, accessor.ohlc, sma),
+      circularbuffer = utilFactory().circularbuffer,
+      vwap = vwap_init(indicatorMixin, accessor.ohlc);
 
     return {
       atr: atr,
@@ -1877,16 +2087,16 @@
       williams: williams_init(indicatorMixin, accessor.ohlc),
       adx: adx_init(d3.max, indicatorMixin, accessor.ohlc, ema),
       bollinger: bollinger_init(indicatorMixin, accessor.ohlc, sma),
-      vwap: vwap
-     };
+      vwap: vwap,
+    }
   }
 
   function ema_alpha_init(period) {
-    return 2 / (period + 1);
+    return 2 / (period + 1)
   }
 
   function wilder_alpha_init(period) {
-    return 1 / period;
+    return 1 / period
   }
 
   /**
@@ -1898,7 +2108,7 @@
    *
    * NOTE: This is not a complete scale, it will throw errors if it is used for anything else but zooming
    */
-  function zoomableFactory() {
+  function zoomableFactory () {
     function zoomable(linear, zoomed, domainLimit, clamp) {
       clamp = clamp !== undefined ? clamp : true;
 
@@ -1906,40 +2116,46 @@
        * Delegates the scale call to the underlying linear scale
        */
       function scale(_) {
-        return linear.apply(linear, arguments);
+        return linear.apply(linear, arguments)
       }
 
       scale.invert = linear.invert;
 
-      scale.domain = function(_) {
-        if(!arguments.length) return linear.domain();
+      scale.domain = function (_) {
+        if (!arguments.length) return linear.domain()
 
-        if(clamp) linear.domain([Math.max(domainLimit.domain[0], _[0]), Math.min(domainLimit.domain[1], _[1])]);
+        if (clamp)
+          linear.domain([
+            Math.max(domainLimit.domain[0], _[0]),
+            Math.min(domainLimit.domain[1], _[1]),
+          ]);
         else linear.domain(_);
 
-        if(zoomed) zoomed(); // Callback to that we have been zoomed
-        return scale;
+        if (zoomed) zoomed(); // Callback to that we have been zoomed
+        return scale
       };
 
-      scale.range = function(_) {
-        if(!arguments.length) return linear.range();
-        throw new Error("zoomable is a read only range. Use this scale for zooming only");
+      scale.range = function (_) {
+        if (!arguments.length) return linear.range()
+        throw new Error(
+          'zoomable is a read only range. Use this scale for zooming only',
+        )
       };
 
-      scale.copy = function() {
-        return zoomable(linear.copy(), zoomed, domainLimit, clamp);
+      scale.copy = function () {
+        return zoomable(linear.copy(), zoomed, domainLimit, clamp)
       };
 
-      scale.clamp = function(_) {
-        if(!arguments.length) return clamp;
+      scale.clamp = function (_) {
+        if (!arguments.length) return clamp
         clamp = _;
-        return scale;
+        return scale
       };
 
-      return scale;
+      return scale
     }
 
-    return zoomable;
+    return zoomable
   }
 
   /*
@@ -1948,11 +2164,31 @@
    and weekends respectively. When plot, is done so without weekend gaps.
    */
 
-  function financetimeFactory(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindCallback, scale_widen, techan_scale_zoomable) {  // Injected dependencies
-    function financetime(tickMethods, genericFormat, index, domain, padding, outerPadding, zoomLimit, closestTicks, zoomable) {
+  function financetimeFactory (
+    d3_scale_linear,
+    d3_time,
+    d3_bisect,
+    techan_util_rebindCallback,
+    scale_widen,
+    techan_scale_zoomable,
+  ) {
+    // Injected dependencies
+    function financetime(
+      tickMethods,
+      genericFormat,
+      index,
+      domain,
+      padding,
+      outerPadding,
+      zoomLimit,
+      closestTicks,
+      zoomable,
+    ) {
       let dateIndexMap,
         band = 3;
-      const tickState = { tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2] };
+      const tickState = {
+        tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2],
+      };
 
       index = index || d3_scale_linear();
       domain = domain || [new Date(0), new Date(1)];
@@ -1983,11 +2219,12 @@
 
         // Make sure the value has been mapped, if not, determine if it's just before, round in, or just after domain
         if (mappedIndex === undefined) {
-          if (domain[0] > x) mappedIndex = -1; // Less than min, round just out of domain
+          if (domain[0] > x)
+            mappedIndex = -1; // Less than min, round just out of domain
           else mappedIndex = d3_bisect(domain, x); // else let bisect determine where in or just after than domain it is
         }
 
-        return index(mappedIndex + offset);
+        return index(mappedIndex + offset)
       }
 
       /**
@@ -1996,9 +2233,9 @@
        * @param y
        * @returns {null} If the range value cannot be mapped. eg, if range value is outside of the mapped domain
        */
-      scale.invert = function(y) {
+      scale.invert = function (y) {
         const d = domain[scale.invertToIndex(y)];
-        return d ? d : null;
+        return d ? d : null
       };
 
       /**
@@ -2009,8 +2246,8 @@
        * @returns {number} A number representing the index in the domain the range value has been inverted to. May return
        * values outside of the domain such as negatives or value greater than domain().length-1
        */
-      scale.invertToIndex = function(y) {
-        return Math.round(index.invert(y));
+      scale.invertToIndex = function (y) {
+        return Math.round(index.invert(y))
       };
 
       /**
@@ -2020,26 +2257,26 @@
        * @param _ The full domain array
        * @returns {*}
        */
-      scale.domain = function(_) {
+      scale.domain = function (_) {
         if (!arguments.length) {
           let visible = index.domain();
 
-          if (visible[0] < 0 && visible[visible.length - 1] < 0) return []; // if it's all negative return empty, nothing is visible
+          if (visible[0] < 0 && visible[visible.length - 1] < 0) return [] // if it's all negative return empty, nothing is visible
 
           visible = [
             Math.max(Math.ceil(visible[0]), 0), // If min is fraction, it is partially out of view, but still partially visible, round up (ceil)
-            Math.min(Math.floor(visible[visible.length - 1]), domain.length - 1) // If max is fraction, is partially out of view, but still partially visible, round down (floor)
+            Math.min(Math.floor(visible[visible.length - 1]), domain.length - 1), // If max is fraction, is partially out of view, but still partially visible, round down (floor)
           ];
-          return domain.slice(visible[0], visible[visible.length - 1] + 1); // Grab visible domain, inclusive
+          return domain.slice(visible[0], visible[visible.length - 1] + 1) // Grab visible domain, inclusive
         }
 
         domain = _;
-        return applyDomain();
+        return applyDomain()
       };
 
       function zoomed() {
         band = rangeBand(index, domain, padding);
-        return scale;
+        return scale
       }
 
       function domainMap() {
@@ -2051,13 +2288,24 @@
         index.domain([0, domain.length - 1]);
         zoomed();
         // Apply outerPadding and widen the outer edges by pulling the domain in to ensure start and end bands are fully visible
-        index.domain(index.range().map(scale_widen(outerPadding, band)).map(index.invert));
+        index.domain(
+          index.range().map(scale_widen(outerPadding, band)).map(index.invert),
+        );
         zoomLimit.domain = index.domain(); // Capture the zoom limit after the domain has been applied
-        return zoomed();
+        return zoomed()
       }
 
-      scale.copy = function() {
-        return financetime(tickMethods, genericFormat, index.copy(), domain, padding, outerPadding, zoomLimit, closestTicks);
+      scale.copy = function () {
+        return financetime(
+          tickMethods,
+          genericFormat,
+          index.copy(),
+          domain,
+          padding,
+          outerPadding,
+          zoomLimit,
+          closestTicks,
+        )
       };
 
       /**
@@ -2068,24 +2316,24 @@
        * compensates for this checking if rangeBand is defined and compensates as such.
        * @returns {number}
        */
-      scale.band = function() {
-        return band;
+      scale.band = function () {
+        return band
       };
 
-      scale.outerPadding = function(_) {
-        if (!arguments.length) return outerPadding;
+      scale.outerPadding = function (_) {
+        if (!arguments.length) return outerPadding
         outerPadding = _;
-        return applyDomain();
+        return applyDomain()
       };
 
-      scale.padding = function(_) {
-        if (!arguments.length) return padding;
+      scale.padding = function (_) {
+        if (!arguments.length) return padding
         padding = _;
-        return applyDomain();
+        return applyDomain()
       };
 
-      scale.zoomable = function() {
-        return zoomable;
+      scale.zoomable = function () {
+        return zoomable
       };
 
       /*
@@ -2103,21 +2351,21 @@
        * @param frequency
        * @returns {*}
        */
-      scale.ticks = function(frequency) {
+      scale.ticks = function (frequency) {
         const visibleDomain = scale.domain();
 
-        if (!visibleDomain.length) return []; // Nothing is visible, no ticks to show
+        if (!visibleDomain.length) return [] // Nothing is visible, no ticks to show
 
         const lookup = {
           '1min': { interval: d3_time.timeMinute, steps: 30 },
-          'h': { interval: d3_time.timeHour, steps: 1 },
-          'D': { interval: d3_time.timeMonth, steps: 1 },
-          'W': { interval: d3_time.timeMonth, steps: 3 },
-          'M': { interval: d3_time.timeYear, steps: 1 },
-          'Y': { interval: d3_time.timeYear, steps: 5 }
+          h: { interval: d3_time.timeHour, steps: 1 },
+          D: { interval: d3_time.timeMonth, steps: 1 },
+          W: { interval: d3_time.timeMonth, steps: 3 },
+          M: { interval: d3_time.timeYear, steps: 1 },
+          Y: { interval: d3_time.timeYear, steps: 5 },
         };
 
-        const tzOffset = ((new Date().getTimezoneOffset()) / 60) - 5;
+        const tzOffset = new Date().getTimezoneOffset() / 60 - 5;
         const premarketOpen = 4 - tzOffset;
         const marketOpen = 9 - tzOffset;
         const marketClose = 16 - tzOffset;
@@ -2133,43 +2381,48 @@
 
         const intervalRange = interval
           .every(steps)
-          .range(
-            visibleDomain[0],
-            +visibleDomain[visibleDomain.length - 1] + 1
-          ).filter(d => {
+          .range(visibleDomain[0], +visibleDomain[visibleDomain.length - 1] + 1)
+          .filter((d) => {
             switch (frequency) {
               case 'D':
               case 'W':
               case 'M':
-                return true;
+                return true
 
               case '30min':
               case 'h':
-                return d.getHours() === premarketOpen && d.getMinutes() === 0;
+                return d.getHours() === premarketOpen && d.getMinutes() === 0
             }
 
             if (d.getHours() === marketOpen && d.getMinutes() === 30) {
-              return true;
+              return true
             }
-            if (d.getHours() < premarketOpen || d.getHours() > aftermarketClose || d.getMinutes() !== 0) {
-              return false;
+            if (
+              d.getHours() < premarketOpen ||
+              d.getHours() > aftermarketClose ||
+              d.getMinutes() !== 0
+            ) {
+              return false
             }
 
             switch (frequency) {
               case '1min':
-                return d.getMinutes() === 0; // every hour
+                return d.getMinutes() === 0 // every hour
               case '5min':
               case '10min':
               case '15min':
-                return d.getHours() === marketClose || d.getHours() === aftermarketClose;
+                return (
+                  d.getHours() === marketClose ||
+                  d.getHours() === aftermarketClose
+                )
             }
 
-            return false;
+            return false
           });
 
-        return intervalRange                                // Interval, possibly contains values not in domain
-          .map(domainTicks(visibleDomain, closestTicks))    // Line up interval ticks with domain, possibly adding duplicates
-          .reduce(sequentialDuplicates, []);                // Filter out duplicates, produce new 'reduced' array
+        return intervalRange // Interval, possibly contains values not in domain
+          .map(domainTicks(visibleDomain, closestTicks)) // Line up interval ticks with domain, possibly adding duplicates
+          .reduce(sequentialDuplicates, []) // Filter out duplicates, produce new 'reduced' array
       };
 
       /**
@@ -2178,10 +2431,10 @@
        * values closest to the corresponding domain value for the calculated interval.
        * @param _ Optional `boolean` value. If argument is passed, sets the value and returns this instance, if no argument, returns the current value
        */
-      scale.closestTicks = function(_) {
-        if (!arguments.length) return closestTicks;
+      scale.closestTicks = function (_) {
+        if (!arguments.length) return closestTicks
         closestTicks = _;
-        return scale;
+        return scale
       };
 
       /**
@@ -2190,20 +2443,24 @@
        * which may not be the optimal representation of the current domain state.
        * @returns {Function}
        */
-      scale.tickFormat = function() {
-        return function(date) {
-          return tickState.tickFormat(date);
-        };
+      scale.tickFormat = function () {
+        return function (date) {
+          return tickState.tickFormat(date)
+        }
       };
 
       techan_util_rebindCallback(scale, index, zoomed, 'range');
 
       domainMap();
-      return zoomed();
+      return zoomed()
     }
 
     function rangeBand(linear, domain, padding) {
-      return (Math.abs(linear(domain.length - 1) - linear(0)) / Math.max(1, domain.length - 1)) * (1 - padding);
+      return (
+        (Math.abs(linear(domain.length - 1) - linear(0)) /
+          Math.max(1, domain.length - 1)) *
+        (1 - padding)
+      )
     }
 
     function lookupIndex(array) {
@@ -2211,110 +2468,130 @@
       array.forEach((d, i) => {
         lookup[+d] = i;
       });
-      return lookup;
+      return lookup
     }
 
     function domainTicks(visibleDomain, closest) {
       const visibleDomainLookup = lookupIndex(visibleDomain); // Quickly lookup index of the domain
 
-      return function(d) {
+      return function (d) {
         const value = visibleDomainLookup[+d];
-        if (value !== undefined) return visibleDomain[value];
+        if (value !== undefined) return visibleDomain[value]
         let index = d3_bisect(visibleDomain, d);
         if (closest && index > 0) {
           // d3_bisect gets the index of the closest value that is the greater than d,
           // which may not be the value that is closest to d.
           // If the closest value that is smaller than d is closer, choose that instead.
-          if ((+d - (+visibleDomain[index - 1])) < (+visibleDomain[index] - +d)) {
+          if (+d - +visibleDomain[index - 1] < +visibleDomain[index] - +d) {
             index--;
           }
         }
-        return visibleDomain[index];
-      };
+        return visibleDomain[index]
+      }
     }
 
     function sequentialDuplicates(previous, current) {
-      if (previous.length === 0 || previous[previous.length - 1] !== current) previous.push(current);
-      return previous;
+      if (previous.length === 0 || previous[previous.length - 1] !== current)
+        previous.push(current);
+      return previous
     }
 
     const dayFormat = d3_time.timeFormat('%b %e'),
       yearFormat = d3_v3_multi_shim([
-        [d3_time.timeFormat('%b %Y'), d => d.getMonth()],
-        [d3_time.timeFormat('%Y'), () => true]
+        [d3_time.timeFormat('%b %Y'), (d) => d.getMonth()],
+        [d3_time.timeFormat('%Y'), () => true],
       ]),
-      genericFormat = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-        [d3_time.timeFormat(':%S'), d => d.getSeconds()],
-        [d3_time.timeFormat('%I:%M'), d => d.getMinutes()],
-        [d3_time.timeFormat('%I %p'), d => d.getHours()],
-        [d3_time.timeFormat('%b %e'), () => true]
-      ])
+      genericFormat = [
+        d3_time.timeSecond,
+        1,
+        d3_v3_multi_shim([
+          [d3_time.timeFormat(':%S'), (d) => d.getSeconds()],
+          [d3_time.timeFormat('%I:%M'), (d) => d.getMinutes()],
+          [d3_time.timeFormat('%I %p'), (d) => d.getHours()],
+          [d3_time.timeFormat('%b %e'), () => true],
+        ]),
       ];
 
     const dayFormatUtc = d3_time.utcFormat('%b %e'),
       yearFormatUtc = d3_v3_multi_shim([
-        [d3_time.utcFormat('%b %Y'), d => d.getUTCMonth()],
-        [d3_time.utcFormat('%Y'), () => true]
+        [d3_time.utcFormat('%b %Y'), (d) => d.getUTCMonth()],
+        [d3_time.utcFormat('%Y'), () => true],
       ]),
-      genericFormatUtc = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-          [d3_time.utcFormat(':%S'), d => d.getUTCSeconds()],
-          [d3_time.utcFormat('%I:%M'), d => d.getUTCMinutes()],
-          [d3_time.utcFormat('%I %p'), d => d.getUTCHours()],
-          [d3_time.utcFormat('%b %e'), () => true]
-        ])
+      genericFormatUtc = [
+        d3_time.timeSecond,
+        1,
+        d3_v3_multi_shim([
+          [d3_time.utcFormat(':%S'), (d) => d.getUTCSeconds()],
+          [d3_time.utcFormat('%I:%M'), (d) => d.getUTCMinutes()],
+          [d3_time.utcFormat('%I %p'), (d) => d.getUTCHours()],
+          [d3_time.utcFormat('%b %e'), () => true],
+        ]),
       ];
 
     const dailyTickMethod = [
-        [d3_time.timeDay, 1, dayFormat],
-        [d3_time.timeMonday, 1, dayFormat],
-        [d3_time.timeMonth, 1, yearFormat],
-        [d3_time.timeMonth, 3, yearFormat],
-        [d3_time.timeYear, 1, yearFormat]
-      ];
+      [d3_time.timeDay, 1, dayFormat],
+      [d3_time.timeMonday, 1, dayFormat],
+      [d3_time.timeMonth, 1, yearFormat],
+      [d3_time.timeMonth, 3, yearFormat],
+      [d3_time.timeYear, 1, yearFormat],
+    ];
 
     const dailyTickMethodUtc = [
-        [d3_time.utcDay, 1, dayFormatUtc],
-        [d3_time.utcMonday, 1, dayFormatUtc],
-        [d3_time.utcMonth, 1, yearFormatUtc],
-        [d3_time.utcMonth, 3, yearFormatUtc],
-        [d3_time.utcYear, 1, yearFormatUtc]
-      ];
+      [d3_time.utcDay, 1, dayFormatUtc],
+      [d3_time.utcMonday, 1, dayFormatUtc],
+      [d3_time.utcMonth, 1, yearFormatUtc],
+      [d3_time.utcMonth, 3, yearFormatUtc],
+      [d3_time.utcYear, 1, yearFormatUtc],
+    ];
 
     function techan_scale_financetime() {
-      return financetime({ daily: dailyTickMethod }, genericFormat);
+      return financetime({ daily: dailyTickMethod }, genericFormat)
     }
 
-    techan_scale_financetime.utc = function() {
-      return financetime({ daily: dailyTickMethodUtc }, genericFormatUtc);
+    techan_scale_financetime.utc = function () {
+      return financetime({ daily: dailyTickMethodUtc }, genericFormatUtc)
     };
 
-    return techan_scale_financetime;
+    return techan_scale_financetime
   }
 
   function d3_v3_multi_shim(multi) {
-    return function(d) {
+    return function (d) {
       for (let i = 0; i < multi.length; i++) {
-        if (multi[i][1](d)) return multi[i][0](d);
+        if (multi[i][1](d)) return multi[i][0](d)
       }
-    };
+    }
   }
 
-  function scaleFactory(d3) {
+  function scaleFactory (d3) {
     const zoomable = zoomableFactory(),
-        util = utilFactory(),
-        accessors = accessorFactory(),
-        financetime = financetimeFactory(d3.scaleLinear, d3, d3.bisect, util.rebindCallback, widen, zoomable);
+      util = utilFactory(),
+      accessors = accessorFactory(),
+      financetime = financetimeFactory(
+        d3.scaleLinear,
+        d3,
+        d3.bisect,
+        util.rebindCallback,
+        widen,
+        zoomable,
+      );
 
     function ohlc(data, accessor) {
       accessor = accessor || accessors.ohlc();
-      return d3.scaleLinear()
-        .domain([d3.min(data.map(accessor.low())), d3.max(data.map(accessor.high()))].map(widen(0.02)));
+      return d3
+        .scaleLinear()
+        .domain(
+          [
+            d3.min(data.map(accessor.low())),
+            d3.max(data.map(accessor.high())),
+          ].map(widen(0.02)),
+        )
     }
 
     function pathWithValueAccessor(data, accessor, widening) {
       accessor = accessor || accessors.value();
       widening = widening === undefined ? 0.02 : widening;
-      return pathScale(d3, data, accessor, widening);
+      return pathScale(d3, data, accessor, widening)
     }
 
     return {
@@ -2322,11 +2599,11 @@
 
       plot: {
         adx: function () {
-          return d3.scaleLinear().domain([0, 100]);
+          return d3.scaleLinear().domain([0, 100])
         },
 
         aroon: function () {
-          return d3.scaleLinear().domain([-100, 100]);
+          return d3.scaleLinear().domain([-100, 100])
         },
 
         atr: pathWithValueAccessor,
@@ -2334,17 +2611,23 @@
         atrtrailingstop: function (data, accessor) {
           accessor = accessor || accessors.atrtrailingstop();
 
-          const values = mapReduceFilter(data, d => [accessor.up(d), accessor.dn(d)]);
-          return d3.scaleLinear().domain(d3.extent(values).map(widen(0.04)));
+          const values = mapReduceFilter(data, (d) => [
+            accessor.up(d),
+            accessor.dn(d),
+          ]);
+          return d3.scaleLinear().domain(d3.extent(values).map(widen(0.04)))
         },
 
         bollinger: function (data, accessor) {
           accessor = accessor || accessors.bollinger();
-          return d3.scaleLinear()
-            .domain([
-              d3.min(data.map(d => accessor.lower(d))),
-              d3.max(data.map(d => accessor.upper(d)))
-            ].map(widen(0.02)));
+          return d3
+            .scaleLinear()
+            .domain(
+              [
+                d3.min(data.map((d) => accessor.lower(d))),
+                d3.max(data.map((d) => accessor.upper(d))),
+              ].map(widen(0.02)),
+            )
         },
 
         candlestick: ohlc,
@@ -2355,29 +2638,29 @@
 
         heikinashi: ohlc,
 
-        ichimoku: function(data, accessor) {
+        ichimoku: function (data, accessor) {
           accessor = accessor || accessors.ichimoku();
 
           // Lots of values in each data point, assemble them together as they are plotted considering offsets, flatten, remove nulls
           const values = mapReduceFilter(data, (d, i) => {
-            const chikouSpanData = data[i + accessor.pks(d)],  // Apply offset +pks (is plotted behind, so get data ahead)
-                senkouSpanBData = data[i - accessor.pks(d)]; // Apply offset -pks (is plotted in front, so get data behind)
+            const chikouSpanData = data[i + accessor.pks(d)], // Apply offset +pks (is plotted behind, so get data ahead)
+              senkouSpanBData = data[i - accessor.pks(d)]; // Apply offset -pks (is plotted in front, so get data behind)
 
             return [
-              accessor.ts(d), accessor.ks(d),
+              accessor.ts(d),
+              accessor.ks(d),
               senkouSpanBData ? accessor.sa(senkouSpanBData) : null,
               senkouSpanBData ? accessor.sb(senkouSpanBData) : null,
-              chikouSpanData ? accessor.c(chikouSpanData) : null
-            ];
+              chikouSpanData ? accessor.c(chikouSpanData) : null,
+            ]
           });
 
-          return d3.scaleLinear()
-            .domain(d3.extent(values).map(widen(0.02)));
+          return d3.scaleLinear().domain(d3.extent(values).map(widen(0.02)))
         },
 
-        macd: function(data, accessor) {
+        macd: function (data, accessor) {
           accessor = accessor || accessors.macd();
-          return pathScale(d3, data, accessor, 0.02);
+          return pathScale(d3, data, accessor, 0.02)
         },
 
         momentum: pathWithValueAccessor,
@@ -2389,13 +2672,19 @@
         percent: function (scale, reference) {
           const domain = scale.domain();
           reference = reference || domain[0];
-          return scale.copy().domain([domain[0], domain[domain.length - 1]].map(d => (d - reference) / reference));
+          return scale
+            .copy()
+            .domain(
+              [domain[0], domain[domain.length - 1]].map(
+                (d) => (d - reference) / reference,
+              ),
+            )
         },
 
         roc: pathWithValueAccessor,
 
         rsi: function () {
-          return d3.scaleLinear().domain([0, 100]);
+          return d3.scaleLinear().domain([0, 100])
         },
 
         sma: pathWithValueAccessor,
@@ -2403,36 +2692,38 @@
         sroc: pathWithValueAccessor,
 
         stochastic: function () {
-          return d3.scaleLinear().domain([0, 100]);
+          return d3.scaleLinear().domain([0, 100])
         },
 
-        supstance: function(data, accessor) {
+        supstance: function (data, accessor) {
           accessor = accessor || accessors.supstance();
-          return pathScale(d3, data, accessor.v, 0.02);
+          return pathScale(d3, data, accessor.v, 0.02)
         },
 
         tick: ohlc,
 
-        time: function(data, accessor) {
+        time: function (data, accessor) {
           accessor = accessor || accessors.value();
-          return financetime().domain(data.map(accessor.d));
+          return financetime().domain(data.map(accessor.d))
         },
 
-        tradearrow: function(data, accessor) {
+        tradearrow: function (data, accessor) {
           accessor = accessor || accessors.trade();
-          return pathScale(d3, data, accessor.p, 0.02);
+          return pathScale(d3, data, accessor.p, 0.02)
         },
 
-        trendline: function(data, accessor) {
+        trendline: function (data, accessor) {
           accessor = accessor || accessors.trendline();
-          const values = mapReduceFilter(data, d => [accessor.sv(d), accessor.ev(d)]);
-          return d3.scaleLinear().domain(d3.extent(values).map(widen(0.04)));
+          const values = mapReduceFilter(data, (d) => [
+            accessor.sv(d),
+            accessor.ev(d),
+          ]);
+          return d3.scaleLinear().domain(d3.extent(values).map(widen(0.04)))
         },
 
         volume: function (data, accessor) {
           accessor = accessor || accessors.ohlc().v;
-          return d3.scaleLinear()
-            .domain([0, d3.max(data.map(accessor)) * 1.15]);
+          return d3.scaleLinear().domain([0, d3.max(data.map(accessor)) * 1.15])
         },
 
         vwap: pathWithValueAccessor,
@@ -2440,18 +2731,18 @@
         wilderma: pathWithValueAccessor,
 
         williams: function () {
-          return d3.scaleLinear().domain([0, 100]);
-        }
-      }
-    };
+          return d3.scaleLinear().domain([0, 100])
+        },
+      },
+    }
   }
 
   function pathDomain(d3, data, accessor, widening) {
-    return data.length > 0 ? d3.extent(data, accessor).map(widen(widening)) : [];
+    return data.length > 0 ? d3.extent(data, accessor).map(widen(widening)) : []
   }
 
   function pathScale(d3, data, accessor, widening) {
-    return d3.scaleLinear().domain(pathDomain(d3, data, accessor, widening));
+    return d3.scaleLinear().domain(pathDomain(d3, data, accessor, widening))
   }
 
   /**
@@ -2463,38 +2754,50 @@
   function widen(widening, width) {
     widening = widening || 0;
 
-    return function(d, i, array) {
-      if(array.length > 2) throw new Error("array.length > 2 unsupported. array.length = " + array.length);
-      width = width || (array[array.length - 1] - array[0]);
-      return d + (i * 2 - 1) * width * widening;
-    };
+    return function (d, i, array) {
+      if (array.length > 2)
+        throw new Error(
+          'array.length > 2 unsupported. array.length = ' + array.length,
+        )
+      width = width || array[array.length - 1] - array[0];
+      return d + (i * 2 - 1) * width * widening
+    }
   }
 
   function mapReduceFilter(data, map) {
-    return data.map(map)
+    return data
+      .map(map)
       .reduce((a, b) => a.concat(b)) // Flatten
-      .filter(d => d !== null); // Remove nulls
+      .filter((d) => d !== null) // Remove nulls
   }
 
-  function plotFactory$1(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select) {
-    const DataSelector = function(mapper) {
+  function plotFactory$1 (
+    d3_svg_line,
+    d3_svg_area,
+    d3_line_interpolate,
+    d3_select,
+  ) {
+    const DataSelector = function (mapper) {
       let key,
-          scope,
-          classes = ['data'];
+        scope,
+        classes = ['data'];
 
       function dataSelect(g) {
         const selection = dataSelect.select(g).data(mapper, key),
-            entry = selection.enter().append('g').attr('class', arrayJoin(classes, ' '));
+          entry = selection
+            .enter()
+            .append('g')
+            .attr('class', arrayJoin(classes, ' '));
         selection.exit().remove();
 
         return {
           entry: entry,
-          selection: entry.merge(selection)
-        };
+          selection: entry.merge(selection),
+        }
       }
 
-      dataSelect.select = function(g) {
-        return g.selectAll('g.' + arrayJoin(classes, '.'));
+      dataSelect.select = function (g) {
+        return g.selectAll('g.' + arrayJoin(classes, '.'))
       };
 
       /**
@@ -2502,80 +2805,84 @@
        * @param _
        * @returns {*}
        */
-      dataSelect.mapper = function(_) {
-        if(!arguments.length) return mapper;
+      dataSelect.mapper = function (_) {
+        if (!arguments.length) return mapper
         mapper = _;
-        return dataSelect;
+        return dataSelect
       };
 
-      dataSelect.scope = function(_) {
-        if(!arguments.length) return scope;
+      dataSelect.scope = function (_) {
+        if (!arguments.length) return scope
         scope = _;
         classes = ['data', 'scope-' + scope];
-        return dataSelect;
+        return dataSelect
       };
 
-      dataSelect.key= function(_) {
-        if(!arguments.length) return key;
+      dataSelect.key = function (_) {
+        if (!arguments.length) return key
         key = _;
-        return dataSelect;
+        return dataSelect
       };
 
-      return dataSelect;
+      return dataSelect
     };
 
     DataSelector.mapper = {
-      unity: d => d,
-      array: d => [d]
+      unity: (d) => d,
+      array: (d) => [d],
     };
 
     function PathLine() {
       const d3Line = d3_svg_line().curve(d3_line_interpolate);
 
       function line(data) {
-        return d3Line(data);
+        return d3Line(data)
       }
 
-      line.init = function(accessor_date, x, accessor_value, y, offset) {
-        return d3Line.defined(d => accessor_value(d) !== null)
-            .x(d => x(accessor_date(d), offset === undefined ? offset : offset(d)))
-            .y(d => y(accessor_value(d)));
+      line.init = function (accessor_date, x, accessor_value, y, offset) {
+        return d3Line
+          .defined((d) => accessor_value(d) !== null)
+          .x((d) =>
+            x(accessor_date(d), offset === undefined ? offset : offset(d)),
+          )
+          .y((d) => y(accessor_value(d)))
       };
 
-      line.d3 = function() {
-        return d3Line;
+      line.d3 = function () {
+        return d3Line
       };
 
-      return line;
+      return line
     }
 
     function PathArea() {
       const d3Area = d3_svg_area().curve(d3_line_interpolate);
 
       function area(data) {
-        return d3Area(data);
+        return d3Area(data)
       }
 
-      area.init = function(accessor_date, x, accessor_value, y, yBase) {
-        return d3Area.defined(d => accessor_value(d) !== null)
-             .x(d => x(accessor_date(d)))
-             .y0(d => y(yBase))
-             .y1(d => y(accessor_value(d)));
+      area.init = function (accessor_date, x, accessor_value, y, yBase) {
+        return d3Area
+          .defined((d) => accessor_value(d) !== null)
+          .x((d) => x(accessor_date(d)))
+          .y0(() => y(yBase))
+          .y1((d) => y(accessor_value(d)))
       };
 
-      area.d3 = function() {
-        return d3Area;
+      area.d3 = function () {
+        return d3Area
       };
 
-      return area;
+      return area
     }
 
     function upDownEqual(accessor) {
       return {
-        up: d => accessor.o(d) < accessor.c(d),
-        down: d => accessor.o(d) > accessor.c(d),
-        equal: d => accessor.o(d) === accessor.c(d)
-      };
+        up: (d) => accessor.o(d) < accessor.c(d),
+        down: (d) => accessor.o(d) > accessor.c(d),
+        equal: (d) => accessor.o(d) === accessor.c(d),
+      }
     }
 
     function appendPathsGroupBy(g, accessor, plotName, classes) {
@@ -2583,7 +2890,7 @@
 
       classes = classes || upDownEqual(accessor);
 
-      Object.keys(classes).forEach(key => {
+      Object.keys(classes).forEach((key) => {
         appendPlotTypePath(g, classes[key], plotNames, key);
       });
     }
@@ -2593,24 +2900,26 @@
     }
 
     function appendPlotTypePath(g, data, plotNames, direction) {
-      g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction).data(d => [d.filter(data)])
-        .enter().append('path').attr('class', arrayJoin(plotNames, ' ') + ' ' + direction);
+      g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction)
+        .data((d) => [d.filter(data)])
+        .enter()
+        .append('path')
+        .attr('class', arrayJoin(plotNames, ' ') + ' ' + direction);
     }
 
     function barWidth(x) {
-      if(x.band !== undefined) return Math.max(x.band(), 1);
-      else return 3; // If it's not a finance time, the user should specify the band calculation (or constant) on the plot
+      if (x.band !== undefined) return Math.max(x.band(), 1)
+      else return 3 // If it's not a finance time, the user should specify the band calculation (or constant) on the plot
     }
 
     function arrayJoin(array, delimiter) {
-      if(!array.length) return;
+      if (!array.length) return
       let result = array[0];
-      for(let i = 1; i < array.length; i++) {
+      for (let i = 1; i < array.length; i++) {
         result += delimiter + array[i];
       }
-      return result;
+      return result
     }
-
 
     /**
      * Helper class assists the composition of multiple techan plots. Handles:
@@ -2623,39 +2932,43 @@
      */
     function PlotComposer() {
       let dataSelector = DataSelector(),
-          plots = [],
-          plotScale = plot => plot.scale(),
-          scale,
-          accessor;
+        plots = [],
+        plotScale = (plot) => plot.scale(),
+        scale,
+        accessor;
 
       function plotComposer(g) {
         const group = dataSelector.mapper(() => plots.map(() => []))(g);
 
-        group.selection.each(function(d, i) {
+        group.selection.each(function (d, i) {
           plots[i](d3_select(this));
         });
 
         plotComposer.refresh(g);
       }
 
-      plotComposer.refresh = function(g) {
-        dataSelector.select(g).data(d => {
+      plotComposer.refresh = function (g) {
+        dataSelector
+          .select(g)
+          .data((d) => {
             const value = accessor(d);
-            if(value === null || value === undefined) return plots.map(() => []);
+            if (value === null || value === undefined) return plots.map(() => [])
             const y = scale(value);
-            return plots.map(plot => {
-              const annotationValue = plotScale(plot) === scale ? value : plotScale(plot).invert(y);
-              return [ { value: annotationValue} ];
-            });
-          }).each(function(d, i) {
+            return plots.map((plot) => {
+              const annotationValue =
+                plotScale(plot) === scale ? value : plotScale(plot).invert(y);
+              return [{ value: annotationValue }]
+            })
+          })
+          .each(function (d, i) {
             plots[i](d3_select(this));
           });
       };
 
-      plotComposer.plots = function(_) {
-        if(!arguments.length) return plots;
+      plotComposer.plots = function (_) {
+        if (!arguments.length) return plots
         plots = _;
-        return plotComposer;
+        return plotComposer
       };
 
       /**
@@ -2663,10 +2976,10 @@
        * @param _
        * @returns {*}
        */
-      plotComposer.scale = function(_) {
-        if(!arguments.length) return scale;
+      plotComposer.scale = function (_) {
+        if (!arguments.length) return scale
         scale = _;
-        return plotComposer;
+        return plotComposer
       };
 
       /**
@@ -2674,10 +2987,10 @@
        * @param _ A function taking d and returning a value
        * @returns {*}
        */
-      plotComposer.accessor = function(_) {
-        if(!arguments.length) return accessor;
+      plotComposer.accessor = function (_) {
+        if (!arguments.length) return accessor
         accessor = _;
-        return plotComposer;
+        return plotComposer
       };
 
       /**
@@ -2685,10 +2998,10 @@
        * @param _
        * @returns {*}
        */
-      plotComposer.scope = function(_) {
-        if(!arguments.length) return dataSelector.scope();
+      plotComposer.scope = function (_) {
+        if (!arguments.length) return dataSelector.scope()
         dataSelector.scope(_);
-        return plotComposer;
+        return plotComposer
       };
 
       /**
@@ -2696,13 +3009,13 @@
        * @param _
        * @returns {*}
        */
-      plotComposer.plotScale = function(_) {
-        if(!arguments.length) return plotScale;
+      plotComposer.plotScale = function (_) {
+        if (!arguments.length) return plotScale
         plotScale = _;
-        return plotComposer;
+        return plotComposer
       };
 
-      return plotComposer;
+      return plotComposer
     }
 
     return {
@@ -2712,17 +3025,25 @@
 
       appendPathsUpDownEqual: appendPathsUpDownEqual,
 
-      horizontalPathLine: function(accessor_date, x, accessor_value, y) {
-        return function(d) {
-          if(!d.length) return null;
+      horizontalPathLine: function (accessor_date, x, accessor_value, y) {
+        return function (d) {
+          if (!d.length) return null
 
           const firstDatum = d[0],
-              lastDatum = d[d.length - 1],
-              yValue = Math.floor(y(accessor_value(firstDatum))) + 0.5;
+            lastDatum = d[d.length - 1],
+            yValue = Math.floor(y(accessor_value(firstDatum))) + 0.5;
 
-          return 'M ' + x(accessor_date(firstDatum)) + ' ' + yValue +
-            ' L ' + x(accessor_date(lastDatum)) + ' ' + yValue;
-        };
+          return (
+            'M ' +
+            x(accessor_date(firstDatum)) +
+            ' ' +
+            yValue +
+            ' L ' +
+            x(accessor_date(lastDatum)) +
+            ' ' +
+            yValue
+          )
+        }
       },
 
       pathLine: PathLine,
@@ -2731,64 +3052,74 @@
 
       barWidth: barWidth,
 
-      scaledStrokeWidth: function(x, max, div) {
+      scaledStrokeWidth: function (x, max, div) {
         max = max || 1;
         div = div || 1;
 
-        return function() {
-          return Math.min(max, barWidth(x) / div) + 'px';
-        };
+        return function () {
+          return Math.min(max, barWidth(x) / div) + 'px'
+        }
       },
 
       /**
        * @param path A path generator constructor function that will construct a function that takes data point and returns a path
        */
-      joinPath: function(path) {
-        return function(data) {
-          return arrayJoin(data.map(path()), ' ');
-        };
-      },
-
-      interaction: {
-        mousedispatch: function(dispatch) {
-          return function(selection) {
-            return selection.on('mouseenter', function(event, d) {
-              d3_select(this.parentNode).classed('mouseover', true);
-              dispatch.call('mouseenter', this, d);
-            })
-            .on('mouseleave', function(event, d) {
-              const parentElement = d3_select(this.parentNode);
-              if(!parentElement.classed('dragging')) {
-                parentElement.classed('mouseover', false);
-                dispatch.call('mouseout', this, d);
-              }
-            })
-            .on('mousemove', function(event, d) { dispatch.call('mousemove', this, d); });
-          };
-        },
-
-        dragStartEndDispatch: function(drag, dispatch) {
-          return drag.on('start', function(event, d) {
-            d3_select(this.parentNode.parentNode).classed('dragging', true);
-            dispatch.call('dragstart', this, d);
-          })
-          .on('end', function(event, d) {
-            d3_select(this.parentNode.parentNode).classed('dragging', false);
-            dispatch.call('dragend', this, d);
-          });
+      joinPath: function (path) {
+        return function (data) {
+          return arrayJoin(data.map(path()), ' ')
         }
       },
 
-      plotComposer: PlotComposer
-    };
+      interaction: {
+        mousedispatch: function (dispatch) {
+          return function (selection) {
+            return selection
+              .on('mouseenter', function (event, d) {
+                d3_select(this.parentNode).classed('mouseover', true);
+                dispatch.call('mouseenter', this, d);
+              })
+              .on('mouseleave', function (event, d) {
+                const parentElement = d3_select(this.parentNode);
+                if (!parentElement.classed('dragging')) {
+                  parentElement.classed('mouseover', false);
+                  dispatch.call('mouseout', this, d);
+                }
+              })
+              .on('mousemove', function (event, d) {
+                dispatch.call('mousemove', this, d);
+              })
+          }
+        },
+
+        dragStartEndDispatch: function (drag, dispatch) {
+          return drag
+            .on('start', function (event, d) {
+              d3_select(this.parentNode.parentNode).classed('dragging', true);
+              dispatch.call('dragstart', this, d);
+            })
+            .on('end', function (event, d) {
+              d3_select(this.parentNode.parentNode).classed('dragging', false);
+              dispatch.call('dragend', this, d);
+            })
+        },
+      },
+
+      plotComposer: PlotComposer,
+    }
   }
 
   /**
    * Module allows optionally mixing in helper methods to plots such as xScale, yScale, accessor setters
    * and helpers for defining dispatching methods.
    */
-  function plotMixinFactory(d3_scale_linear, d3_functor, techan_scale_financetime, plot_dataselector, plot_width) {
-    const PlotMixin = function(source, priv) {
+  function plotMixinFactory (
+    d3_scale_linear,
+    d3_functor,
+    techan_scale_financetime,
+    plot_dataselector,
+    plot_width,
+  ) {
+    const PlotMixin = function (source, priv) {
       const plotMixin = {};
 
       /**
@@ -2799,110 +3130,124 @@
        * @param key
        * @returns {{}}
        */
-      plotMixin.dataSelector = function(mapper, key) {
+      plotMixin.dataSelector = function (mapper, key) {
         priv.dataSelector = plot_dataselector(mapper).key(key);
-        return plotMixin;
+        return plotMixin
       };
 
-      plotMixin.xScale = function(binder) {
+      plotMixin.xScale = function (binder) {
         priv.xScale = techan_scale_financetime();
 
-        source.xScale = function(_) {
-          if (!arguments.length) return priv.xScale;
+        source.xScale = function (_) {
+          if (!arguments.length) return priv.xScale
           priv.xScale = _;
-          if(binder) binder();
-          return source;
+          if (binder) binder();
+          return source
         };
 
-        return plotMixin;
+        return plotMixin
       };
 
-      plotMixin.yScale = function(binder) {
+      plotMixin.yScale = function (binder) {
         priv.yScale = d3_scale_linear();
 
-        source.yScale = function(_) {
-          if (!arguments.length) return priv.yScale;
+        source.yScale = function (_) {
+          if (!arguments.length) return priv.yScale
           priv.yScale = _;
-          if(binder) binder();
-          return source;
+          if (binder) binder();
+          return source
         };
 
-        return plotMixin;
+        return plotMixin
       };
 
-      plotMixin.accessor = function(accessor, binder) {
+      plotMixin.accessor = function (accessor, binder) {
         priv.accessor = accessor;
 
-        source.accessor = function(_) {
-          if (!arguments.length) return priv.accessor;
+        source.accessor = function (_) {
+          if (!arguments.length) return priv.accessor
           priv.accessor = _;
-          if(binder) binder();
-          return source;
+          if (binder) binder();
+          return source
         };
 
-        return plotMixin;
+        return plotMixin
       };
 
-      plotMixin.width = function(binder) {
+      plotMixin.width = function (binder) {
         priv.width = plot_width;
 
-        source.width = function(_) {
-          if (!arguments.length) return priv.width;
+        source.width = function (_) {
+          if (!arguments.length) return priv.width
           priv.width = d3_functor(_);
-          if(binder) binder();
-          return source;
+          if (binder) binder();
+          return source
         };
 
-        return plotMixin;
+        return plotMixin
       };
 
-      plotMixin.on = function(dispatch, binder) {
-        source.on = function(type, listener) {
+      plotMixin.on = function (dispatch, binder) {
+        source.on = function (type, listener) {
           dispatch.on(type, listener);
-          if(binder) binder();
-          return source;
+          if (binder) binder();
+          return source
         };
 
-        return plotMixin;
+        return plotMixin
       };
 
       /**
-      * Generic mixin used for most plots
-      * @returns {plotMixin}
-      */
-      plotMixin.plot = function(accessor, binder) {
-        return plotMixin.xScale(binder).yScale(binder).accessor(accessor, binder);
+       * Generic mixin used for most plots
+       * @returns {plotMixin}
+       */
+      plotMixin.plot = function (accessor, binder) {
+        return plotMixin.xScale(binder).yScale(binder).accessor(accessor, binder)
       };
 
-      return plotMixin;
+      return plotMixin
     };
 
     // Carry the mappers through for convenience
     PlotMixin.dataMapper = plot_dataselector.mapper;
 
-    return PlotMixin;
+    return PlotMixin
   }
 
-  function candlestickFactory(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure constructor
-      const p = {};  // Container for private, direct access mixed in variables
-      let bodyPathGenerator,
-          wickGenerator,
-          wickWidthGenerator;
+  function candlestickFactory (
+    d3_scale_linear,
+    d3_extent,
+    accessor_ohlc,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure constructor
+      const p = {}; // Container for private, direct access mixed in variables
+      let bodyPathGenerator, wickGenerator, wickWidthGenerator;
 
       function candlestick(g) {
         const group = p.dataSelector(g);
 
         // 3x2 path's as wick and body can be styled slightly differently (stroke and fills)
-        plot.appendPathsUpDownEqual(group.selection, p.accessor, ['candle', 'body']);
-        plot.appendPathsUpDownEqual(group.selection, p.accessor, ['candle', 'wick']);
+        plot.appendPathsUpDownEqual(group.selection, p.accessor, [
+          'candle',
+          'body',
+        ]);
+        plot.appendPathsUpDownEqual(group.selection, p.accessor, [
+          'candle',
+          'wick',
+        ]);
 
         candlestick.refresh(g);
       }
 
-      candlestick.refresh = function(g) {
+      candlestick.refresh = function (g) {
         g.selectAll('path.candle.body').attr('d', bodyPathGenerator);
-        g.selectAll('path.candle.wick').attr('d', wickGenerator).style('stroke-width', wickWidthGenerator);
+        g.selectAll('path.candle.wick')
+          .attr('d', wickGenerator)
+          .style('stroke-width', wickWidthGenerator);
       };
 
       function binder() {
@@ -2913,23 +3258,35 @@
 
       function bodyPath() {
         const accessor = p.accessor,
-            x = p.xScale,
-            y = p.yScale;
+          x = p.xScale,
+          y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
-              open = y(accessor.o(d)),
-              close = y(accessor.c(d)),
-              xValue = x(accessor.d(d)) - width / 2;
+            open = y(accessor.o(d)),
+            close = y(accessor.c(d)),
+            xValue = x(accessor.d(d)) - width / 2;
           let path = 'M ' + xValue + ' ' + open + ' l ' + width + ' ' + 0;
 
           // Draw body only if there is a body (there is no stroke, so will not appear anyway)
-          if(open !== close) {
-            path += ' L ' + (xValue + width) + ' ' + close + ' l ' + -width + ' ' + 0 + ' L ' + xValue  + ' ' + open;
+          if (open !== close) {
+            path +=
+              ' L ' +
+              (xValue + width) +
+              ' ' +
+              close +
+              ' l ' +
+              -width +
+              ' ' +
+              0 +
+              ' L ' +
+              xValue +
+              ' ' +
+              open;
           }
 
-          return path;
-        };
+          return path
+        }
       }
 
       function wickPath() {
@@ -2937,36 +3294,59 @@
           x = p.xScale,
           y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
-              open = y(accessor.o(d)),
-              close = y(accessor.c(d)),
-              xPoint = x(accessor.d(d)),
-              xValue = xPoint - width / 2;
-          let path = 'M ' + xPoint + ' ' + y(accessor.h(d)) +' L ' + xPoint + ' '+ Math.min(open, close); // Top
+            open = y(accessor.o(d)),
+            close = y(accessor.c(d)),
+            xPoint = x(accessor.d(d)),
+            xValue = xPoint - width / 2;
+          let path =
+            'M ' +
+            xPoint +
+            ' ' +
+            y(accessor.h(d)) +
+            ' L ' +
+            xPoint +
+            ' ' +
+            Math.min(open, close); // Top
 
           // Draw another cross wick if there is no body
-          if(open === close) {
+          if (open === close) {
             path += ' M ' + xValue + ' ' + open + ' l ' + width + ' ' + 0;
           }
           // Bottom
-          return path + ' M ' + xPoint + ' ' + Math.max(open, close) + ' L ' + xPoint + ' ' + y(accessor.l(d));
-        };
+          return (
+            path +
+            ' M ' +
+            xPoint +
+            ' ' +
+            Math.max(open, close) +
+            ' L ' +
+            xPoint +
+            ' ' +
+            y(accessor.l(d))
+          )
+        }
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(candlestick, p).plot(accessor_ohlc(), binder).width(binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(candlestick, p)
+        .plot(accessor_ohlc(), binder)
+        .width(binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return candlestick;
-    };
+      return candlestick
+    }
   }
 
-  function lineFactory(accessor_value, plot, plotMixin, showZero) {  // Injected dependencies
+  function lineFactory (accessor_value, plot, plotMixin, showZero) {
+    // Injected dependencies
     const isShowZero = showZero || false;
 
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const svgLine = plot.pathLine();
 
       function line(g) {
@@ -2974,13 +3354,21 @@
 
         group.entry.append('path').attr('class', 'line');
 
-        if(isShowZero) group.selection.append('path').attr('class', 'zero');
+        if (isShowZero) group.selection.append('path').attr('class', 'zero');
 
         line.refresh(g);
       }
 
-      line.refresh = function(g) {
-        refresh$a(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, svgLine, isShowZero);
+      line.refresh = function (g) {
+        refresh$a(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          plot,
+          svgLine,
+          isShowZero,
+        );
       };
 
       function binder() {
@@ -2988,32 +3376,47 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(line, p).plot(accessor_value(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(line, p)
+        .plot(accessor_value(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return line;
-    };
+      return line
+    }
   }
 
   function refresh$a(selection, accessor, x, y, plot, svgLine, showZero) {
     selection.select('path.line').attr('d', svgLine);
 
-    if(showZero) selection.select('path.zero').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.z, y));
+    if (showZero)
+      selection
+        .select('path.zero')
+        .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.z, y));
   }
 
-  function axisannotationFactory(d3_svg_axis, d3_scale_linear, accessor_value, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
+  function axisannotationFactory (
+    d3_svg_axis,
+    d3_scale_linear,
+    accessor_value,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure function
       const p = {};
       let axis = d3_svg_axis(d3_scale_linear()),
-          format,
-          point = 4,
-          height = 14,
-          width = 50,
-          translate = [0, 0],
-          orient = 'bottom';
+        format,
+        point = 4,
+        height = 14,
+        width = 50,
+        translate = [0, 0],
+        orient = 'bottom';
 
       function annotation(g) {
-        const group = p.dataSelector.mapper(filterInvalidValues(p.accessor, axis.scale()))(g);
+        const group = p.dataSelector.mapper(
+          filterInvalidValues(p.accessor, axis.scale()),
+        )(g);
 
         group.entry.append('path');
         group.entry.append('text');
@@ -3021,243 +3424,333 @@
         annotation.refresh(g);
       }
 
-      annotation.refresh = function(g) {
-        const fmt = format ? format : (axis.tickFormat() ? axis.tickFormat() : axis.scale().tickFormat());
-        refresh$9(p.dataSelector.select(g), p.accessor, axis, orient, fmt, height, width, point, translate);
+      annotation.refresh = function (g) {
+        const fmt = format
+          ? format
+          : axis.tickFormat()
+            ? axis.tickFormat()
+            : axis.scale().tickFormat();
+        refresh$9(
+          p.dataSelector.select(g),
+          p.accessor,
+          axis,
+          orient,
+          fmt,
+          height,
+          width,
+          point,
+          translate,
+        );
       };
 
-      annotation.axis = function(_) {
-        if(!arguments.length) return axis;
+      annotation.axis = function (_) {
+        if (!arguments.length) return axis
         axis = _;
-        return annotation;
+        return annotation
       };
 
-      annotation.orient = function(_) {
-        if(!arguments.length) return orient;
+      annotation.orient = function (_) {
+        if (!arguments.length) return orient
         orient = _;
-        return annotation;
+        return annotation
       };
 
-      annotation.format = function(_) {
-        if(!arguments.length) return format;
+      annotation.format = function (_) {
+        if (!arguments.length) return format
         format = _;
-        return annotation;
+        return annotation
       };
 
-      annotation.height = function(_) {
-        if(!arguments.length) return height;
+      annotation.height = function (_) {
+        if (!arguments.length) return height
         height = _;
-        return annotation;
+        return annotation
       };
 
-      annotation.width = function(_) {
-        if(!arguments.length) return width;
+      annotation.width = function (_) {
+        if (!arguments.length) return width
         width = _;
-        return annotation;
+        return annotation
       };
 
-      annotation.translate = function(_) {
-        if(!arguments.length) return translate;
+      annotation.translate = function (_) {
+        if (!arguments.length) return translate
         translate = _;
-        return annotation;
+        return annotation
       };
 
       plotMixin(annotation, p).accessor(accessor_value()).dataSelector();
 
-      return annotation;
-    };
+      return annotation
+    }
   }
 
-  function refresh$9(selection, accessor, axis, orient, format, height, width, point, translate) {
+  function refresh$9(
+    selection,
+    accessor,
+    axis,
+    orient,
+    format,
+    height,
+    width,
+    point,
+    translate,
+  ) {
     const neg = orient === 'left' || orient === 'top' ? -1 : 1;
 
-    selection.attr('transform', 'translate(' + translate[0] + ',' + (translate[1] - 0.5) + ')');
-    selection.select('path').attr('d', backgroundPath(accessor, axis, orient, height, width, point, neg));
-    selection.select('text').text(textValue(accessor, format)).call(textAttributes, accessor, axis, orient, neg);
+    selection.attr(
+      'transform',
+      'translate(' + translate[0] + ',' + (translate[1] - 0.5) + ')',
+    );
+    selection
+      .select('path')
+      .attr(
+        'd',
+        backgroundPath(accessor, axis, orient, height, width, point, neg),
+      );
+    selection
+      .select('text')
+      .text(textValue(accessor, format))
+      .call(textAttributes, accessor, axis, orient, neg);
   }
 
   function filterInvalidValues(accessor, scale) {
-    return function(data) {
+    return function (data) {
       const rangeArr = scale.range(),
-          start = rangeArr[0],
-          end = rangeArr[rangeArr.length - 1];
+        start = rangeArr[0],
+        end = rangeArr[rangeArr.length - 1];
 
       const range = start < end ? [start, end] : [end, start];
 
-      return data.filter(d => {
-        if (accessor(d) === null || accessor(d) === undefined) return false;
+      return data.filter((d) => {
+        if (accessor(d) === null || accessor(d) === undefined) return false
         const value = scale(accessor(d));
-        return value !== null && !isNaN(value) && range[0] <= value && value <= range[1];
-      });
-    };
+        return (
+          value !== null &&
+          !isNaN(value) &&
+          range[0] <= value &&
+          value <= range[1]
+        )
+      })
+    }
   }
 
   function textAttributes(text, accessor, axis, orient, neg) {
     const scale = axis.scale();
 
-    switch(orient) {
+    switch (orient) {
       case 'left':
       case 'right':
-        text.attr('x', neg * (Math.max(axis.tickSizeInner(), 0) + axis.tickPadding()))
-            .attr('y', textPosition(accessor, scale))
-            .attr('dy', '.32em')
-            .style('text-anchor', neg < 0 ? 'end' : 'start');
-        break;
+        text
+          .attr(
+            'x',
+            neg * (Math.max(axis.tickSizeInner(), 0) + axis.tickPadding()),
+          )
+          .attr('y', textPosition(accessor, scale))
+          .attr('dy', '.32em')
+          .style('text-anchor', neg < 0 ? 'end' : 'start');
+        break
       case 'top':
       case 'bottom':
-        text.attr('x', textPosition(accessor, scale))
-            .attr('y', neg * (Math.max(axis.tickSizeInner(), 0) + axis.tickPadding()))
-            .attr('dy', neg < 0 ? '0em' : '.72em')
-            .style('text-anchor', 'middle');
-        break;
+        text
+          .attr('x', textPosition(accessor, scale))
+          .attr(
+            'y',
+            neg * (Math.max(axis.tickSizeInner(), 0) + axis.tickPadding()),
+          )
+          .attr('dy', neg < 0 ? '0em' : '.72em')
+          .style('text-anchor', 'middle');
+        break
     }
   }
 
   function textPosition(accessor, scale) {
-    return function(d) {
-      return scale(accessor(d));
-    };
+    return function (d) {
+      return scale(accessor(d))
+    }
   }
 
   function textValue(accessor, format) {
-    return function(d) {
-      return format(accessor(d));
-    };
+    return function (d) {
+      return format(accessor(d))
+    }
   }
 
   function backgroundPath(accessor, axis, orient, height, width, point, neg) {
-    return function(d) {
+    return function (d) {
       const scale = axis.scale(),
-          value = scale(accessor(d));
+        value = scale(accessor(d));
       let pt = point;
 
-      switch(orient) {
+      switch (orient) {
         case 'left':
-        case 'right':
+        case 'right': {
           let h = 0;
 
-          if(height / 2 < point) pt = height / 2;
+          if (height / 2 < point) pt = height / 2;
           else h = height / 2 - point;
 
-          return 'M 0 ' + value + ' l ' + (neg * Math.max(axis.tickSizeInner(), 1)) + ' ' + (-pt) +
-            ' l 0 ' + (-h) + ' l ' + (neg * width) + ' 0 l 0 ' + height +
-            ' l ' + (neg * -width) + ' 0 l 0 ' + (-h);
+          return (
+            'M 0 ' +
+            value +
+            ' l ' +
+            neg * Math.max(axis.tickSizeInner(), 1) +
+            ' ' +
+            -pt +
+            ' l 0 ' +
+            -h +
+            ' l ' +
+            neg * width +
+            ' 0 l 0 ' +
+            height +
+            ' l ' +
+            neg * -width +
+            ' 0 l 0 ' +
+            -h
+          )
+        }
         case 'top':
-        case 'bottom':
+        case 'bottom': {
           let w = 0;
 
-          if(width / 2 < point) pt = width / 2;
+          if (width / 2 < point) pt = width / 2;
           else w = width / 2 - point;
 
-          return 'M ' + value + ' 0 l ' + (-pt) + ' ' + (neg * Math.max(axis.tickSizeInner(), 1)) +
-            ' l ' + (-w) + ' 0 l 0 ' + (neg * height) + ' l ' + width + ' 0 l 0 ' + (neg * -height) +
-            ' l ' + (-w) + ' 0';
-        default: throw new Error("Unsupported orient value: axisannotation.orient(" + orient + "). Set to one of: 'top', 'bottom', 'left', 'right'");
+          return (
+            'M ' +
+            value +
+            ' 0 l ' +
+            -pt +
+            ' ' +
+            neg * Math.max(axis.tickSizeInner(), 1) +
+            ' l ' +
+            -w +
+            ' 0 l 0 ' +
+            neg * height +
+            ' l ' +
+            width +
+            ' 0 l 0 ' +
+            neg * -height +
+            ' l ' +
+            -w +
+            ' 0'
+          )
+        }
+        default:
+          throw new Error(
+            'Unsupported orient value: axisannotation.orient(' +
+              orient +
+              "). Set to one of: 'top', 'bottom', 'left', 'right'",
+          )
       }
-    };
+    }
   }
 
-  function arrowFactory(d3_functor) {  // Injected dependencies
-    return function() {
+  function arrowFactory (d3_functor) {
+    // Injected dependencies
+    return function () {
       let fx = d3_functor(0),
-          fy = d3_functor(0),
-          width = d3_functor(12),
-          height = d3_functor(15),
-          orient = d3_functor('up'),
-          tail = d3_functor(true);
+        fy = d3_functor(0),
+        width = d3_functor(12),
+        height = d3_functor(15),
+        orient = d3_functor('up'),
+        tail = d3_functor(true);
 
       function arrow(d, i) {
         let path;
         const x = fx(d, i),
-            y = fy(d, i),
-            w = width(d, i),
-            h = height(d, i),
-            o = orient(d, i),
-            t = tail(d, i),
-            neg = o === 'left' || o === 'up' ? 1 : -1,
-            ws = w / 3,         // Width Segment
-            pw = w / 2,         // Point width
-            ph = t ? h / 2 : h; // Point Height
+          y = fy(d, i),
+          w = width(d, i),
+          h = height(d, i),
+          o = orient(d, i),
+          t = tail(d, i),
+          neg = o === 'left' || o === 'up' ? 1 : -1,
+          ws = w / 3, // Width Segment
+          pw = w / 2, // Point width
+          ph = t ? h / 2 : h; // Point Height
 
         path = 'M ' + x + ' ' + y;
 
-        switch(o) {
+        switch (o) {
           case 'up':
           case 'down':
             path += ' l ' + -pw + ' ' + neg * ph + ' l ' + ws + ' ' + 0;
-            if(t) path += ' l ' + 0 + ' ' + neg * ph;
+            if (t) path += ' l ' + 0 + ' ' + neg * ph;
             path += ' l ' + ws + ' ' + 0;
-            if(t) path += ' l ' + 0 + ' ' + -neg * ph;
+            if (t) path += ' l ' + 0 + ' ' + -neg * ph;
             path += ' l ' + ws + ' ' + 0;
-            break;
+            break
 
           case 'left':
           case 'right':
             path += ' l ' + neg * ph + ' ' + -pw + ' l ' + 0 + ' ' + ws;
-            if(t) path += ' l ' + neg * ph + ' ' + 0;
+            if (t) path += ' l ' + neg * ph + ' ' + 0;
             path += ' l ' + 0 + ' ' + ws;
-            if(t) path += ' l ' + -neg * ph + ' ' + 0;
+            if (t) path += ' l ' + -neg * ph + ' ' + 0;
             path += ' l ' + 0 + ' ' + ws;
-            break;
+            break
 
-          default: throw new Error("Unsupported arrow.orient() = " + o);
+          default:
+            throw new Error('Unsupported arrow.orient() = ' + o)
         }
 
-        return path + ' z';
+        return path + ' z'
       }
 
-      arrow.x = function(_) {
-        if(!arguments.length) return fx;
+      arrow.x = function (_) {
+        if (!arguments.length) return fx
         fx = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      arrow.y = function(_) {
-        if(!arguments.length) return fy;
+      arrow.y = function (_) {
+        if (!arguments.length) return fy
         fy = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      arrow.height = function(_) {
-        if(!arguments.length) return height;
+      arrow.height = function (_) {
+        if (!arguments.length) return height
         height = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      arrow.width = function(_) {
-        if(!arguments.length) return width;
+      arrow.width = function (_) {
+        if (!arguments.length) return width
         width = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      arrow.orient = function(_) {
-        if(!arguments.length) return orient;
+      arrow.orient = function (_) {
+        if (!arguments.length) return orient
         orient = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      arrow.tail = function(_) {
-        if(!arguments.length) return tail;
+      arrow.tail = function (_) {
+        if (!arguments.length) return tail
         tail = d3_functor(_);
-        return arrow;
+        return arrow
       };
 
-      return arrow;
-    };
+      return arrow
+    }
   }
 
-  function svgFactory(d3) {
+  function svgFactory () {
     return {
-      arrow: arrowFactory(utilFactory().functor)
-    };
+      arrow: arrowFactory(utilFactory().functor),
+    }
   }
 
-  function adxFactory(accessor_adx, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function adxFactory (accessor_adx, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const adxLine = plot.pathLine(),
-          plusDiLine = plot.pathLine(),
-          minusDiLine = plot.pathLine();
+        plusDiLine = plot.pathLine(),
+        minusDiLine = plot.pathLine();
 
       function adx(g) {
         const group = p.dataSelector(g);
@@ -3269,7 +3762,7 @@
         adx.refresh(g);
       }
 
-      adx.refresh = function(g) {
+      adx.refresh = function (g) {
         refresh$8(p.dataSelector.select(g), adxLine, plusDiLine, minusDiLine);
       };
 
@@ -3280,11 +3773,13 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(adx, p).plot(accessor_adx(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(adx, p)
+        .plot(accessor_adx(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return adx;
-    };
+      return adx
+    }
   }
 
   function refresh$8(selection, adxLine, plusDiLine, minusDiLine) {
@@ -3293,14 +3788,16 @@
     selection.select('path.minusDi').attr('d', minusDiLine);
   }
 
-  function aroonFactory(accessor_aroon, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function aroonFactory (accessor_aroon, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const oscLine = plot.pathLine(),
-          oscArea = plot.pathArea(),
-          middleLine = plot.pathLine(),
-          upLine = plot.pathLine(),
-          downLine = plot.pathLine();
+        oscArea = plot.pathArea(),
+        middleLine = plot.pathLine(),
+        upLine = plot.pathLine(),
+        downLine = plot.pathLine();
 
       function aroon(g) {
         const group = p.dataSelector(g);
@@ -3315,9 +3812,19 @@
         aroon.refresh(g);
       }
 
-      aroon.refresh = function(g) {
-        refresh$7(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, oscLine, oscArea,
-                middleLine, upLine, downLine);
+      aroon.refresh = function (g) {
+        refresh$7(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          plot,
+          oscLine,
+          oscArea,
+          middleLine,
+          upLine,
+          downLine,
+        );
       };
 
       function binder() {
@@ -3329,16 +3836,33 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(aroon, p).plot(accessor_aroon(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(aroon, p)
+        .plot(accessor_aroon(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return aroon;
-    };
+      return aroon
+    }
   }
 
-  function refresh$7(selection, accessor, x, y, plot, oscLine, oscArea, middleLine, upLine, downLine) {
-    selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
-    selection.select('path.oversold').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
+  function refresh$7(
+    selection,
+    accessor,
+    x,
+    y,
+    plot,
+    oscLine,
+    oscArea,
+    middleLine,
+    upLine,
+    downLine,
+  ) {
+    selection
+      .select('path.overbought')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
+    selection
+      .select('path.oversold')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
     selection.select('path.aroon.oscillator').attr('d', oscLine);
     selection.select('path.aroon.oscillatorArea').attr('d', oscArea);
     selection.select('path.aroon.middle').attr('d', middleLine);
@@ -3346,11 +3870,13 @@
     selection.select('path.aroon.down').attr('d', downLine);
   }
 
-  function atrtrailingstopFactory(accessor_atrtrailingstop, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function atrtrailingstopFactory (accessor_atrtrailingstop, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const upLine = plot.pathLine(),
-          downLine = plot.pathLine();
+        downLine = plot.pathLine();
 
       function atrtrailingstop(g) {
         const group = p.dataSelector(g);
@@ -3361,7 +3887,7 @@
         atrtrailingstop.refresh(g);
       }
 
-      atrtrailingstop.refresh = function(g) {
+      atrtrailingstop.refresh = function (g) {
         refresh$6(p.dataSelector.select(g), upLine, downLine);
       };
 
@@ -3371,11 +3897,13 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(atrtrailingstop, p).plot(accessor_atrtrailingstop(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(atrtrailingstop, p)
+        .plot(accessor_atrtrailingstop(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return atrtrailingstop;
-    };
+      return atrtrailingstop
+    }
   }
 
   function refresh$6(selection, upLine, downLine) {
@@ -3383,12 +3911,14 @@
     selection.select('path.down').attr('d', downLine);
   }
 
-  function bollingerFactory(accessor_bollinger, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function bollingerFactory (accessor_bollinger, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const upperLine = plot.pathLine(),
-          middleLine = plot.pathLine(),
-          lowerLine = plot.pathLine();
+        middleLine = plot.pathLine(),
+        lowerLine = plot.pathLine();
 
       function bollinger(g) {
         const group = p.dataSelector(g);
@@ -3398,7 +3928,7 @@
         bollinger.refresh(g);
       }
 
-      bollinger.refresh = function(g) {
+      bollinger.refresh = function (g) {
         refresh$5(p.dataSelector.select(g), upperLine, middleLine, lowerLine);
       };
 
@@ -3409,11 +3939,13 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(bollinger, p).plot(accessor_bollinger(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(bollinger, p)
+        .plot(accessor_bollinger(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return bollinger;
-    };
+      return bollinger
+    }
   }
 
   function refresh$5(selection, upperLine, middleLine, lowerLine) {
@@ -3422,20 +3954,29 @@
     selection.select('path.lower').attr('d', lowerLine);
   }
 
-  function crosshairFactory(d3_select, d3_pointer, d3_dispatch, accessor_crosshair, plot, plotMixin) { // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function crosshairFactory (
+    d3_select,
+    d3_pointer,
+    d3_dispatch,
+    accessor_crosshair,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const dispatcher = d3_dispatch('enter', 'out', 'move');
-      let verticalPathGenerator,
-          horizontalPathGenerator;
-      const xAnnotationComposer = plot.plotComposer()
-            .scope('composed-annotation')
-            .plotScale(plot => plot.axis().scale());
-      const yAnnotationComposer = plot.plotComposer()
-            .scope('composed-annotation')
-            .plotScale(plot => plot.axis().scale());
-      let verticalWireRange,
-          horizontalWireRange;
+      let verticalPathGenerator, horizontalPathGenerator;
+      const xAnnotationComposer = plot
+        .plotComposer()
+        .scope('composed-annotation')
+        .plotScale((plot) => plot.axis().scale());
+      const yAnnotationComposer = plot
+        .plotComposer()
+        .scope('composed-annotation')
+        .plotScale((plot) => plot.axis().scale());
+      let verticalWireRange, horizontalWireRange;
 
       function crosshair(g) {
         const group = p.dataSelector(g);
@@ -3443,22 +3984,33 @@
         group.entry.append('path').attr('class', 'horizontal wire');
         group.entry.append('path').attr('class', 'vertical wire');
 
-        group.entry.append('g').attr('class', 'axisannotation x').call(xAnnotationComposer);
-        group.entry.append('g').attr('class', 'axisannotation y').call(yAnnotationComposer);
+        group.entry
+          .append('g')
+          .attr('class', 'axisannotation x')
+          .call(xAnnotationComposer);
+        group.entry
+          .append('g')
+          .attr('class', 'axisannotation y')
+          .call(yAnnotationComposer);
 
-        g.selectAll('rect').data([undefined]).enter().append('rect').style('fill', 'none').style('pointer-events', 'all');
+        g.selectAll('rect')
+          .data([undefined])
+          .enter()
+          .append('rect')
+          .style('fill', 'none')
+          .style('pointer-events', 'all');
 
         crosshair.refresh(g);
       }
 
-      crosshair.refresh = function(g) {
+      crosshair.refresh = function (g) {
         const xRange = p.xScale.range(),
-            yRange = p.yScale.range(),
-            group = p.dataSelector.select(g),
-            pathVerticalSelection = group.select('path.vertical'),
-            pathHorizontalSelection = group.select('path.horizontal'),
-            xAnnotationSelection = group.select('g.axisannotation.x'),
-            yAnnotationSelection = group.select('g.axisannotation.y');
+          yRange = p.yScale.range(),
+          group = p.dataSelector.select(g),
+          pathVerticalSelection = group.select('path.vertical'),
+          pathHorizontalSelection = group.select('path.horizontal'),
+          xAnnotationSelection = group.select('g.axisannotation.x'),
+          yAnnotationSelection = group.select('g.axisannotation.y');
 
         verticalPathGenerator = verticalPathLine();
         horizontalPathGenerator = horizontalPathLine();
@@ -3468,45 +4020,82 @@
           .attr('y', Math.min(...yRange))
           .attr('height', Math.abs(yRange[yRange.length - 1] - yRange[0]))
           .attr('width', Math.abs(xRange[xRange.length - 1] - xRange[0]))
-          .on('mouseenter', function(event) {
+          .on('mouseenter', function (event) {
             dispatcher.call('enter', this, event);
           })
-          .on('mouseout', function(event) {
+          .on('mouseout', function (event) {
             dispatcher.call('out', this, event);
             // Redraw with null values to ensure when we enter again, there is nothing cached when redisplayed
             delete group.node().__coord__;
             initialiseWire(group.datum()); // Mutating data, don't need to manually pass down
-            refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
+            refresh(
+              group,
+              pathVerticalSelection,
+              pathHorizontalSelection,
+              xAnnotationSelection,
+              yAnnotationSelection,
+            );
           })
-          .on('mousemove', function(event) {
-            mousemoveRefresh(group, pathVerticalSelection, pathHorizontalSelection,
-              xAnnotationSelection, yAnnotationSelection).call(this, event);
+          .on('mousemove', function (event) {
+            mousemoveRefresh(
+              group,
+              pathVerticalSelection,
+              pathHorizontalSelection,
+              xAnnotationSelection,
+              yAnnotationSelection,
+            ).call(this, event);
           });
 
-        refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
+        refresh(
+          group,
+          pathVerticalSelection,
+          pathHorizontalSelection,
+          xAnnotationSelection,
+          yAnnotationSelection,
+        );
       };
 
-      function mousemoveRefresh(selection, pathVerticalSelection, pathHorizontalSelection,
-                                 xAnnotationSelection, yAnnotationSelection) {
-        return function(event) {
+      function mousemoveRefresh(
+        selection,
+        pathVerticalSelection,
+        pathHorizontalSelection,
+        xAnnotationSelection,
+        yAnnotationSelection,
+      ) {
+        return function (event) {
           // Cache coordinates past this mouse move
           selection.node().__coord__ = d3_pointer(event);
-          refresh(selection, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
-        };
+          refresh(
+            selection,
+            pathVerticalSelection,
+            pathHorizontalSelection,
+            xAnnotationSelection,
+            yAnnotationSelection,
+          );
+        }
       }
 
-      function refresh(selection, xPath, yPath, xAnnotationSelection, yAnnotationSelection) {
+      function refresh(
+        selection,
+        xPath,
+        yPath,
+        xAnnotationSelection,
+        yAnnotationSelection,
+      ) {
         const coords = selection.node().__coord__;
 
-        if(coords !== undefined) {
+        if (coords !== undefined) {
           const d = selection.datum(),
-              xNew = p.xScale.invert(coords[0]),
-              yNew = p.yScale.invert(coords[1]),
-              dispatch = xNew !== null && yNew !== null && (p.accessor.xv(d) !== xNew || p.accessor.yv(d) !== yNew);
+            xNew = p.xScale.invert(coords[0]),
+            yNew = p.yScale.invert(coords[1]),
+            dispatch =
+              xNew !== null &&
+              yNew !== null &&
+              (p.accessor.xv(d) !== xNew || p.accessor.yv(d) !== yNew);
 
           p.accessor.xv(d, xNew);
           p.accessor.yv(d, yNew);
-          if(dispatch) dispatcher.call('move', selection.node(), d);
+          if (dispatch) dispatcher.call('move', selection.node(), d);
         }
 
         // Just before draw, convert the coords to
@@ -3517,111 +4106,160 @@
         selection.attr('display', displayAttr);
       }
 
-      crosshair.xAnnotation = function(_) {
-        if(!arguments.length) return xAnnotationComposer.plots();
+      crosshair.xAnnotation = function (_) {
+        if (!arguments.length) return xAnnotationComposer.plots()
         xAnnotationComposer.plots(_ instanceof Array ? _ : [_]);
-        return binder();
+        return binder()
       };
 
-      crosshair.yAnnotation = function(_) {
-        if(!arguments.length) return yAnnotationComposer.plots();
+      crosshair.yAnnotation = function (_) {
+        if (!arguments.length) return yAnnotationComposer.plots()
         yAnnotationComposer.plots(_ instanceof Array ? _ : [_]);
-        return binder();
+        return binder()
       };
 
-      crosshair.verticalWireRange = function(_) {
-        if(!arguments.length) return verticalWireRange;
+      crosshair.verticalWireRange = function (_) {
+        if (!arguments.length) return verticalWireRange
         verticalWireRange = _;
-        return binder();
+        return binder()
       };
 
-      crosshair.horizontalWireRange = function(_) {
-        if(!arguments.length) return horizontalWireRange;
+      crosshair.horizontalWireRange = function (_) {
+        if (!arguments.length) return horizontalWireRange
         horizontalWireRange = _;
-        return binder();
+        return binder()
       };
 
       function binder() {
         xAnnotationComposer.accessor(p.accessor.xv).scale(p.xScale);
         yAnnotationComposer.accessor(p.accessor.yv).scale(p.yScale);
-        return crosshair;
+        return crosshair
       }
 
       function horizontalPathLine() {
         const range = horizontalWireRange || p.xScale.range();
 
-        return function(d) {
-          if(p.accessor.yv(d) === null) return null;
+        return function (d) {
+          if (p.accessor.yv(d) === null) return null
           let value = p.yScale(p.accessor.yv(d));
-          if(isNaN(value)) return null;
+          if (isNaN(value)) return null
           else value -= 0.5;
 
-          return 'M ' + range[0] + ' ' + value + ' L ' + range[range.length - 1] + ' ' + value;
-        };
+          return (
+            'M ' +
+            range[0] +
+            ' ' +
+            value +
+            ' L ' +
+            range[range.length - 1] +
+            ' ' +
+            value
+          )
+        }
       }
 
       function verticalPathLine() {
         const range = verticalWireRange || p.yScale.range();
 
-        return function(d) {
-          if(p.accessor.xv(d) === null) return null;
+        return function (d) {
+          if (p.accessor.xv(d) === null) return null
           const value = p.xScale(p.accessor.xv(d)),
-              sr = p.xScale.range();
-          if(value < Math.min(sr[0], sr[sr.length - 1]) || value > Math.max(sr[0], sr[sr.length - 1])) return null;
-          return 'M ' + value + ' ' + range[0] + ' L ' + value + ' ' + range[range.length - 1];
-        };
+            sr = p.xScale.range();
+          if (
+            value < Math.min(sr[0], sr[sr.length - 1]) ||
+            value > Math.max(sr[0], sr[sr.length - 1])
+          )
+            return null
+          return (
+            'M ' +
+            value +
+            ' ' +
+            range[0] +
+            ' L ' +
+            value +
+            ' ' +
+            range[range.length - 1]
+          )
+        }
       }
 
       function initialiseWire(d) {
         d = d || {};
         p.accessor.xv(d, null);
         p.accessor.yv(d, null);
-        return d;
+        return d
       }
 
       function isEmpty(d) {
-        return d === undefined || p.accessor.xv(d) === null || p.accessor.yv(d) === null;
+        return (
+          d === undefined ||
+          p.accessor.xv(d) === null ||
+          p.accessor.yv(d) === null
+        )
       }
 
       function displayAttr(d) {
-        return isEmpty(d) ? 'none' : null;
+        return isEmpty(d) ? 'none' : null
       }
 
       // Mixin scale management and event listening
-      plotMixin(crosshair, p).plot(accessor_crosshair(), binder)
-        .dataSelector(d => {
+      plotMixin(crosshair, p)
+        .plot(accessor_crosshair(), binder)
+        .dataSelector((d) => {
           // Has the user set data? If not, put empty data ready for mouse over
-          if(isEmpty(d)) return [ initialiseWire() ];
-          else return [d];
+          if (isEmpty(d)) return [initialiseWire()]
+          else return [d]
         })
         .on(dispatcher);
 
       p.dataSelector.scope('crosshair');
 
-      return binder();
-    };
+      return binder()
+    }
   }
 
-  function ichimokuFactory(d3_svg_area, d3_line_interpolate, accessor_ichimoku, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function ichimokuFactory (
+    d3_svg_area,
+    d3_line_interpolate,
+    accessor_ichimoku,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const kumoClip = kumoClipArea(),
-          kumo = kumoPathArea(),
-          senkouSpanA = plot.pathLine(),
-          senkouSpanB = plot.pathLine(),
-          chikouSpan = plot.pathLine(),
-          tenkanSen = plot.pathLine(),
-          kijunsen = plot.pathLine();
+        kumo = kumoPathArea(),
+        senkouSpanA = plot.pathLine(),
+        senkouSpanB = plot.pathLine(),
+        chikouSpan = plot.pathLine(),
+        tenkanSen = plot.pathLine(),
+        kijunsen = plot.pathLine();
 
       function ichimoku(g) {
         const group = p.dataSelector(g),
-            clipUpId = 'kumoclipup-' + randomID(),
-            clipDownId = 'kumoclipdown-' + randomID();
+          clipUpId = 'kumoclipup-' + randomID(),
+          clipDownId = 'kumoclipdown-' + randomID();
 
-        group.entry.append('clipPath').attr('id', clipDownId).attr('class', 'kumoclipdown').append('path');
-        group.entry.append('clipPath').attr('id', clipUpId).attr('class', 'kumoclipup').append('path');
-        group.entry.append('path').attr('class', 'kumo down').attr('clip-path', 'url(#' + clipDownId + ')');
-        group.entry.append('path').attr('class', 'kumo up').attr('clip-path', 'url(#' + clipUpId + ')');
+        group.entry
+          .append('clipPath')
+          .attr('id', clipDownId)
+          .attr('class', 'kumoclipdown')
+          .append('path');
+        group.entry
+          .append('clipPath')
+          .attr('id', clipUpId)
+          .attr('class', 'kumoclipup')
+          .append('path');
+        group.entry
+          .append('path')
+          .attr('class', 'kumo down')
+          .attr('clip-path', 'url(#' + clipDownId + ')');
+        group.entry
+          .append('path')
+          .attr('class', 'kumo up')
+          .attr('clip-path', 'url(#' + clipUpId + ')');
         group.entry.append('path').attr('class', 'senkouspanb');
         group.entry.append('path').attr('class', 'senkouspana');
 
@@ -3632,12 +4270,14 @@
         ichimoku.refresh(g);
       }
 
-      ichimoku.refresh = function(g) {
+      ichimoku.refresh = function (g) {
         refresh(p.dataSelector.select(g), p.yScale);
       };
 
       function refresh(selection, y) {
-        selection.select('.kumoclipdown path').attr('d', kumoClip.y1(y.range()[0])); // Fill the bottom of the cloud to be clipped
+        selection
+          .select('.kumoclipdown path')
+          .attr('d', kumoClip.y1(y.range()[0])); // Fill the bottom of the cloud to be clipped
         selection.select('.kumoclipup path').attr('d', kumoClip.y1(y.range()[1])); // Fill the top of the cloud to be clipped
         selection.select('path.kumo.down').attr('d', kumo);
         selection.select('path.kumo.up').attr('d', kumo);
@@ -3650,52 +4290,76 @@
       }
 
       function binder() {
-        senkouSpanA.init(p.accessor.d, p.xScale, p.accessor.sa, p.yScale, p.accessor.pks);
-        senkouSpanB.init(p.accessor.d, p.xScale, p.accessor.sb, p.yScale, p.accessor.pks);
-        chikouSpan .init(p.accessor.d, p.xScale, p.accessor.c,  p.yScale, negate(p.accessor.pks));
-        tenkanSen  .init(p.accessor.d, p.xScale, p.accessor.ts, p.yScale);
-        kijunsen   .init(p.accessor.d, p.xScale, p.accessor.ks, p.yScale);
+        senkouSpanA.init(
+          p.accessor.d,
+          p.xScale,
+          p.accessor.sa,
+          p.yScale,
+          p.accessor.pks,
+        );
+        senkouSpanB.init(
+          p.accessor.d,
+          p.xScale,
+          p.accessor.sb,
+          p.yScale,
+          p.accessor.pks,
+        );
+        chikouSpan.init(
+          p.accessor.d,
+          p.xScale,
+          p.accessor.c,
+          p.yScale,
+          negate(p.accessor.pks),
+        );
+        tenkanSen.init(p.accessor.d, p.xScale, p.accessor.ts, p.yScale);
+        kijunsen.init(p.accessor.d, p.xScale, p.accessor.ks, p.yScale);
       }
 
       function kumoClipArea() {
-        return d3_svg_area().curve(d3_line_interpolate)
-          .defined(d => p.accessor.sb(d) !== null)
-          .x(d => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
-          .y0(d => p.yScale(p.accessor.sb(d)));
+        return d3_svg_area()
+          .curve(d3_line_interpolate)
+          .defined((d) => p.accessor.sb(d) !== null)
+          .x((d) => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
+          .y0((d) => p.yScale(p.accessor.sb(d)))
       }
 
       function kumoPathArea() {
-        return d3_svg_area().curve(d3_line_interpolate)
-          .defined(d => p.accessor.sa(d) !== null && p.accessor.sb(d) !== null)
-          .x(d => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
-          .y0(d => p.yScale(p.accessor.sa(d)))
-          .y1(d => p.yScale(p.accessor.sb(d)));
+        return d3_svg_area()
+          .curve(d3_line_interpolate)
+          .defined((d) => p.accessor.sa(d) !== null && p.accessor.sb(d) !== null)
+          .x((d) => p.xScale(p.accessor.d(d), p.accessor.pks(d)))
+          .y0((d) => p.yScale(p.accessor.sa(d)))
+          .y1((d) => p.yScale(p.accessor.sb(d)))
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(ichimoku, p).plot(accessor_ichimoku(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(ichimoku, p)
+        .plot(accessor_ichimoku(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return ichimoku;
-    };
+      return ichimoku
+    }
   }
 
   function negate(accessor) {
-    return function(d) {
-      return -accessor(d);
-    };
+    return function (d) {
+      return -accessor(d)
+    }
   }
 
   function randomID() {
-    return Math.random().toString(36).substring(2, 11);
+    return Math.random().toString(36).substring(2, 11)
   }
 
-  function macdFactory(accessor_macd, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function macdFactory (accessor_macd, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let differenceGenerator;
       const macdLine = plot.pathLine(),
-          signalLine = plot.pathLine();
+        signalLine = plot.pathLine();
 
       function macd(g) {
         const group = p.dataSelector(g);
@@ -3708,8 +4372,17 @@
         macd.refresh(g);
       }
 
-      macd.refresh = function(g) {
-        refresh$4(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, differenceGenerator, macdLine, signalLine);
+      macd.refresh = function (g) {
+        refresh$4(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          plot,
+          differenceGenerator,
+          macdLine,
+          signalLine,
+        );
       };
 
       function binder() {
@@ -3720,38 +4393,64 @@
 
       function differencePath() {
         const accessor = p.accessor,
-            x = p.xScale,
-            y = p.yScale;
+          x = p.xScale,
+          y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
             zero = y(0),
             height = y(accessor.dif(d)) - zero,
             xValue = x(accessor.d(d)) - width / 2;
 
-          return 'M ' + xValue + ' ' + zero + ' l 0 ' + height + ' l ' + width +
-            ' 0 l 0 ' + (-height);
-        };
+          return (
+            'M ' +
+            xValue +
+            ' ' +
+            zero +
+            ' l 0 ' +
+            height +
+            ' l ' +
+            width +
+            ' 0 l 0 ' +
+            -height
+          )
+        }
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(macd, p).plot(accessor_macd(), binder).width(binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(macd, p)
+        .plot(accessor_macd(), binder)
+        .width(binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return macd;
-    };
+      return macd
+    }
   }
 
-  function refresh$4(selection, accessor, x, y, plot, differenceGenerator, macdLine, signalLine) {
+  function refresh$4(
+    selection,
+    accessor,
+    x,
+    y,
+    plot,
+    differenceGenerator,
+    macdLine,
+    signalLine,
+  ) {
     selection.select('path.difference').attr('d', differenceGenerator);
-    selection.select('path.zero').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.z, y));
+    selection
+      .select('path.zero')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.z, y));
     selection.select('path.macd').attr('d', macdLine);
     selection.select('path.signal').attr('d', signalLine);
   }
 
-  function rsiFactory(accessor_rsi, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function rsiFactory (accessor_rsi, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const rsiLine = plot.pathLine();
 
       function rsi(g) {
@@ -3765,8 +4464,15 @@
         rsi.refresh(g);
       }
 
-      rsi.refresh = function(g) {
-        refresh$3(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, rsiLine);
+      rsi.refresh = function (g) {
+        refresh$3(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          plot,
+          rsiLine,
+        );
       };
 
       function binder() {
@@ -3774,25 +4480,35 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(rsi, p).plot(accessor_rsi(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(rsi, p)
+        .plot(accessor_rsi(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return rsi;
-    };
+      return rsi
+    }
   }
 
   function refresh$3(selection, accessor, x, y, plot, rsiLine) {
-    selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
-    selection.select('path.middle').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.m, y));
-    selection.select('path.oversold').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
+    selection
+      .select('path.overbought')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
+    selection
+      .select('path.middle')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.m, y));
+    selection
+      .select('path.oversold')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
     selection.select('path.rsi').attr('d', rsiLine);
   }
 
-  function stochasticFactory(accessor_stochastic, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function stochasticFactory (accessor_stochastic, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const kLine = plot.pathLine(),
-          dLine = plot.pathLine();
+        dLine = plot.pathLine();
 
       function stochastic(g) {
         const group = p.dataSelector(g);
@@ -3804,8 +4520,16 @@
         stochastic.refresh(g);
       }
 
-      stochastic.refresh = function(g) {
-        refresh$2(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, plot, kLine, dLine);
+      stochastic.refresh = function (g) {
+        refresh$2(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          plot,
+          kLine,
+          dLine,
+        );
       };
 
       function binder() {
@@ -3814,35 +4538,66 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(stochastic, p).plot(accessor_stochastic(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(stochastic, p)
+        .plot(accessor_stochastic(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return stochastic;
-    };
+      return stochastic
+    }
   }
 
   function refresh$2(selection, accessor, x, y, plot, kLine, dLine) {
-    selection.select('path.overbought').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
-    selection.select('path.oversold').attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
+    selection
+      .select('path.overbought')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.ob, y));
+    selection
+      .select('path.oversold')
+      .attr('d', plot.horizontalPathLine(accessor.d, x, accessor.os, y));
     selection.select('path.stochastic.k').attr('d', kLine);
     selection.select('path.stochastic.d').attr('d', dLine);
   }
 
-  function supstanceFactory(d3_drag, d3_select, d3_dispatch, accessor_supstance, plot, plotMixin) {  // Injected dependencies
-    function Supstance() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      const dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend');
-      const annotationComposer = plot.plotComposer().scope('composed-annotation').plotScale(plot => plot.axis().scale());
+  function supstanceFactory (
+    d3_drag,
+    d3_select,
+    d3_dispatch,
+    accessor_supstance,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    function Supstance() {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      const dispatch = d3_dispatch(
+        'mouseenter',
+        'mouseout',
+        'mousemove',
+        'drag',
+        'dragstart',
+        'dragend',
+      );
+      const annotationComposer = plot
+        .plotComposer()
+        .scope('composed-annotation')
+        .plotScale((plot) => plot.axis().scale());
 
       function supstance(g) {
         const group = p.dataSelector(g);
 
-        group.entry.append('g').attr('class', 'supstance')
-          .append('path');
+        group.entry.append('g').attr('class', 'supstance').append('path');
 
-        group.entry.append('g').attr('class', 'axisannotation y').call(annotationComposer);
+        group.entry
+          .append('g')
+          .attr('class', 'axisannotation y')
+          .call(annotationComposer);
 
-        const interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none' )
+        const interaction = group.entry
+          .append('g')
+          .attr('class', 'interaction')
+          .style('opacity', 0)
+          .style('fill', 'none')
           .call(plot.interaction.mousedispatch(dispatch));
 
         interaction.append('path').style('stroke-width', '16px');
@@ -3850,23 +4605,31 @@
         supstance.refresh(g);
       }
 
-      supstance.refresh = function(g) {
-        refresh$1(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale, annotationComposer);
+      supstance.refresh = function (g) {
+        refresh$1(
+          p.dataSelector.select(g),
+          p.accessor,
+          p.xScale,
+          p.yScale,
+          annotationComposer,
+        );
       };
 
-      supstance.drag = function(g) {
-        g.selectAll('.interaction path').call(dragBody(dispatch, p.accessor, p.xScale, p.yScale, annotationComposer));
+      supstance.drag = function (g) {
+        g.selectAll('.interaction path').call(
+          dragBody(dispatch, p.accessor, p.xScale, p.yScale, annotationComposer),
+        );
       };
 
-      supstance.annotation = function(_) {
-        if(!arguments.length) return annotationComposer.plots();
+      supstance.annotation = function (_) {
+        if (!arguments.length) return annotationComposer.plots()
         annotationComposer.plots(_ instanceof Array ? _ : [_]);
-        return supstance;
+        return supstance
       };
 
       function binder() {
         annotationComposer.accessor(p.accessor.v).scale(p.yScale);
-        return supstance;
+        return supstance
       }
 
       // Mixin 'superclass' methods and variables
@@ -3879,26 +4642,27 @@
       // Supstance is composed of annotations, we need to scope the group selection
       p.dataSelector.scope('supstance');
 
-      return binder();
+      return binder()
     }
 
     function dragBody(dispatch, accessor, x, y, annotationComposer) {
-      const drag = d3_drag().subject((event, d) => {
-        return { x: 0, y: y(accessor(d)) };
-      })
-      .on('drag', function(event, d) {
-        const value = y.invert(event.y),
+      const drag = d3_drag()
+        .subject((event, d) => {
+          return { x: 0, y: y(accessor(d)) }
+        })
+        .on('drag', function (event, d) {
+          const value = y.invert(event.y),
             g = d3_select(this.parentNode.parentNode); // Go up to the selected items parent only (not the list of items)
 
-        accessor.v(d, value);
-        refresh$1(g, accessor, x, y, annotationComposer);
-        dispatch.call('drag', this, d);
-      });
+          accessor.v(d, value);
+          refresh$1(g, accessor, x, y, annotationComposer);
+          dispatch.call('drag', this, d);
+        });
 
-      return plot.interaction.dragStartEndDispatch(drag, dispatch);
+      return plot.interaction.dragStartEndDispatch(drag, dispatch)
     }
 
-    return Supstance;
+    return Supstance
   }
 
   function refresh$1(selection, accessor, x, y, annotationComposer) {
@@ -3908,30 +4672,44 @@
   }
 
   function supstancePath(accessor, x, y) {
-    return function(d) {
+    return function (d) {
       let range;
 
-      if(isSupstanceAccessor(accessor)) {
+      if (isSupstanceAccessor(accessor)) {
         range = [accessor.s(d), accessor.e(d)];
         range[0] = range[0] !== undefined ? x(range[0]) : x.range()[0];
         range[1] = range[1] !== undefined ? x(range[1]) : x.range()[1];
-      }
-      else range = x.range();
+      } else range = x.range();
 
-      return 'M ' + range[0] + ' ' + y(accessor(d)) +
-        ' L ' + range[range.length - 1] + ' ' + y(accessor(d));
-    };
+      return (
+        'M ' +
+        range[0] +
+        ' ' +
+        y(accessor(d)) +
+        ' L ' +
+        range[range.length - 1] +
+        ' ' +
+        y(accessor(d))
+      )
+    }
   }
 
   function isSupstanceAccessor(accessor) {
-    return accessor.s !== undefined && accessor.e !== undefined;
+    return accessor.s !== undefined && accessor.e !== undefined
   }
 
-  function tickFactory(d3_scale_linear, d3_extent, accessor_tick, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure constructor
-      const p = {};  // Container for private, direct access mixed in variables
-      let tickGenerator,
-          lineWidthGenerator;
+  function tickFactory (
+    d3_scale_linear,
+    d3_extent,
+    accessor_tick,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure constructor
+      const p = {}; // Container for private, direct access mixed in variables
+      let tickGenerator, lineWidthGenerator;
 
       function tick(g) {
         p.dataSelector(g).entry.append('path').attr('class', 'tick');
@@ -3939,8 +4717,12 @@
         tick.refresh(g);
       }
 
-      tick.refresh = function(g) {
-        p.dataSelector.select(g).select('path.tick').attr('d', tickGenerator).style('stroke-width', lineWidthGenerator);
+      tick.refresh = function (g) {
+        p.dataSelector
+          .select(g)
+          .select('path.tick')
+          .attr('d', tickGenerator)
+          .style('stroke-width', lineWidthGenerator);
       };
 
       function binder() {
@@ -3950,53 +4732,108 @@
 
       function tickPath() {
         const accessor = p.accessor,
-            x = p.xScale,
-            y = p.yScale;
+          x = p.xScale,
+          y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
             high = y(accessor.h(d)),
             low = y(accessor.l(d)),
             xPoint = x(accessor.d(d)),
             xValue = xPoint - width / 2;
 
-          return 'M ' + xValue + ' ' + high + ' l ' + width + ' 0 M ' + xPoint + ' ' + high +
-            ' L ' + xPoint + ' ' + low + ' M ' + xValue + ' ' + low + ' l ' + width + ' 0';
-        };
+          return (
+            'M ' +
+            xValue +
+            ' ' +
+            high +
+            ' l ' +
+            width +
+            ' 0 M ' +
+            xPoint +
+            ' ' +
+            high +
+            ' L ' +
+            xPoint +
+            ' ' +
+            low +
+            ' M ' +
+            xValue +
+            ' ' +
+            low +
+            ' l ' +
+            width +
+            ' 0'
+          )
+        }
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(tick, p).plot(accessor_tick(), binder).width(binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(tick, p)
+        .plot(accessor_tick(), binder)
+        .width(binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return tick;
-    };
+      return tick
+    }
   }
 
-  function tradearrowFactory(d3_select, d3_functor, d3_pointer, d3_dispatch, accessor_trade, plot, plotMixin, svg_arrow) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function tradearrowFactory (
+    d3_select,
+    d3_functor,
+    d3_pointer,
+    d3_dispatch,
+    accessor_trade,
+    plot,
+    plotMixin,
+    svg_arrow,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const dispatch = d3_dispatch('mouseenter', 'mouseout');
-      let y = d => p.yScale(p.accessor.p(d));
-      const svgArrow = svg_arrow().orient(d => p.accessor.t(d) === 'buy' ? 'up' : 'down');
+      let y = (d) => p.yScale(p.accessor.p(d));
+      const svgArrow = svg_arrow().orient((d) =>
+        p.accessor.t(d) === 'buy' ? 'up' : 'down',
+      );
       let arrowGenerator;
 
       function tradearrow(g) {
         const group = p.dataSelector(g),
-            classes = typesToClasses(g.datum());
+          classes = typesToClasses(g.datum());
 
-        plot.appendPathsGroupBy(group.selection, p.accessor, 'tradearrow', classes);
-        group.entry.append('path').attr('class', 'highlight').style('pointer-events', 'none'); // Do not want mouse events on the highlight
+        plot.appendPathsGroupBy(
+          group.selection,
+          p.accessor,
+          'tradearrow',
+          classes,
+        );
+        group.entry
+          .append('path')
+          .attr('class', 'highlight')
+          .style('pointer-events', 'none'); // Do not want mouse events on the highlight
 
-        group.selection.selectAll('path.tradearrow')
-          .on('mouseenter', function(event, data) {
+        group.selection
+          .selectAll('path.tradearrow')
+          .on('mouseenter', function (event, data) {
             const nearest = findNearest(data, d3_pointer(event, this)[0]);
             // Watch out here, not using generator as this is single element, not grouped
             // Done purely to get this node correctly classed and technically only 1 node can be selected for the moment
-            d3_select(this.parentNode).select('path.highlight').datum(nearest.d).attr('d', svgArrow).call(classed, classes);
+            d3_select(this.parentNode)
+              .select('path.highlight')
+              .datum(nearest.d)
+              .attr('d', svgArrow)
+              .call(classed, classes);
             dispatch.call('mouseenter', this, nearest.d, nearest.i);
-          }).on('mouseout', function(event, data) {
-            d3_select(this.parentNode).selectAll('path.highlight').datum([]).attr('d', null).attr('class', 'highlight');
+          })
+          .on('mouseout', function (event, data) {
+            d3_select(this.parentNode)
+              .selectAll('path.highlight')
+              .datum([])
+              .attr('d', null)
+              .attr('class', 'highlight');
             const nearest = findNearest(data, d3_pointer(event, this)[0]);
             dispatch.call('mouseout', this, nearest.d, nearest.i);
           });
@@ -4004,7 +4841,7 @@
         tradearrow.refresh(g);
       }
 
-      tradearrow.refresh = function(g) {
+      tradearrow.refresh = function (g) {
         g.selectAll('path.tradearrow').attr('d', arrowGenerator);
       };
 
@@ -4019,98 +4856,146 @@
        * @param _ Either a constant or function that returns the orientation of the rendered arrow. Ensure for every input type
        *          a corresponding `techan.svg.arrow` orient value is returned.
        */
-      tradearrow.orient = function(_) {
-        if(!arguments.length) return svgArrow.orient();
+      tradearrow.orient = function (_) {
+        if (!arguments.length) return svgArrow.orient()
         svgArrow.orient(_);
-        return binder();
+        return binder()
       };
 
       /**
        * Define the way y position of the arrow is determined. Useful if required to show under or over OHLC quotes. Defaults
        * to showing the arrow on the trade price value.
        */
-      tradearrow.y = function(_) {
-        if(!arguments.length) return y;
+      tradearrow.y = function (_) {
+        if (!arguments.length) return y
         y = d3_functor(_);
-        return binder();
+        return binder()
       };
 
       /**
        * Direct access to the underlying arrow
        */
-      tradearrow.arrow = function() {
-        return svgArrow;
+      tradearrow.arrow = function () {
+        return svgArrow
       };
 
       function binder() {
-        svgArrow.x(d => p.xScale(p.accessor.d(d))).y(y);
+        svgArrow.x((d) => p.xScale(p.accessor.d(d))).y(y);
         arrowGenerator = plot.joinPath(() => svgArrow);
-        return tradearrow;
+        return tradearrow
       }
 
       function findNearest(d, x) {
         // Definitely know we're over a trade, but witch one? Find the nearest...? Should work _most_ of the time
-        return d.map((d, i) => ({ d: d, i: i, x: p.xScale(p.accessor.d(d)) })).reduce((p, c) => {
-          return Math.abs(p.x - x) < Math.abs(c.x - x) ? p : c;
-        });
+        return d
+          .map((d, i) => ({ d: d, i: i, x: p.xScale(p.accessor.d(d)) }))
+          .reduce((p, c) => {
+            return Math.abs(p.x - x) < Math.abs(c.x - x) ? p : c
+          })
       }
 
       function typesToClasses(data) {
-        return data.map(d => p.accessor.t(d)).reduce((prev, cur) => {
-          if(prev[cur] === undefined) prev[cur] = d => cur === p.accessor.t(d);
-          return prev;
-        }, {});
+        return data
+          .map((d) => p.accessor.t(d))
+          .reduce((prev, cur) => {
+            if (prev[cur] === undefined)
+              prev[cur] = (d) => cur === p.accessor.t(d);
+            return prev
+          }, {})
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(tradearrow, p).plot(accessor_trade(), binder).on(dispatch).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(tradearrow, p)
+        .plot(accessor_trade(), binder)
+        .on(dispatch)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return tradearrow;
-    };
+      return tradearrow
+    }
   }
 
   // d3 v4 no longer takes classed(Object), shim to convert Object and add classes to the selection
   function classed(selection, classes) {
-    Object.keys(classes).forEach(clazz => {
+    Object.keys(classes).forEach((clazz) => {
       selection.classed(clazz, classes[clazz]);
     });
   }
 
-  function trendlineFactory(d3_drag, d3_select, d3_dispatch, accessor_trendline, plot, plotMixin) {  // Injected dependencies
-    function Trendline() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
-      const dispatch = d3_dispatch('mouseenter', 'mouseout', 'mousemove', 'drag', 'dragstart', 'dragend');
+  function trendlineFactory (
+    d3_drag,
+    d3_select,
+    d3_dispatch,
+    accessor_trendline,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    function Trendline() {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
+      const dispatch = d3_dispatch(
+        'mouseenter',
+        'mouseout',
+        'mousemove',
+        'drag',
+        'dragstart',
+        'dragend',
+      );
 
       function trendline(g) {
         const group = p.dataSelector(g),
-            trendlineGroup = group.entry.append('g').attr('class', 'trendline');
+          trendlineGroup = group.entry.append('g').attr('class', 'trendline');
 
         trendlineGroup.append('path').attr('class', 'body');
         trendlineGroup.append('circle').attr('class', 'start').attr('r', 1);
         trendlineGroup.append('circle').attr('class', 'end').attr('r', 1);
 
-        const interaction = group.entry.append('g').attr('class', 'interaction').style('opacity', 0).style('fill', 'none')
+        const interaction = group.entry
+          .append('g')
+          .attr('class', 'interaction')
+          .style('opacity', 0)
+          .style('fill', 'none')
           .call(plot.interaction.mousedispatch(dispatch));
 
-        interaction.append('path').attr('class', 'body').style('stroke-width', '16px');
+        interaction
+          .append('path')
+          .attr('class', 'body')
+          .style('stroke-width', '16px');
         interaction.append('circle').attr('class', 'start').attr('r', 8);
         interaction.append('circle').attr('class', 'end').attr('r', 8);
 
         trendline.refresh(g);
       }
 
-      trendline.refresh = function(g) {
+      trendline.refresh = function (g) {
         refresh(p.dataSelector.select(g), p.accessor, p.xScale, p.yScale);
       };
 
-      trendline.drag = function(g) {
-        g.selectAll('.interaction circle.start')
-          .call(dragEnd(dispatch, p.accessor, p.accessor.sd, p.xScale, p.accessor.sv, p.yScale));
-        g.selectAll('.interaction circle.end')
-          .call(dragEnd(dispatch, p.accessor, p.accessor.ed, p.xScale, p.accessor.ev, p.yScale));
-        g.selectAll('.interaction path.body')
-          .call(dragBody(dispatch, p.accessor, p.xScale, p.yScale));
+      trendline.drag = function (g) {
+        g.selectAll('.interaction circle.start').call(
+          dragEnd(
+            dispatch,
+            p.accessor,
+            p.accessor.sd,
+            p.xScale,
+            p.accessor.sv,
+            p.yScale,
+          ),
+        );
+        g.selectAll('.interaction circle.end').call(
+          dragEnd(
+            dispatch,
+            p.accessor,
+            p.accessor.ed,
+            p.xScale,
+            p.accessor.ev,
+            p.yScale,
+          ),
+        );
+        g.selectAll('.interaction path.body').call(
+          dragBody(dispatch, p.accessor, p.xScale, p.yScale),
+        );
       };
 
       // Mixin 'superclass' methods and variables
@@ -4119,94 +5004,144 @@
         .plot(accessor_trendline())
         .on(dispatch);
 
-      return trendline;
+      return trendline
     }
 
     function dragEnd(dispatch, accessor, accessor_x, x, accessor_y, y) {
       const drag = d3_drag();
 
-      drag.subject((event, d) => {
-        return { x: x(accessor_x(d)), y: y(accessor_y(d)) };
-      })
-      .on('drag', function(event, d) {
-        updateEnd(accessor_x, x, event.x, accessor_y, y, event.y, d);
-        refresh(d3_select(this.parentNode.parentNode.parentNode), accessor, x, y);
-        dispatch.call('drag', this, d);
-      });
+      drag
+        .subject((event, d) => {
+          return { x: x(accessor_x(d)), y: y(accessor_y(d)) }
+        })
+        .on('drag', function (event, d) {
+          updateEnd(accessor_x, x, event.x, accessor_y, y, event.y, d);
+          refresh(
+            d3_select(this.parentNode.parentNode.parentNode),
+            accessor,
+            x,
+            y,
+          );
+          dispatch.call('drag', this, d);
+        });
 
-      return plot.interaction.dragStartEndDispatch(drag, dispatch);
+      return plot.interaction.dragStartEndDispatch(drag, dispatch)
     }
 
     function dragBody(dispatch, accessor, x, y) {
       const dragStart = {}; // State information, grabs the start coords of the line
       const drag = d3_drag();
 
-      drag.subject((event, d) => {
-        dragStart.start = { date: x(accessor.sd(d)), value: y(accessor.sv(d)) };
-        dragStart.end = { date: x(accessor.ed(d)), value: y(accessor.ev(d)) };
-        return { x: 0, y: 0 };
-      })
-      .on('drag', function(event, d) {
-        updateEnd(accessor.sd, x, event.x + dragStart.start.date,
-          accessor.sv, y, event.y + dragStart.start.value,
-          d);
-        updateEnd(accessor.ed, x, event.x + dragStart.end.date,
-          accessor.ev, y, event.y + dragStart.end.value,
-          d);
-        refresh(d3_select(this.parentNode.parentNode.parentNode), accessor, x, y);
-        dispatch.call('drag', this, d);
-      });
+      drag
+        .subject((event, d) => {
+          dragStart.start = { date: x(accessor.sd(d)), value: y(accessor.sv(d)) };
+          dragStart.end = { date: x(accessor.ed(d)), value: y(accessor.ev(d)) };
+          return { x: 0, y: 0 }
+        })
+        .on('drag', function (event, d) {
+          updateEnd(
+            accessor.sd,
+            x,
+            event.x + dragStart.start.date,
+            accessor.sv,
+            y,
+            event.y + dragStart.start.value,
+            d,
+          );
+          updateEnd(
+            accessor.ed,
+            x,
+            event.x + dragStart.end.date,
+            accessor.ev,
+            y,
+            event.y + dragStart.end.value,
+            d,
+          );
+          refresh(
+            d3_select(this.parentNode.parentNode.parentNode),
+            accessor,
+            x,
+            y,
+          );
+          dispatch.call('drag', this, d);
+        });
 
-      return plot.interaction.dragStartEndDispatch(drag, dispatch);
+      return plot.interaction.dragStartEndDispatch(drag, dispatch)
     }
 
     function updateEnd(accessor_x, x, xValue, accessor_y, y, yValue, d) {
       const date = x.invert(xValue);
-      if(date !== null && date !== undefined) accessor_x(d, date);
+      if (date !== null && date !== undefined) accessor_x(d, date);
       accessor_y(d, y.invert(yValue));
     }
 
-    return Trendline;
+    return Trendline
   }
 
   function refresh(selection, accessor, x, y) {
     selection.selectAll('path.body').attr('d', trendlinePath(accessor, x, y));
-    selection.selectAll('circle.start').attr('cx', trendlineEndCX(accessor.sd, x)).attr('cy', trendlineEndCY(accessor.sv, y));
-    selection.selectAll('circle.end').attr('cx', trendlineEndCX(accessor.ed, x)).attr('cy', trendlineEndCY(accessor.ev, y));
+    selection
+      .selectAll('circle.start')
+      .attr('cx', trendlineEndCX(accessor.sd, x))
+      .attr('cy', trendlineEndCY(accessor.sv, y));
+    selection
+      .selectAll('circle.end')
+      .attr('cx', trendlineEndCX(accessor.ed, x))
+      .attr('cy', trendlineEndCY(accessor.ev, y));
   }
 
   function trendlinePath(accessor, x, y) {
-    return function(d) {
-      return 'M ' + x(accessor.sd(d))+ ' ' + y(accessor.sv(d)) +
-        ' L ' + x(accessor.ed(d)) + ' ' + y(accessor.ev(d));
-    };
+    return function (d) {
+      return (
+        'M ' +
+        x(accessor.sd(d)) +
+        ' ' +
+        y(accessor.sv(d)) +
+        ' L ' +
+        x(accessor.ed(d)) +
+        ' ' +
+        y(accessor.ev(d))
+      )
+    }
   }
 
   function trendlineEndCX(accessor_x, x) {
-    return function(d) { return x(accessor_x(d)); };
+    return function (d) {
+      return x(accessor_x(d))
+    }
   }
 
   function trendlineEndCY(accessor_y, y) {
-    return function(d) { return y(accessor_y(d)); };
+    return function (d) {
+      return y(accessor_y(d))
+    }
   }
 
-  function volumeFactory(accessor_volume, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function volumeFactory (accessor_volume, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       let volumeGenerator;
 
       function volume(g) {
         const group = p.dataSelector(g);
 
-        if(isOhlcAccessor()) plot.appendPathsUpDownEqual(group.selection, p.accessor, 'volume');
+        if (isOhlcAccessor())
+          plot.appendPathsUpDownEqual(group.selection, p.accessor, 'volume');
         else group.entry.append('path').attr('class', 'volume');
 
         volume.refresh(g);
       }
 
-      volume.refresh = function(g) {
-        if(isOhlcAccessor()) g.selectAll('path.volume').attr('d', volumeGenerator);
-        else p.dataSelector.select(g).select('path.volume').attr('d', volumeGenerator);
+      volume.refresh = function (g) {
+        if (isOhlcAccessor())
+          g.selectAll('path.volume').attr('d', volumeGenerator);
+        else
+          p.dataSelector
+            .select(g)
+            .select('path.volume')
+            .attr('d', volumeGenerator);
       };
 
       function binder() {
@@ -4214,40 +5149,55 @@
       }
 
       function isOhlcAccessor() {
-        return p.accessor.o && p.accessor.c;
+        return p.accessor.o && p.accessor.c
       }
 
       function volumePath() {
         const accessor = p.accessor,
-            x = p.xScale,
-            y = p.yScale;
+          x = p.xScale,
+          y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
-              vol = accessor.v(d);
+            vol = accessor.v(d);
 
-          if(isNaN(vol)) return null;
+          if (isNaN(vol)) return null
 
           const zero = y(0),
             height = y(vol) - zero,
             xValue = x(accessor.d(d)) - width / 2;
 
-          return 'M ' + xValue + ' ' + zero + ' l 0 ' + height + ' l ' + width +
-            ' 0 l 0 ' + (-height);
-        };
+          return (
+            'M ' +
+            xValue +
+            ' ' +
+            zero +
+            ' l 0 ' +
+            height +
+            ' l ' +
+            width +
+            ' 0 l 0 ' +
+            -height
+          )
+        }
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(volume, p).plot(accessor_volume(), binder).width(binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(volume, p)
+        .plot(accessor_volume(), binder)
+        .width(binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return volume;
-    };
+      return volume
+    }
   }
 
-  function williamsFactory(accessor_williams, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure function
-      const p = {};  // Container for private, direct access mixed in variables
+  function williamsFactory (accessor_williams, plot, plotMixin) {
+    // Injected dependencies
+    return function () {
+      // Closure function
+      const p = {}; // Container for private, direct access mixed in variables
       const upLine = plot.pathLine();
 
       function williams(g) {
@@ -4255,7 +5205,7 @@
         williams.refresh(g);
       }
 
-      williams.refresh = function(g) {
+      williams.refresh = function (g) {
         p.dataSelector.select(g).select('path.williams.up').attr('d', upLine);
       };
 
@@ -4264,27 +5214,42 @@
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(williams, p).plot(accessor_williams(), binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(williams, p)
+        .plot(accessor_williams(), binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return williams;
-    };
+      return williams
+    }
   }
 
-  function ohlcFactory(d3_scale_linear, d3_extent, accessor_ohlc, plot, plotMixin) {  // Injected dependencies
-    return function() { // Closure constructor
-      const p = {};  // Container for private, direct access mixed in variables
-      let ohlcGenerator,
-          lineWidthGenerator;
+  function ohlcFactory (
+    d3_scale_linear,
+    d3_extent,
+    accessor_ohlc,
+    plot,
+    plotMixin,
+  ) {
+    // Injected dependencies
+    return function () {
+      // Closure constructor
+      const p = {}; // Container for private, direct access mixed in variables
+      let ohlcGenerator, lineWidthGenerator;
 
       function ohlc(g) {
-        plot.appendPathsUpDownEqual(p.dataSelector(g).selection, p.accessor, 'ohlc');
+        plot.appendPathsUpDownEqual(
+          p.dataSelector(g).selection,
+          p.accessor,
+          'ohlc',
+        );
 
         ohlc.refresh(g);
       }
 
-      ohlc.refresh = function(g) {
-        g.selectAll('path.ohlc').attr('d', ohlcGenerator).style('stroke-width', lineWidthGenerator);
+      ohlc.refresh = function (g) {
+        g.selectAll('path.ohlc')
+          .attr('d', ohlcGenerator)
+          .style('stroke-width', lineWidthGenerator);
       };
 
       function binder() {
@@ -4294,72 +5259,165 @@
 
       function ohlcPath() {
         const accessor = p.accessor,
-            x = p.xScale,
-            y = p.yScale;
+          x = p.xScale,
+          y = p.yScale;
 
-        return function(d) {
+        return function (d) {
           const width = p.width(x),
-              open = y(accessor.o(d)),
-              close = y(accessor.c(d)),
-              xPoint = x(accessor.d(d)),
-              xValue = xPoint - width / 2;
+            open = y(accessor.o(d)),
+            close = y(accessor.c(d)),
+            xPoint = x(accessor.d(d)),
+            xValue = xPoint - width / 2;
 
-          return 'M ' + xValue + ' ' +
-            open + ' l ' + (width / 2) + ' 0 M ' + xPoint + ' ' + y(accessor.h(d)) + ' L ' +
-            xPoint + ' ' + y(accessor.l(d)) + ' M ' + xPoint + ' ' + close + ' l ' + (width / 2) + ' 0';
-        };
+          return (
+            'M ' +
+            xValue +
+            ' ' +
+            open +
+            ' l ' +
+            width / 2 +
+            ' 0 M ' +
+            xPoint +
+            ' ' +
+            y(accessor.h(d)) +
+            ' L ' +
+            xPoint +
+            ' ' +
+            y(accessor.l(d)) +
+            ' M ' +
+            xPoint +
+            ' ' +
+            close +
+            ' l ' +
+            width / 2 +
+            ' 0'
+          )
+        }
       }
 
       // Mixin 'superclass' methods and variables
-      plotMixin(ohlc, p).plot(accessor_ohlc(), binder).width(binder).dataSelector(plotMixin.dataMapper.array);
+      plotMixin(ohlc, p)
+        .plot(accessor_ohlc(), binder)
+        .width(binder)
+        .dataSelector(plotMixin.dataMapper.array);
       binder();
 
-      return ohlc;
-    };
+      return ohlc
+    }
   }
 
-  function plotFactory(d3) {
+  function plotFactory (d3) {
     const scale = scaleFactory(d3),
-        accessor = accessorFactory(),
-        plot = plotFactory$1(d3.line, d3.area, d3.curveMonotoneX, d3.select),
-        d3_functor = utilFactory().functor,
-        plotMixin = plotMixinFactory(d3.scaleLinear, d3_functor, scale.financetime, plot.dataSelector, plot.barWidth),
-        candlestick = candlestickFactory(d3.scaleLinear, d3.extent, accessor.ohlc, plot, plotMixin),
-        line = lineFactory,
-        axisannotation = axisannotationFactory(d3.axisTop, d3.scaleLinear, accessor.value, plot, plotMixin),
-        svg = svgFactory();
+      accessor = accessorFactory(),
+      plot = plotFactory$1(d3.line, d3.area, d3.curveMonotoneX, d3.select),
+      d3_functor = utilFactory().functor,
+      plotMixin = plotMixinFactory(
+        d3.scaleLinear,
+        d3_functor,
+        scale.financetime,
+        plot.dataSelector,
+        plot.barWidth,
+      ),
+      candlestick = candlestickFactory(
+        d3.scaleLinear,
+        d3.extent,
+        accessor.ohlc,
+        plot,
+        plotMixin,
+      ),
+      line = lineFactory,
+      axisannotation = axisannotationFactory(
+        d3.axisTop,
+        d3.scaleLinear,
+        accessor.value,
+        plot,
+        plotMixin,
+      ),
+      svg = svgFactory();
 
     return {
       adx: adxFactory(accessor.adx, plot, plotMixin),
       aroon: aroonFactory(accessor.aroon, plot, plotMixin),
       atr: line(accessor.value, plot, plotMixin),
-      atrtrailingstop: atrtrailingstopFactory(accessor.atrtrailingstop, plot, plotMixin),
+      atrtrailingstop: atrtrailingstopFactory(
+        accessor.atrtrailingstop,
+        plot,
+        plotMixin,
+      ),
       axisannotation: axisannotation,
       bollinger: bollingerFactory(accessor.bollinger, plot, plotMixin),
       candlestick: candlestick,
       close: line(accessor.ohlc, plot, plotMixin),
-      crosshair: crosshairFactory(d3.select, d3.pointer, d3.dispatch, accessor.crosshair, plot, plotMixin),
+      crosshair: crosshairFactory(
+        d3.select,
+        d3.pointer,
+        d3.dispatch,
+        accessor.crosshair,
+        plot,
+        plotMixin,
+      ),
       ema: line(accessor.value, plot, plotMixin),
       heikinashi: candlestick,
-      ichimoku: ichimokuFactory(d3.area, d3.curveMonotoneX, accessor.ichimoku, plot, plotMixin),
+      ichimoku: ichimokuFactory(
+        d3.area,
+        d3.curveMonotoneX,
+        accessor.ichimoku,
+        plot,
+        plotMixin,
+      ),
       macd: macdFactory(accessor.macd, plot, plotMixin),
       momentum: line(accessor.value, plot, plotMixin, true),
       moneyflow: line(accessor.value, plot, plotMixin, true),
-      ohlc: ohlcFactory(d3.scaleLinear, d3.extent, accessor.ohlc, plot, plotMixin),
+      ohlc: ohlcFactory(
+        d3.scaleLinear,
+        d3.extent,
+        accessor.ohlc,
+        plot,
+        plotMixin,
+      ),
       roc: line(accessor.value, plot, plotMixin, true),
       rsi: rsiFactory(accessor.rsi, plot, plotMixin),
       sma: line(accessor.value, plot, plotMixin),
       sroc: line(accessor.value, plot, plotMixin, true),
       stochastic: stochasticFactory(accessor.stochastic, plot, plotMixin),
-      supstance: supstanceFactory(d3.drag, d3.select, d3.dispatch, accessor.supstance, plot, plotMixin),
-      tick: tickFactory(d3.scaleLinear, d3.extent, accessor.tick, plot, plotMixin),
-      tradearrow: tradearrowFactory(d3.select, d3_functor, d3.pointer, d3.dispatch, accessor.trade, plot, plotMixin, svg.arrow),
-      trendline: trendlineFactory(d3.drag, d3.select, d3.dispatch, accessor.trendline, plot, plotMixin),
+      supstance: supstanceFactory(
+        d3.drag,
+        d3.select,
+        d3.dispatch,
+        accessor.supstance,
+        plot,
+        plotMixin,
+      ),
+      tick: tickFactory(
+        d3.scaleLinear,
+        d3.extent,
+        accessor.tick,
+        plot,
+        plotMixin,
+      ),
+      tradearrow: tradearrowFactory(
+        d3.select,
+        d3_functor,
+        d3.pointer,
+        d3.dispatch,
+        accessor.trade,
+        plot,
+        plotMixin,
+        svg.arrow,
+      ),
+      trendline: trendlineFactory(
+        d3.drag,
+        d3.select,
+        d3.dispatch,
+        accessor.trendline,
+        plot,
+        plotMixin,
+      ),
       volume: volumeFactory(accessor.volume, plot, plotMixin),
       vwap: line(accessor.value, plot, plotMixin),
       wilderma: line(accessor.value, plot, plotMixin),
-      williams: williamsFactory(accessor.williams, plot, plotMixin)
-    };
+      williams: williamsFactory(accessor.williams, plot, plotMixin),
+    }
   }
 
   const accessor = accessorFactory();
@@ -4374,7 +5432,7 @@
     indicator,
     plot,
     scale,
-    svg
+    svg,
   };
 
   exports.accessor = accessor;

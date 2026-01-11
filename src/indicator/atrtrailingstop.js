@@ -1,50 +1,58 @@
-export default function(indicatorMixin, accessor_ohlc, indicator_atr) {  // Injected dependencies
-  return function() { // Closure function
-    const p = {};  // Container for private, direct access mixed in variables
-    let multiplier = 3;
-    const atr = indicator_atr();
+export default function (indicatorMixin, accessor_ohlc, indicator_atr) {
+  // Injected dependencies
+  return function () {
+    // Closure function
+    const p = {} // Container for private, direct access mixed in variables
+    let multiplier = 3
+    const atr = indicator_atr()
 
     function indicator(data) {
-      atr.accessor(p.accessor).period(p.period).init();
+      atr.accessor(p.accessor).period(p.period).init()
 
-      return data.map((d, i) => {
-        const close = p.accessor.c(d),
-            stop = atr.atr(d) * multiplier;
-        if(i >= p.period) return { date: p.accessor.d(d), close: close, up: close - stop, down: close + stop };
-        else return { date: p.accessor.d(d), up: null, down: null };
-      })
-      .filter(d => d.up !== null && d.down !== null) // Filter out empties
-      .reduce((result, d, i) => { // Reduce to access the previous result array
-        const prev = result[i - 1];
-        let up = i === 0 ? d.up : null; // Always start with an up trend?
-        let down = null;
+      return data
+        .map((d, i) => {
+          const close = p.accessor.c(d),
+            stop = atr.atr(d) * multiplier
+          if (i >= p.period)
+            return {
+              date: p.accessor.d(d),
+              close: close,
+              up: close - stop,
+              down: close + stop,
+            }
+          else return { date: p.accessor.d(d), up: null, down: null }
+        })
+        .filter((d) => d.up !== null && d.down !== null) // Filter out empties
+        .reduce((result, d, i) => {
+          // Reduce to access the previous result array
+          const prev = result[i - 1]
+          let up = i === 0 ? d.up : null // Always start with an up trend?
+          let down = null
 
-        if(prev && prev.up !== null) {
-          if(d.close > prev.up) up = Math.max(d.up, prev.up);
-          else down = d.down;
-        }
+          if (prev && prev.up !== null) {
+            if (d.close > prev.up) up = Math.max(d.up, prev.up)
+            else down = d.down
+          }
 
-        if(prev && prev.down !== null) {
-          if(d.close < prev.down) down = Math.min(d.down, prev.down);
-          else up = d.up;
-        }
+          if (prev && prev.down !== null) {
+            if (d.close < prev.down) down = Math.min(d.down, prev.down)
+            else up = d.up
+          }
 
-        result.push({ date: d.date, up: up, down: down });
-        return result;
-      }, []);
+          result.push({ date: d.date, up: up, down: down })
+          return result
+        }, [])
     }
 
-    indicator.multiplier = function(_) {
-      if (!arguments.length) return multiplier;
-      multiplier = _;
-      return indicator;
-    };
+    indicator.multiplier = function (_) {
+      if (!arguments.length) return multiplier
+      multiplier = _
+      return indicator
+    }
 
     // Mixin 'superclass' methods and variables
-    indicatorMixin(indicator, p)
-      .accessor(accessor_ohlc())
-      .period(14);
+    indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(14)
 
-    return indicator;
-  };
+    return indicator
+  }
 }

@@ -1,179 +1,263 @@
-export default function(d3_select, d3_pointer, d3_dispatch, accessor_crosshair, plot, plotMixin) { // Injected dependencies
-  return function() { // Closure function
-    const p = {};  // Container for private, direct access mixed in variables
-    const dispatcher = d3_dispatch('enter', 'out', 'move');
-    let verticalPathGenerator,
-        horizontalPathGenerator;
-    const xAnnotationComposer = plot.plotComposer()
-          .scope('composed-annotation')
-          .plotScale(plot => plot.axis().scale());
-    const yAnnotationComposer = plot.plotComposer()
-          .scope('composed-annotation')
-          .plotScale(plot => plot.axis().scale());
-    let verticalWireRange,
-        horizontalWireRange;
+export default function (
+  d3_select,
+  d3_pointer,
+  d3_dispatch,
+  accessor_crosshair,
+  plot,
+  plotMixin,
+) {
+  // Injected dependencies
+  return function () {
+    // Closure function
+    const p = {} // Container for private, direct access mixed in variables
+    const dispatcher = d3_dispatch('enter', 'out', 'move')
+    let verticalPathGenerator, horizontalPathGenerator
+    const xAnnotationComposer = plot
+      .plotComposer()
+      .scope('composed-annotation')
+      .plotScale((plot) => plot.axis().scale())
+    const yAnnotationComposer = plot
+      .plotComposer()
+      .scope('composed-annotation')
+      .plotScale((plot) => plot.axis().scale())
+    let verticalWireRange, horizontalWireRange
 
     function crosshair(g) {
-      const group = p.dataSelector(g);
+      const group = p.dataSelector(g)
 
-      group.entry.append('path').attr('class', 'horizontal wire');
-      group.entry.append('path').attr('class', 'vertical wire');
+      group.entry.append('path').attr('class', 'horizontal wire')
+      group.entry.append('path').attr('class', 'vertical wire')
 
-      group.entry.append('g').attr('class', 'axisannotation x').call(xAnnotationComposer);
-      group.entry.append('g').attr('class', 'axisannotation y').call(yAnnotationComposer);
+      group.entry
+        .append('g')
+        .attr('class', 'axisannotation x')
+        .call(xAnnotationComposer)
+      group.entry
+        .append('g')
+        .attr('class', 'axisannotation y')
+        .call(yAnnotationComposer)
 
-      g.selectAll('rect').data([undefined]).enter().append('rect').style('fill', 'none').style('pointer-events', 'all');
+      g.selectAll('rect')
+        .data([undefined])
+        .enter()
+        .append('rect')
+        .style('fill', 'none')
+        .style('pointer-events', 'all')
 
-      crosshair.refresh(g);
+      crosshair.refresh(g)
     }
 
-    crosshair.refresh = function(g) {
+    crosshair.refresh = function (g) {
       const xRange = p.xScale.range(),
-          yRange = p.yScale.range(),
-          group = p.dataSelector.select(g),
-          pathVerticalSelection = group.select('path.vertical'),
-          pathHorizontalSelection = group.select('path.horizontal'),
-          xAnnotationSelection = group.select('g.axisannotation.x'),
-          yAnnotationSelection = group.select('g.axisannotation.y');
+        yRange = p.yScale.range(),
+        group = p.dataSelector.select(g),
+        pathVerticalSelection = group.select('path.vertical'),
+        pathHorizontalSelection = group.select('path.horizontal'),
+        xAnnotationSelection = group.select('g.axisannotation.x'),
+        yAnnotationSelection = group.select('g.axisannotation.y')
 
-      verticalPathGenerator = verticalPathLine();
-      horizontalPathGenerator = horizontalPathLine();
+      verticalPathGenerator = verticalPathLine()
+      horizontalPathGenerator = horizontalPathLine()
 
       g.selectAll('rect')
         .attr('x', Math.min(...xRange))
         .attr('y', Math.min(...yRange))
         .attr('height', Math.abs(yRange[yRange.length - 1] - yRange[0]))
         .attr('width', Math.abs(xRange[xRange.length - 1] - xRange[0]))
-        .on('mouseenter', function(event) {
-          dispatcher.call('enter', this, event);
+        .on('mouseenter', function (event) {
+          dispatcher.call('enter', this, event)
         })
-        .on('mouseout', function(event) {
-          dispatcher.call('out', this, event);
+        .on('mouseout', function (event) {
+          dispatcher.call('out', this, event)
           // Redraw with null values to ensure when we enter again, there is nothing cached when redisplayed
-          delete group.node().__coord__;
-          initialiseWire(group.datum()); // Mutating data, don't need to manually pass down
-          refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
+          delete group.node().__coord__
+          initialiseWire(group.datum()) // Mutating data, don't need to manually pass down
+          refresh(
+            group,
+            pathVerticalSelection,
+            pathHorizontalSelection,
+            xAnnotationSelection,
+            yAnnotationSelection,
+          )
         })
-        .on('mousemove', function(event) {
-          mousemoveRefresh(group, pathVerticalSelection, pathHorizontalSelection,
-            xAnnotationSelection, yAnnotationSelection).call(this, event);
-        });
+        .on('mousemove', function (event) {
+          mousemoveRefresh(
+            group,
+            pathVerticalSelection,
+            pathHorizontalSelection,
+            xAnnotationSelection,
+            yAnnotationSelection,
+          ).call(this, event)
+        })
 
-      refresh(group, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
-    };
-
-    function mousemoveRefresh(selection, pathVerticalSelection, pathHorizontalSelection,
-                               xAnnotationSelection, yAnnotationSelection) {
-      return function(event) {
-        // Cache coordinates past this mouse move
-        selection.node().__coord__ = d3_pointer(event);
-        refresh(selection, pathVerticalSelection, pathHorizontalSelection, xAnnotationSelection, yAnnotationSelection);
-      };
+      refresh(
+        group,
+        pathVerticalSelection,
+        pathHorizontalSelection,
+        xAnnotationSelection,
+        yAnnotationSelection,
+      )
     }
 
-    function refresh(selection, xPath, yPath, xAnnotationSelection, yAnnotationSelection) {
-      const coords = selection.node().__coord__;
+    function mousemoveRefresh(
+      selection,
+      pathVerticalSelection,
+      pathHorizontalSelection,
+      xAnnotationSelection,
+      yAnnotationSelection,
+    ) {
+      return function (event) {
+        // Cache coordinates past this mouse move
+        selection.node().__coord__ = d3_pointer(event)
+        refresh(
+          selection,
+          pathVerticalSelection,
+          pathHorizontalSelection,
+          xAnnotationSelection,
+          yAnnotationSelection,
+        )
+      }
+    }
 
-      if(coords !== undefined) {
+    function refresh(
+      selection,
+      xPath,
+      yPath,
+      xAnnotationSelection,
+      yAnnotationSelection,
+    ) {
+      const coords = selection.node().__coord__
+
+      if (coords !== undefined) {
         const d = selection.datum(),
-            xNew = p.xScale.invert(coords[0]),
-            yNew = p.yScale.invert(coords[1]),
-            dispatch = xNew !== null && yNew !== null && (p.accessor.xv(d) !== xNew || p.accessor.yv(d) !== yNew);
+          xNew = p.xScale.invert(coords[0]),
+          yNew = p.yScale.invert(coords[1]),
+          dispatch =
+            xNew !== null &&
+            yNew !== null &&
+            (p.accessor.xv(d) !== xNew || p.accessor.yv(d) !== yNew)
 
-        p.accessor.xv(d, xNew);
-        p.accessor.yv(d, yNew);
-        if(dispatch) dispatcher.call('move', selection.node(), d);
+        p.accessor.xv(d, xNew)
+        p.accessor.yv(d, yNew)
+        if (dispatch) dispatcher.call('move', selection.node(), d)
       }
 
       // Just before draw, convert the coords to
-      xPath.attr('d', verticalPathGenerator);
-      yPath.attr('d', horizontalPathGenerator);
-      xAnnotationSelection.call(xAnnotationComposer.refresh);
-      yAnnotationSelection.call(yAnnotationComposer.refresh);
-      selection.attr('display', displayAttr);
+      xPath.attr('d', verticalPathGenerator)
+      yPath.attr('d', horizontalPathGenerator)
+      xAnnotationSelection.call(xAnnotationComposer.refresh)
+      yAnnotationSelection.call(yAnnotationComposer.refresh)
+      selection.attr('display', displayAttr)
     }
 
-    crosshair.xAnnotation = function(_) {
-      if(!arguments.length) return xAnnotationComposer.plots();
-      xAnnotationComposer.plots(_ instanceof Array ? _ : [_]);
-      return binder();
-    };
+    crosshair.xAnnotation = function (_) {
+      if (!arguments.length) return xAnnotationComposer.plots()
+      xAnnotationComposer.plots(_ instanceof Array ? _ : [_])
+      return binder()
+    }
 
-    crosshair.yAnnotation = function(_) {
-      if(!arguments.length) return yAnnotationComposer.plots();
-      yAnnotationComposer.plots(_ instanceof Array ? _ : [_]);
-      return binder();
-    };
+    crosshair.yAnnotation = function (_) {
+      if (!arguments.length) return yAnnotationComposer.plots()
+      yAnnotationComposer.plots(_ instanceof Array ? _ : [_])
+      return binder()
+    }
 
-    crosshair.verticalWireRange = function(_) {
-      if(!arguments.length) return verticalWireRange;
-      verticalWireRange = _;
-      return binder();
-    };
+    crosshair.verticalWireRange = function (_) {
+      if (!arguments.length) return verticalWireRange
+      verticalWireRange = _
+      return binder()
+    }
 
-    crosshair.horizontalWireRange = function(_) {
-      if(!arguments.length) return horizontalWireRange;
-      horizontalWireRange = _;
-      return binder();
-    };
+    crosshair.horizontalWireRange = function (_) {
+      if (!arguments.length) return horizontalWireRange
+      horizontalWireRange = _
+      return binder()
+    }
 
     function binder() {
-      xAnnotationComposer.accessor(p.accessor.xv).scale(p.xScale);
-      yAnnotationComposer.accessor(p.accessor.yv).scale(p.yScale);
-      return crosshair;
+      xAnnotationComposer.accessor(p.accessor.xv).scale(p.xScale)
+      yAnnotationComposer.accessor(p.accessor.yv).scale(p.yScale)
+      return crosshair
     }
 
     function horizontalPathLine() {
-      const range = horizontalWireRange || p.xScale.range();
+      const range = horizontalWireRange || p.xScale.range()
 
-      return function(d) {
-        if(p.accessor.yv(d) === null) return null;
-        let value = p.yScale(p.accessor.yv(d));
-        if(isNaN(value)) return null;
-        else value -= 0.5;
+      return function (d) {
+        if (p.accessor.yv(d) === null) return null
+        let value = p.yScale(p.accessor.yv(d))
+        if (isNaN(value)) return null
+        else value -= 0.5
 
-        return 'M ' + range[0] + ' ' + value + ' L ' + range[range.length - 1] + ' ' + value;
-      };
+        return (
+          'M ' +
+          range[0] +
+          ' ' +
+          value +
+          ' L ' +
+          range[range.length - 1] +
+          ' ' +
+          value
+        )
+      }
     }
 
     function verticalPathLine() {
-      const range = verticalWireRange || p.yScale.range();
+      const range = verticalWireRange || p.yScale.range()
 
-      return function(d) {
-        if(p.accessor.xv(d) === null) return null;
+      return function (d) {
+        if (p.accessor.xv(d) === null) return null
         const value = p.xScale(p.accessor.xv(d)),
-            sr = p.xScale.range();
-        if(value < Math.min(sr[0], sr[sr.length - 1]) || value > Math.max(sr[0], sr[sr.length - 1])) return null;
-        return 'M ' + value + ' ' + range[0] + ' L ' + value + ' ' + range[range.length - 1];
-      };
+          sr = p.xScale.range()
+        if (
+          value < Math.min(sr[0], sr[sr.length - 1]) ||
+          value > Math.max(sr[0], sr[sr.length - 1])
+        )
+          return null
+        return (
+          'M ' +
+          value +
+          ' ' +
+          range[0] +
+          ' L ' +
+          value +
+          ' ' +
+          range[range.length - 1]
+        )
+      }
     }
 
     function initialiseWire(d) {
-      d = d || {};
-      p.accessor.xv(d, null);
-      p.accessor.yv(d, null);
-      return d;
+      d = d || {}
+      p.accessor.xv(d, null)
+      p.accessor.yv(d, null)
+      return d
     }
 
     function isEmpty(d) {
-      return d === undefined || p.accessor.xv(d) === null || p.accessor.yv(d) === null;
+      return (
+        d === undefined ||
+        p.accessor.xv(d) === null ||
+        p.accessor.yv(d) === null
+      )
     }
 
     function displayAttr(d) {
-      return isEmpty(d) ? 'none' : null;
+      return isEmpty(d) ? 'none' : null
     }
 
     // Mixin scale management and event listening
-    plotMixin(crosshair, p).plot(accessor_crosshair(), binder)
-      .dataSelector(d => {
+    plotMixin(crosshair, p)
+      .plot(accessor_crosshair(), binder)
+      .dataSelector((d) => {
         // Has the user set data? If not, put empty data ready for mouse over
-        if(isEmpty(d)) return [ initialiseWire() ];
-        else return [d];
+        if (isEmpty(d)) return [initialiseWire()]
+        else return [d]
       })
-      .on(dispatcher);
+      .on(dispatcher)
 
-    p.dataSelector.scope('crosshair');
+    p.dataSelector.scope('crosshair')
 
-    return binder();
-  };
+    return binder()
+  }
 }

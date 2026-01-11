@@ -14,8 +14,9 @@ local build and bower dependencies.
 [Let’s Make a Block](https://bost.ocks.org/mike/block/)
 
 Key files for techan examples:
-* README.md
-* The example itself
-  * index.html
-  * supporting data files
-* 230×120 thumbnail
+
+- README.md
+- The example itself
+  - index.html
+  - supporting data files
+- 230×120 thumbnail

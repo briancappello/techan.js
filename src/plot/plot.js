@@ -1,138 +1,152 @@
-export default function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select) {
-  const DataSelector = function(mapper) {
+export default function (
+  d3_svg_line,
+  d3_svg_area,
+  d3_line_interpolate,
+  d3_select,
+) {
+  const DataSelector = function (mapper) {
     let key,
-        scope,
-        classes = ['data'];
+      scope,
+      classes = ['data']
 
     function dataSelect(g) {
       const selection = dataSelect.select(g).data(mapper, key),
-          entry = selection.enter().append('g').attr('class', arrayJoin(classes, ' '));
-      selection.exit().remove();
+        entry = selection
+          .enter()
+          .append('g')
+          .attr('class', arrayJoin(classes, ' '))
+      selection.exit().remove()
 
       return {
         entry: entry,
-        selection: entry.merge(selection)
-      };
+        selection: entry.merge(selection),
+      }
     }
 
-    dataSelect.select = function(g) {
-      return g.selectAll('g.' + arrayJoin(classes, '.'));
-    };
+    dataSelect.select = function (g) {
+      return g.selectAll('g.' + arrayJoin(classes, '.'))
+    }
 
     /**
      * DataSelector.mapper.unity, DataSelector.mapper.array, or custom data mapper
      * @param _
      * @returns {*}
      */
-    dataSelect.mapper = function(_) {
-      if(!arguments.length) return mapper;
-      mapper = _;
-      return dataSelect;
-    };
-
-    dataSelect.scope = function(_) {
-      if(!arguments.length) return scope;
-      scope = _;
-      classes = ['data', 'scope-' + scope];
-      return dataSelect;
-    };
-
-    dataSelect.key= function(_) {
-      if(!arguments.length) return key;
-      key = _;
-      return dataSelect;
-    };
-
-    return dataSelect;
-  };
-
-  DataSelector.mapper = {
-    unity: d => d,
-    array: d => [d]
-  };
-
-  function PathLine() {
-    const d3Line = d3_svg_line().curve(d3_line_interpolate);
-
-    function line(data) {
-      return d3Line(data);
+    dataSelect.mapper = function (_) {
+      if (!arguments.length) return mapper
+      mapper = _
+      return dataSelect
     }
 
-    line.init = function(accessor_date, x, accessor_value, y, offset) {
-      return d3Line.defined(d => accessor_value(d) !== null)
-          .x(d => x(accessor_date(d), offset === undefined ? offset : offset(d)))
-          .y(d => y(accessor_value(d)));
-    };
+    dataSelect.scope = function (_) {
+      if (!arguments.length) return scope
+      scope = _
+      classes = ['data', 'scope-' + scope]
+      return dataSelect
+    }
 
-    line.d3 = function() {
-      return d3Line;
-    };
+    dataSelect.key = function (_) {
+      if (!arguments.length) return key
+      key = _
+      return dataSelect
+    }
 
-    return line;
+    return dataSelect
+  }
+
+  DataSelector.mapper = {
+    unity: (d) => d,
+    array: (d) => [d],
+  }
+
+  function PathLine() {
+    const d3Line = d3_svg_line().curve(d3_line_interpolate)
+
+    function line(data) {
+      return d3Line(data)
+    }
+
+    line.init = function (accessor_date, x, accessor_value, y, offset) {
+      return d3Line
+        .defined((d) => accessor_value(d) !== null)
+        .x((d) =>
+          x(accessor_date(d), offset === undefined ? offset : offset(d)),
+        )
+        .y((d) => y(accessor_value(d)))
+    }
+
+    line.d3 = function () {
+      return d3Line
+    }
+
+    return line
   }
 
   function PathArea() {
-    const d3Area = d3_svg_area().curve(d3_line_interpolate);
+    const d3Area = d3_svg_area().curve(d3_line_interpolate)
 
     function area(data) {
-      return d3Area(data);
+      return d3Area(data)
     }
 
-    area.init = function(accessor_date, x, accessor_value, y, yBase) {
-      return d3Area.defined(d => accessor_value(d) !== null)
-           .x(d => x(accessor_date(d)))
-           .y0(d => y(yBase))
-           .y1(d => y(accessor_value(d)));
-    };
+    area.init = function (accessor_date, x, accessor_value, y, yBase) {
+      return d3Area
+        .defined((d) => accessor_value(d) !== null)
+        .x((d) => x(accessor_date(d)))
+        .y0(() => y(yBase))
+        .y1((d) => y(accessor_value(d)))
+    }
 
-    area.d3 = function() {
-      return d3Area;
-    };
+    area.d3 = function () {
+      return d3Area
+    }
 
-    return area;
+    return area
   }
 
   function upDownEqual(accessor) {
     return {
-      up: d => accessor.o(d) < accessor.c(d),
-      down: d => accessor.o(d) > accessor.c(d),
-      equal: d => accessor.o(d) === accessor.c(d)
-    };
+      up: (d) => accessor.o(d) < accessor.c(d),
+      down: (d) => accessor.o(d) > accessor.c(d),
+      equal: (d) => accessor.o(d) === accessor.c(d),
+    }
   }
 
   function appendPathsGroupBy(g, accessor, plotName, classes) {
-    const plotNames = plotName instanceof Array ? plotName : [plotName];
+    const plotNames = plotName instanceof Array ? plotName : [plotName]
 
-    classes = classes || upDownEqual(accessor);
+    classes = classes || upDownEqual(accessor)
 
-    Object.keys(classes).forEach(key => {
-      appendPlotTypePath(g, classes[key], plotNames, key);
-    });
+    Object.keys(classes).forEach((key) => {
+      appendPlotTypePath(g, classes[key], plotNames, key)
+    })
   }
 
   function appendPathsUpDownEqual(g, accessor, plotName) {
-    appendPathsGroupBy(g, accessor, plotName, upDownEqual(accessor));
+    appendPathsGroupBy(g, accessor, plotName, upDownEqual(accessor))
   }
 
   function appendPlotTypePath(g, data, plotNames, direction) {
-    g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction).data(d => [d.filter(data)])
-      .enter().append('path').attr('class', arrayJoin(plotNames, ' ') + ' ' + direction);
+    g.selectAll('path.' + arrayJoin(plotNames, '.') + '.' + direction)
+      .data((d) => [d.filter(data)])
+      .enter()
+      .append('path')
+      .attr('class', arrayJoin(plotNames, ' ') + ' ' + direction)
   }
 
   function barWidth(x) {
-    if(x.band !== undefined) return Math.max(x.band(), 1);
-    else return 3; // If it's not a finance time, the user should specify the band calculation (or constant) on the plot
+    if (x.band !== undefined) return Math.max(x.band(), 1)
+    else return 3 // If it's not a finance time, the user should specify the band calculation (or constant) on the plot
   }
 
   function arrayJoin(array, delimiter) {
-    if(!array.length) return;
-    let result = array[0];
-    for(let i = 1; i < array.length; i++) {
-      result += delimiter + array[i];
+    if (!array.length) return
+    let result = array[0]
+    for (let i = 1; i < array.length; i++) {
+      result += delimiter + array[i]
     }
-    return result;
+    return result
   }
-
 
   /**
    * Helper class assists the composition of multiple techan plots. Handles:
@@ -145,86 +159,90 @@ export default function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select
    */
   function PlotComposer() {
     let dataSelector = DataSelector(),
-        plots = [],
-        plotScale = plot => plot.scale(),
-        scale,
-        accessor;
+      plots = [],
+      plotScale = (plot) => plot.scale(),
+      scale,
+      accessor
 
     function plotComposer(g) {
-      const group = dataSelector.mapper(() => plots.map(() => []))(g);
+      const group = dataSelector.mapper(() => plots.map(() => []))(g)
 
-      group.selection.each(function(d, i) {
-        plots[i](d3_select(this));
-      });
+      group.selection.each(function (d, i) {
+        plots[i](d3_select(this))
+      })
 
-      plotComposer.refresh(g);
+      plotComposer.refresh(g)
     }
 
-    plotComposer.refresh = function(g) {
-      dataSelector.select(g).data(d => {
-          const value = accessor(d);
-          if(value === null || value === undefined) return plots.map(() => []);
-          const y = scale(value);
-          return plots.map(plot => {
-            const annotationValue = plotScale(plot) === scale ? value : plotScale(plot).invert(y);
-            return [ { value: annotationValue} ];
-          });
-        }).each(function(d, i) {
-          plots[i](d3_select(this));
-        });
-    };
+    plotComposer.refresh = function (g) {
+      dataSelector
+        .select(g)
+        .data((d) => {
+          const value = accessor(d)
+          if (value === null || value === undefined) return plots.map(() => [])
+          const y = scale(value)
+          return plots.map((plot) => {
+            const annotationValue =
+              plotScale(plot) === scale ? value : plotScale(plot).invert(y)
+            return [{ value: annotationValue }]
+          })
+        })
+        .each(function (d, i) {
+          plots[i](d3_select(this))
+        })
+    }
 
-    plotComposer.plots = function(_) {
-      if(!arguments.length) return plots;
-      plots = _;
-      return plotComposer;
-    };
+    plotComposer.plots = function (_) {
+      if (!arguments.length) return plots
+      plots = _
+      return plotComposer
+    }
 
     /**
      * The scale of the parent
      * @param _
      * @returns {*}
      */
-    plotComposer.scale = function(_) {
-      if(!arguments.length) return scale;
-      scale = _;
-      return plotComposer;
-    };
+    plotComposer.scale = function (_) {
+      if (!arguments.length) return scale
+      scale = _
+      return plotComposer
+    }
 
     /**
      * How do get a value from the root datum
      * @param _ A function taking d and returning a value
      * @returns {*}
      */
-    plotComposer.accessor = function(_) {
-      if(!arguments.length) return accessor;
-      accessor = _;
-      return plotComposer;
-    };
+    plotComposer.accessor = function (_) {
+      if (!arguments.length) return accessor
+      accessor = _
+      return plotComposer
+    }
 
     /**
      * A string id that distinguishes this composed plot from another.
      * @param _
      * @returns {*}
      */
-    plotComposer.scope = function(_) {
-      if(!arguments.length) return dataSelector.scope();
-      dataSelector.scope(_);
-      return plotComposer;
-    };
+    plotComposer.scope = function (_) {
+      if (!arguments.length) return dataSelector.scope()
+      dataSelector.scope(_)
+      return plotComposer
+    }
 
     /**
      * A function to obtain the scale of the child plots
      * @param _
      * @returns {*}
      */
-    plotComposer.plotScale = function(_) {
-      if(!arguments.length) return plotScale;
-      plotScale = _;
-      return plotComposer;
-    };
+    plotComposer.plotScale = function (_) {
+      if (!arguments.length) return plotScale
+      plotScale = _
+      return plotComposer
+    }
 
-    return plotComposer;
+    return plotComposer
   }
 
   return {
@@ -234,17 +252,25 @@ export default function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select
 
     appendPathsUpDownEqual: appendPathsUpDownEqual,
 
-    horizontalPathLine: function(accessor_date, x, accessor_value, y) {
-      return function(d) {
-        if(!d.length) return null;
+    horizontalPathLine: function (accessor_date, x, accessor_value, y) {
+      return function (d) {
+        if (!d.length) return null
 
         const firstDatum = d[0],
-            lastDatum = d[d.length - 1],
-            yValue = Math.floor(y(accessor_value(firstDatum))) + 0.5;
+          lastDatum = d[d.length - 1],
+          yValue = Math.floor(y(accessor_value(firstDatum))) + 0.5
 
-        return 'M ' + x(accessor_date(firstDatum)) + ' ' + yValue +
-          ' L ' + x(accessor_date(lastDatum)) + ' ' + yValue;
-      };
+        return (
+          'M ' +
+          x(accessor_date(firstDatum)) +
+          ' ' +
+          yValue +
+          ' L ' +
+          x(accessor_date(lastDatum)) +
+          ' ' +
+          yValue
+        )
+      }
     },
 
     pathLine: PathLine,
@@ -253,54 +279,58 @@ export default function(d3_svg_line, d3_svg_area, d3_line_interpolate, d3_select
 
     barWidth: barWidth,
 
-    scaledStrokeWidth: function(x, max, div) {
-      max = max || 1;
-      div = div || 1;
+    scaledStrokeWidth: function (x, max, div) {
+      max = max || 1
+      div = div || 1
 
-      return function() {
-        return Math.min(max, barWidth(x) / div) + 'px';
-      };
+      return function () {
+        return Math.min(max, barWidth(x) / div) + 'px'
+      }
     },
 
     /**
      * @param path A path generator constructor function that will construct a function that takes data point and returns a path
      */
-    joinPath: function(path) {
-      return function(data) {
-        return arrayJoin(data.map(path()), ' ');
-      };
-    },
-
-    interaction: {
-      mousedispatch: function(dispatch) {
-        return function(selection) {
-          return selection.on('mouseenter', function(event, d) {
-            d3_select(this.parentNode).classed('mouseover', true);
-            dispatch.call('mouseenter', this, d);
-          })
-          .on('mouseleave', function(event, d) {
-            const parentElement = d3_select(this.parentNode);
-            if(!parentElement.classed('dragging')) {
-              parentElement.classed('mouseover', false);
-              dispatch.call('mouseout', this, d);
-            }
-          })
-          .on('mousemove', function(event, d) { dispatch.call('mousemove', this, d); });
-        };
-      },
-
-      dragStartEndDispatch: function(drag, dispatch) {
-        return drag.on('start', function(event, d) {
-          d3_select(this.parentNode.parentNode).classed('dragging', true);
-          dispatch.call('dragstart', this, d);
-        })
-        .on('end', function(event, d) {
-          d3_select(this.parentNode.parentNode).classed('dragging', false);
-          dispatch.call('dragend', this, d);
-        });
+    joinPath: function (path) {
+      return function (data) {
+        return arrayJoin(data.map(path()), ' ')
       }
     },
 
-    plotComposer: PlotComposer
-  };
+    interaction: {
+      mousedispatch: function (dispatch) {
+        return function (selection) {
+          return selection
+            .on('mouseenter', function (event, d) {
+              d3_select(this.parentNode).classed('mouseover', true)
+              dispatch.call('mouseenter', this, d)
+            })
+            .on('mouseleave', function (event, d) {
+              const parentElement = d3_select(this.parentNode)
+              if (!parentElement.classed('dragging')) {
+                parentElement.classed('mouseover', false)
+                dispatch.call('mouseout', this, d)
+              }
+            })
+            .on('mousemove', function (event, d) {
+              dispatch.call('mousemove', this, d)
+            })
+        }
+      },
+
+      dragStartEndDispatch: function (drag, dispatch) {
+        return drag
+          .on('start', function (event, d) {
+            d3_select(this.parentNode.parentNode).classed('dragging', true)
+            dispatch.call('dragstart', this, d)
+          })
+          .on('end', function (event, d) {
+            d3_select(this.parentNode.parentNode).classed('dragging', false)
+            dispatch.call('dragend', this, d)
+          })
+      },
+    },
+
+    plotComposer: PlotComposer,
+  }
 }

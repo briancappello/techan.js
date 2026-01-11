@@ -1,22 +1,26 @@
-import circularbuffer from './circularbuffer';
+import circularbuffer from './circularbuffer'
 
-export default function() {
+export default function () {
   return {
     circularbuffer: circularbuffer,
 
     rebindCallback: rebindCallback,
 
-    rebind: function(target, source) {
-      const newArgs = Array.prototype.slice.call(arguments, 0);
-      newArgs.splice(2, 0, undefined);
-      return rebindCallback.apply(this, newArgs);
+    rebind: function (_target, _source) {
+      const newArgs = Array.prototype.slice.call(arguments, 0)
+      newArgs.splice(2, 0, undefined)
+      return rebindCallback.apply(this, newArgs)
     },
 
     // https://github.com/d3/d3/blob/v3.5.17/src/core/functor.js
-    functor: function(v) {
-      return typeof v === "function" ? v : function() { return v; };
-    }
-  };
+    functor: function (v) {
+      return typeof v === 'function'
+        ? v
+        : function () {
+            return v
+          }
+    },
+  }
 }
 
 /*
@@ -24,17 +28,23 @@ export default function() {
  https://github.com/mbostock/d3/blob/master/src/core/rebind.js
  */
 function rebindCallback(target, source, postSetCallback) {
-  let i = 2;
-  const n = arguments.length;
-  let method;
-  while (++i < n) target[method = arguments[i]] = doRebind(target, source, source[method], postSetCallback);
-  return target;
+  let i = 2
+  const n = arguments.length
+  let method
+  while (++i < n)
+    target[(method = arguments[i])] = doRebind(
+      target,
+      source,
+      source[method],
+      postSetCallback,
+    )
+  return target
 }
 
 function doRebind(target, source, method, postSetCallback) {
-  return function() {
-    const value = method.apply(source, arguments);
-    if(postSetCallback && value === source) postSetCallback();
-    return value === source ? target : value;
-  };
+  return function () {
+    const value = method.apply(source, arguments)
+    if (postSetCallback && value === source) postSetCallback()
+    return value === source ? target : value
+  }
 }

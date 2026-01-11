@@ -7,46 +7,52 @@
  *
  * NOTE: This is not a complete scale, it will throw errors if it is used for anything else but zooming
  */
-export default function() {
+export default function () {
   function zoomable(linear, zoomed, domainLimit, clamp) {
-    clamp = clamp !== undefined ? clamp : true;
+    clamp = clamp !== undefined ? clamp : true
 
     /**
      * Delegates the scale call to the underlying linear scale
      */
     function scale(_) {
-      return linear.apply(linear, arguments);
+      return linear.apply(linear, arguments)
     }
 
-    scale.invert = linear.invert;
+    scale.invert = linear.invert
 
-    scale.domain = function(_) {
-      if(!arguments.length) return linear.domain();
+    scale.domain = function (_) {
+      if (!arguments.length) return linear.domain()
 
-      if(clamp) linear.domain([Math.max(domainLimit.domain[0], _[0]), Math.min(domainLimit.domain[1], _[1])]);
-      else linear.domain(_);
+      if (clamp)
+        linear.domain([
+          Math.max(domainLimit.domain[0], _[0]),
+          Math.min(domainLimit.domain[1], _[1]),
+        ])
+      else linear.domain(_)
 
-      if(zoomed) zoomed(); // Callback to that we have been zoomed
-      return scale;
-    };
+      if (zoomed) zoomed() // Callback to that we have been zoomed
+      return scale
+    }
 
-    scale.range = function(_) {
-      if(!arguments.length) return linear.range();
-      throw new Error("zoomable is a read only range. Use this scale for zooming only");
-    };
+    scale.range = function (_) {
+      if (!arguments.length) return linear.range()
+      throw new Error(
+        'zoomable is a read only range. Use this scale for zooming only',
+      )
+    }
 
-    scale.copy = function() {
-      return zoomable(linear.copy(), zoomed, domainLimit, clamp);
-    };
+    scale.copy = function () {
+      return zoomable(linear.copy(), zoomed, domainLimit, clamp)
+    }
 
-    scale.clamp = function(_) {
-      if(!arguments.length) return clamp;
-      clamp = _;
-      return scale;
-    };
+    scale.clamp = function (_) {
+      if (!arguments.length) return clamp
+      clamp = _
+      return scale
+    }
 
-    return scale;
+    return scale
   }
 
-  return zoomable;
+  return zoomable
 }

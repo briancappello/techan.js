@@ -1,60 +1,79 @@
-export default function(indicatorMixin, accessor_ohlc) {  // Injected dependencies
-  return function() { // Closure function
-    const p = {};  // Container for private, direct access mixed in variables
+export default function (indicatorMixin, accessor_ohlc) {
+  // Injected dependencies
+  return function () {
+    // Closure function
+    const p = {} // Container for private, direct access mixed in variables
     let overbought = 80,
-        middle = 50,
-        oversold = 20;
+      middle = 50,
+      oversold = 20
 
     function indicator(data) {
-      return data.map((d, i) => {
-         if(i >= p.period){
-          let max = 0;
-          let maxi = 0;
-          let min = 10000;
-          let mini = 0;
-          for (let j = 0; j < p.period; j++) {
-            if(p.accessor.h(data[i - j]) > max){
-              max = p.accessor.h(data[i - j]);
-              maxi = j;
+      return data
+        .map((d, i) => {
+          if (i >= p.period) {
+            let max = 0
+            let min = 10000
+            for (let j = 0; j < p.period; j++) {
+              if (p.accessor.h(data[i - j]) > max) {
+                max = p.accessor.h(data[i - j])
+              }
+              if (p.accessor.l(data[i - j]) < min) {
+                min = p.accessor.l(data[i - j])
+              }
             }
-            if(p.accessor.l(data[i - j]) < min){
-              min = p.accessor.l(data[i - j]);
-              mini = j;
-            }
-          }
-          const williams = ((p.accessor.c(data[i]) - min ) / ( max - min )) * 100;
-          return datum(p.accessor.d(d), williams, middle, overbought, oversold);
-        }
-        else return datum(p.accessor.d(d));
-      }).filter(d => d.williams);
+            const williams = ((p.accessor.c(data[i]) - min) / (max - min)) * 100
+            return datum(
+              p.accessor.d(d),
+              williams,
+              middle,
+              overbought,
+              oversold,
+            )
+          } else return datum(p.accessor.d(d))
+        })
+        .filter((d) => d.williams)
     }
 
-    indicator.overbought = function(_) {
-      if (!arguments.length) return overbought;
-      overbought = _;
-      return indicator;
-    };
+    indicator.overbought = function (_) {
+      if (!arguments.length) return overbought
+      overbought = _
+      return indicator
+    }
 
-    indicator.middle = function(_) {
-      if (!arguments.length) return middle;
-      middle = _;
-      return indicator;
-    };
+    indicator.middle = function (_) {
+      if (!arguments.length) return middle
+      middle = _
+      return indicator
+    }
 
-    indicator.oversold = function(_) {
-      if (!arguments.length) return oversold;
-      oversold = _;
-      return indicator;
-    };
+    indicator.oversold = function (_) {
+      if (!arguments.length) return oversold
+      oversold = _
+      return indicator
+    }
 
     // Mixin 'superclass' methods and variables
-    indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20);
+    indicatorMixin(indicator, p).accessor(accessor_ohlc()).period(20)
 
-    return indicator;
-  };
+    return indicator
+  }
 }
 
 function datum(date, williams, middle, overbought, oversold) {
-  if(williams) return { date: date, williams: williams, middle: middle, overbought: overbought, oversold: oversold };
-  else return { date: date, williams: null, middle: null, overbought: null, oversold: null };
+  if (williams)
+    return {
+      date: date,
+      williams: williams,
+      middle: middle,
+      overbought: overbought,
+      oversold: oversold,
+    }
+  else
+    return {
+      date: date,
+      williams: null,
+      middle: null,
+      overbought: null,
+      oversold: null,
+    }
 }

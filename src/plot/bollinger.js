@@ -1,38 +1,42 @@
-export default function(accessor_bollinger, plot, plotMixin) {  // Injected dependencies
-  return function() { // Closure function
-    const p = {};  // Container for private, direct access mixed in variables
+export default function (accessor_bollinger, plot, plotMixin) {
+  // Injected dependencies
+  return function () {
+    // Closure function
+    const p = {} // Container for private, direct access mixed in variables
     const upperLine = plot.pathLine(),
-        middleLine = plot.pathLine(),
-        lowerLine = plot.pathLine();
+      middleLine = plot.pathLine(),
+      lowerLine = plot.pathLine()
 
     function bollinger(g) {
-      const group = p.dataSelector(g);
-      group.entry.append('path').attr('class', 'upper');
-      group.entry.append('path').attr('class', 'middle');
-      group.entry.append('path').attr('class', 'lower');
-      bollinger.refresh(g);
+      const group = p.dataSelector(g)
+      group.entry.append('path').attr('class', 'upper')
+      group.entry.append('path').attr('class', 'middle')
+      group.entry.append('path').attr('class', 'lower')
+      bollinger.refresh(g)
     }
 
-    bollinger.refresh = function(g) {
-      refresh(p.dataSelector.select(g), upperLine, middleLine, lowerLine);
-    };
+    bollinger.refresh = function (g) {
+      refresh(p.dataSelector.select(g), upperLine, middleLine, lowerLine)
+    }
 
     function binder() {
-      upperLine.init(p.accessor.d, p.xScale, p.accessor.u, p.yScale);
-      middleLine.init(p.accessor.d, p.xScale, p.accessor.m, p.yScale);
-      lowerLine.init(p.accessor.d, p.xScale, p.accessor.l, p.yScale);
+      upperLine.init(p.accessor.d, p.xScale, p.accessor.u, p.yScale)
+      middleLine.init(p.accessor.d, p.xScale, p.accessor.m, p.yScale)
+      lowerLine.init(p.accessor.d, p.xScale, p.accessor.l, p.yScale)
     }
 
     // Mixin 'superclass' methods and variables
-    plotMixin(bollinger, p).plot(accessor_bollinger(), binder).dataSelector(plotMixin.dataMapper.array);
-    binder();
+    plotMixin(bollinger, p)
+      .plot(accessor_bollinger(), binder)
+      .dataSelector(plotMixin.dataMapper.array)
+    binder()
 
-    return bollinger;
-  };
+    return bollinger
+  }
 }
 
 function refresh(selection, upperLine, middleLine, lowerLine) {
-  selection.select('path.upper').attr('d', upperLine);
-  selection.select('path.middle').attr('d', middleLine);
-  selection.select('path.lower').attr('d', lowerLine);
+  selection.select('path.upper').attr('d', upperLine)
+  selection.select('path.middle').attr('d', middleLine)
+  selection.select('path.lower').attr('d', lowerLine)
 }

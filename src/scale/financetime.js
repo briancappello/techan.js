@@ -4,19 +4,39 @@
  and weekends respectively. When plot, is done so without weekend gaps.
  */
 
-export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindCallback, scale_widen, techan_scale_zoomable) {  // Injected dependencies
-  function financetime(tickMethods, genericFormat, index, domain, padding, outerPadding, zoomLimit, closestTicks, zoomable) {
+export default function (
+  d3_scale_linear,
+  d3_time,
+  d3_bisect,
+  techan_util_rebindCallback,
+  scale_widen,
+  techan_scale_zoomable,
+) {
+  // Injected dependencies
+  function financetime(
+    tickMethods,
+    genericFormat,
+    index,
+    domain,
+    padding,
+    outerPadding,
+    zoomLimit,
+    closestTicks,
+    zoomable,
+  ) {
     let dateIndexMap,
-      band = 3;
-    const tickState = { tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2] };
+      band = 3
+    const tickState = {
+      tickFormat: tickMethods.daily[tickMethods.daily.length - 1][2],
+    }
 
-    index = index || d3_scale_linear();
-    domain = domain || [new Date(0), new Date(1)];
-    padding = padding === undefined ? 0.2 : padding;
-    outerPadding = outerPadding === undefined ? 0.65 : outerPadding;
-    zoomLimit = zoomLimit || { domain: index.domain() }; // Wrap in object to carry onto zoomable
-    closestTicks = closestTicks || false;
-    zoomable = zoomable || techan_scale_zoomable(index, zoomed, zoomLimit);
+    index = index || d3_scale_linear()
+    domain = domain || [new Date(0), new Date(1)]
+    padding = padding === undefined ? 0.2 : padding
+    outerPadding = outerPadding === undefined ? 0.65 : outerPadding
+    zoomLimit = zoomLimit || { domain: index.domain() } // Wrap in object to carry onto zoomable
+    closestTicks = closestTicks || false
+    zoomable = zoomable || techan_scale_zoomable(index, zoomed, zoomLimit)
 
     /**
      * Scales the value to domain. If the value is not within the domain, will currently brutally round the data:
@@ -34,16 +54,17 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * @returns {*}
      */
     function scale(x, offset) {
-      let mappedIndex = dateIndexMap[x instanceof Date ? x.getTime() : +x];
-      offset = offset || 0;
+      let mappedIndex = dateIndexMap[x instanceof Date ? x.getTime() : +x]
+      offset = offset || 0
 
       // Make sure the value has been mapped, if not, determine if it's just before, round in, or just after domain
       if (mappedIndex === undefined) {
-        if (domain[0] > x) mappedIndex = -1; // Less than min, round just out of domain
-        else mappedIndex = d3_bisect(domain, x); // else let bisect determine where in or just after than domain it is
+        if (domain[0] > x)
+          mappedIndex = -1 // Less than min, round just out of domain
+        else mappedIndex = d3_bisect(domain, x) // else let bisect determine where in or just after than domain it is
       }
 
-      return index(mappedIndex + offset);
+      return index(mappedIndex + offset)
     }
 
     /**
@@ -52,10 +73,10 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * @param y
      * @returns {null} If the range value cannot be mapped. eg, if range value is outside of the mapped domain
      */
-    scale.invert = function(y) {
-      const d = domain[scale.invertToIndex(y)];
-      return d ? d : null;
-    };
+    scale.invert = function (y) {
+      const d = domain[scale.invertToIndex(y)]
+      return d ? d : null
+    }
 
     /**
      * Inverts the coordinate to the corresponding domain. <b>NOTE: </b> May return values outside of the domain such
@@ -65,9 +86,9 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * @returns {number} A number representing the index in the domain the range value has been inverted to. May return
      * values outside of the domain such as negatives or value greater than domain().length-1
      */
-    scale.invertToIndex = function(y) {
-      return Math.round(index.invert(y));
-    };
+    scale.invertToIndex = function (y) {
+      return Math.round(index.invert(y))
+    }
 
     /**
      * As the underlying structure relies on a full array, ensure the full domain is passed here,
@@ -76,45 +97,56 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * @param _ The full domain array
      * @returns {*}
      */
-    scale.domain = function(_) {
+    scale.domain = function (_) {
       if (!arguments.length) {
-        let visible = index.domain();
+        let visible = index.domain()
 
-        if (visible[0] < 0 && visible[visible.length - 1] < 0) return []; // if it's all negative return empty, nothing is visible
+        if (visible[0] < 0 && visible[visible.length - 1] < 0) return [] // if it's all negative return empty, nothing is visible
 
         visible = [
           Math.max(Math.ceil(visible[0]), 0), // If min is fraction, it is partially out of view, but still partially visible, round up (ceil)
-          Math.min(Math.floor(visible[visible.length - 1]), domain.length - 1) // If max is fraction, is partially out of view, but still partially visible, round down (floor)
-        ];
-        return domain.slice(visible[0], visible[visible.length - 1] + 1); // Grab visible domain, inclusive
+          Math.min(Math.floor(visible[visible.length - 1]), domain.length - 1), // If max is fraction, is partially out of view, but still partially visible, round down (floor)
+        ]
+        return domain.slice(visible[0], visible[visible.length - 1] + 1) // Grab visible domain, inclusive
       }
 
-      domain = _;
-      return applyDomain();
-    };
+      domain = _
+      return applyDomain()
+    }
 
     function zoomed() {
-      band = rangeBand(index, domain, padding);
-      return scale;
+      band = rangeBand(index, domain, padding)
+      return scale
     }
 
     function domainMap() {
-      dateIndexMap = lookupIndex(domain);
+      dateIndexMap = lookupIndex(domain)
     }
 
     function applyDomain() {
-      domainMap();
-      index.domain([0, domain.length - 1]);
-      zoomed();
+      domainMap()
+      index.domain([0, domain.length - 1])
+      zoomed()
       // Apply outerPadding and widen the outer edges by pulling the domain in to ensure start and end bands are fully visible
-      index.domain(index.range().map(scale_widen(outerPadding, band)).map(index.invert));
-      zoomLimit.domain = index.domain(); // Capture the zoom limit after the domain has been applied
-      return zoomed();
+      index.domain(
+        index.range().map(scale_widen(outerPadding, band)).map(index.invert),
+      )
+      zoomLimit.domain = index.domain() // Capture the zoom limit after the domain has been applied
+      return zoomed()
     }
 
-    scale.copy = function() {
-      return financetime(tickMethods, genericFormat, index.copy(), domain, padding, outerPadding, zoomLimit, closestTicks);
-    };
+    scale.copy = function () {
+      return financetime(
+        tickMethods,
+        genericFormat,
+        index.copy(),
+        domain,
+        padding,
+        outerPadding,
+        zoomLimit,
+        closestTicks,
+      )
+    }
 
     /**
      * Equivalent to d3's ordinal.rangeBand(). It could not be named rangeBand as d3 uses the method
@@ -124,25 +156,25 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * compensates for this checking if rangeBand is defined and compensates as such.
      * @returns {number}
      */
-    scale.band = function() {
-      return band;
-    };
+    scale.band = function () {
+      return band
+    }
 
-    scale.outerPadding = function(_) {
-      if (!arguments.length) return outerPadding;
-      outerPadding = _;
-      return applyDomain();
-    };
+    scale.outerPadding = function (_) {
+      if (!arguments.length) return outerPadding
+      outerPadding = _
+      return applyDomain()
+    }
 
-    scale.padding = function(_) {
-      if (!arguments.length) return padding;
-      padding = _;
-      return applyDomain();
-    };
+    scale.padding = function (_) {
+      if (!arguments.length) return padding
+      padding = _
+      return applyDomain()
+    }
 
-    scale.zoomable = function() {
-      return zoomable;
-    };
+    scale.zoomable = function () {
+      return zoomable
+    }
 
     /*
      * Ticks based heavily on d3 implementation. Attempted to implement this using composition with d3.time.scale,
@@ -159,74 +191,79 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * @param frequency
      * @returns {*}
      */
-    scale.ticks = function(frequency) {
-      const visibleDomain = scale.domain();
+    scale.ticks = function (frequency) {
+      const visibleDomain = scale.domain()
 
-      if (!visibleDomain.length) return []; // Nothing is visible, no ticks to show
+      if (!visibleDomain.length) return [] // Nothing is visible, no ticks to show
 
       const lookup = {
         '1min': { interval: d3_time.timeMinute, steps: 30 },
-        'h': { interval: d3_time.timeHour, steps: 1 },
-        'D': { interval: d3_time.timeMonth, steps: 1 },
-        'W': { interval: d3_time.timeMonth, steps: 3 },
-        'M': { interval: d3_time.timeYear, steps: 1 },
-        'Y': { interval: d3_time.timeYear, steps: 5 }
-      };
+        h: { interval: d3_time.timeHour, steps: 1 },
+        D: { interval: d3_time.timeMonth, steps: 1 },
+        W: { interval: d3_time.timeMonth, steps: 3 },
+        M: { interval: d3_time.timeYear, steps: 1 },
+        Y: { interval: d3_time.timeYear, steps: 5 },
+      }
 
-      const tzOffset = ((new Date().getTimezoneOffset()) / 60) - 5;
-      const premarketOpen = 4 - tzOffset;
-      const marketOpen = 9 - tzOffset;
-      const marketClose = 16 - tzOffset;
-      const aftermarketClose = 20 - tzOffset;
+      const tzOffset = new Date().getTimezoneOffset() / 60 - 5
+      const premarketOpen = 4 - tzOffset
+      const marketOpen = 9 - tzOffset
+      const marketClose = 16 - tzOffset
+      const aftermarketClose = 20 - tzOffset
 
       let interval = d3_time.timeMinute,
-        steps = 30;
-      const settings = lookup[frequency];
+        steps = 30
+      const settings = lookup[frequency]
       if (settings !== undefined) {
-        interval = settings.interval;
-        steps = settings.steps;
+        interval = settings.interval
+        steps = settings.steps
       }
 
       const intervalRange = interval
         .every(steps)
-        .range(
-          visibleDomain[0],
-          +visibleDomain[visibleDomain.length - 1] + 1
-        ).filter(d => {
+        .range(visibleDomain[0], +visibleDomain[visibleDomain.length - 1] + 1)
+        .filter((d) => {
           switch (frequency) {
             case 'D':
             case 'W':
             case 'M':
-              return true;
+              return true
 
             case '30min':
             case 'h':
-              return d.getHours() === premarketOpen && d.getMinutes() === 0;
+              return d.getHours() === premarketOpen && d.getMinutes() === 0
           }
 
           if (d.getHours() === marketOpen && d.getMinutes() === 30) {
-            return true;
+            return true
           }
-          if (d.getHours() < premarketOpen || d.getHours() > aftermarketClose || d.getMinutes() !== 0) {
-            return false;
+          if (
+            d.getHours() < premarketOpen ||
+            d.getHours() > aftermarketClose ||
+            d.getMinutes() !== 0
+          ) {
+            return false
           }
 
           switch (frequency) {
             case '1min':
-              return d.getMinutes() === 0; // every hour
+              return d.getMinutes() === 0 // every hour
             case '5min':
             case '10min':
             case '15min':
-              return d.getHours() === marketClose || d.getHours() === aftermarketClose;
+              return (
+                d.getHours() === marketClose ||
+                d.getHours() === aftermarketClose
+              )
           }
 
-          return false;
-        });
+          return false
+        })
 
-      return intervalRange                                // Interval, possibly contains values not in domain
-        .map(domainTicks(visibleDomain, closestTicks))    // Line up interval ticks with domain, possibly adding duplicates
-        .reduce(sequentialDuplicates, []);                // Filter out duplicates, produce new 'reduced' array
-    };
+      return intervalRange // Interval, possibly contains values not in domain
+        .map(domainTicks(visibleDomain, closestTicks)) // Line up interval ticks with domain, possibly adding duplicates
+        .reduce(sequentialDuplicates, []) // Filter out duplicates, produce new 'reduced' array
+    }
 
     /**
      * By default `ticks()` will generate tick values greater than the nearest domain interval value, which may not be
@@ -234,11 +271,11 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * values closest to the corresponding domain value for the calculated interval.
      * @param _ Optional `boolean` value. If argument is passed, sets the value and returns this instance, if no argument, returns the current value
      */
-    scale.closestTicks = function(_) {
-      if (!arguments.length) return closestTicks;
-      closestTicks = _;
-      return scale;
-    };
+    scale.closestTicks = function (_) {
+      if (!arguments.length) return closestTicks
+      closestTicks = _
+      return scale
+    }
 
     /**
      * NOTE: The type of tick format returned is dependant on ticks that were generated. To obtain the correct
@@ -246,111 +283,122 @@ export default function(d3_scale_linear, d3_time, d3_bisect, techan_util_rebindC
      * which may not be the optimal representation of the current domain state.
      * @returns {Function}
      */
-    scale.tickFormat = function() {
-      return function(date) {
-        return tickState.tickFormat(date);
-      };
-    };
+    scale.tickFormat = function () {
+      return function (date) {
+        return tickState.tickFormat(date)
+      }
+    }
 
-    techan_util_rebindCallback(scale, index, zoomed, 'range');
+    techan_util_rebindCallback(scale, index, zoomed, 'range')
 
-    domainMap();
-    return zoomed();
+    domainMap()
+    return zoomed()
   }
 
   function rangeBand(linear, domain, padding) {
-    return (Math.abs(linear(domain.length - 1) - linear(0)) / Math.max(1, domain.length - 1)) * (1 - padding);
+    return (
+      (Math.abs(linear(domain.length - 1) - linear(0)) /
+        Math.max(1, domain.length - 1)) *
+      (1 - padding)
+    )
   }
 
   function lookupIndex(array) {
-    const lookup = {};
+    const lookup = {}
     array.forEach((d, i) => {
-      lookup[+d] = i;
-    });
-    return lookup;
+      lookup[+d] = i
+    })
+    return lookup
   }
 
   function domainTicks(visibleDomain, closest) {
-    const visibleDomainLookup = lookupIndex(visibleDomain); // Quickly lookup index of the domain
+    const visibleDomainLookup = lookupIndex(visibleDomain) // Quickly lookup index of the domain
 
-    return function(d) {
-      const value = visibleDomainLookup[+d];
-      if (value !== undefined) return visibleDomain[value];
-      let index = d3_bisect(visibleDomain, d);
+    return function (d) {
+      const value = visibleDomainLookup[+d]
+      if (value !== undefined) return visibleDomain[value]
+      let index = d3_bisect(visibleDomain, d)
       if (closest && index > 0) {
         // d3_bisect gets the index of the closest value that is the greater than d,
         // which may not be the value that is closest to d.
         // If the closest value that is smaller than d is closer, choose that instead.
-        if ((+d - (+visibleDomain[index - 1])) < (+visibleDomain[index] - +d)) {
-          index--;
+        if (+d - +visibleDomain[index - 1] < +visibleDomain[index] - +d) {
+          index--
         }
       }
-      return visibleDomain[index];
-    };
+      return visibleDomain[index]
+    }
   }
 
   function sequentialDuplicates(previous, current) {
-    if (previous.length === 0 || previous[previous.length - 1] !== current) previous.push(current);
-    return previous;
+    if (previous.length === 0 || previous[previous.length - 1] !== current)
+      previous.push(current)
+    return previous
   }
 
   const dayFormat = d3_time.timeFormat('%b %e'),
     yearFormat = d3_v3_multi_shim([
-      [d3_time.timeFormat('%b %Y'), d => d.getMonth()],
-      [d3_time.timeFormat('%Y'), () => true]
+      [d3_time.timeFormat('%b %Y'), (d) => d.getMonth()],
+      [d3_time.timeFormat('%Y'), () => true],
     ]),
-    genericFormat = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-      [d3_time.timeFormat(':%S'), d => d.getSeconds()],
-      [d3_time.timeFormat('%I:%M'), d => d.getMinutes()],
-      [d3_time.timeFormat('%I %p'), d => d.getHours()],
-      [d3_time.timeFormat('%b %e'), () => true]
-    ])
-    ];
+    genericFormat = [
+      d3_time.timeSecond,
+      1,
+      d3_v3_multi_shim([
+        [d3_time.timeFormat(':%S'), (d) => d.getSeconds()],
+        [d3_time.timeFormat('%I:%M'), (d) => d.getMinutes()],
+        [d3_time.timeFormat('%I %p'), (d) => d.getHours()],
+        [d3_time.timeFormat('%b %e'), () => true],
+      ]),
+    ]
 
   const dayFormatUtc = d3_time.utcFormat('%b %e'),
     yearFormatUtc = d3_v3_multi_shim([
-      [d3_time.utcFormat('%b %Y'), d => d.getUTCMonth()],
-      [d3_time.utcFormat('%Y'), () => true]
+      [d3_time.utcFormat('%b %Y'), (d) => d.getUTCMonth()],
+      [d3_time.utcFormat('%Y'), () => true],
     ]),
-    genericFormatUtc = [d3_time.timeSecond, 1, d3_v3_multi_shim([
-        [d3_time.utcFormat(':%S'), d => d.getUTCSeconds()],
-        [d3_time.utcFormat('%I:%M'), d => d.getUTCMinutes()],
-        [d3_time.utcFormat('%I %p'), d => d.getUTCHours()],
-        [d3_time.utcFormat('%b %e'), () => true]
-      ])
-    ];
+    genericFormatUtc = [
+      d3_time.timeSecond,
+      1,
+      d3_v3_multi_shim([
+        [d3_time.utcFormat(':%S'), (d) => d.getUTCSeconds()],
+        [d3_time.utcFormat('%I:%M'), (d) => d.getUTCMinutes()],
+        [d3_time.utcFormat('%I %p'), (d) => d.getUTCHours()],
+        [d3_time.utcFormat('%b %e'), () => true],
+      ]),
+    ]
 
   const dailyTickMethod = [
-      [d3_time.timeDay, 1, dayFormat],
-      [d3_time.timeMonday, 1, dayFormat],
-      [d3_time.timeMonth, 1, yearFormat],
-      [d3_time.timeMonth, 3, yearFormat],
-      [d3_time.timeYear, 1, yearFormat]
-    ];
+    [d3_time.timeDay, 1, dayFormat],
+    [d3_time.timeMonday, 1, dayFormat],
+    [d3_time.timeMonth, 1, yearFormat],
+    [d3_time.timeMonth, 3, yearFormat],
+    [d3_time.timeYear, 1, yearFormat],
+  ]
 
   const dailyTickMethodUtc = [
-      [d3_time.utcDay, 1, dayFormatUtc],
-      [d3_time.utcMonday, 1, dayFormatUtc],
-      [d3_time.utcMonth, 1, yearFormatUtc],
-      [d3_time.utcMonth, 3, yearFormatUtc],
-      [d3_time.utcYear, 1, yearFormatUtc]
-    ];
+    [d3_time.utcDay, 1, dayFormatUtc],
+    [d3_time.utcMonday, 1, dayFormatUtc],
+    [d3_time.utcMonth, 1, yearFormatUtc],
+    [d3_time.utcMonth, 3, yearFormatUtc],
+    [d3_time.utcYear, 1, yearFormatUtc],
+  ]
 
   function techan_scale_financetime() {
-    return financetime({ daily: dailyTickMethod }, genericFormat);
+    return financetime({ daily: dailyTickMethod }, genericFormat)
   }
 
-  techan_scale_financetime.utc = function() {
-    return financetime({ daily: dailyTickMethodUtc }, genericFormatUtc);
-  };
+  techan_scale_financetime.utc = function () {
+    return financetime({ daily: dailyTickMethodUtc }, genericFormatUtc)
+  }
 
-  return techan_scale_financetime;
+  return techan_scale_financetime
 }
 
 function d3_v3_multi_shim(multi) {
-  return function(d) {
+  return function (d) {
     for (let i = 0; i < multi.length; i++) {
-      if (multi[i][1](d)) return multi[i][0](d);
+      if (multi[i][1](d)) return multi[i][0](d)
     }
-  };
+  }
 }
